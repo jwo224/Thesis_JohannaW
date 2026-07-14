@@ -1,0 +1,387 @@
+wall_time,ros_time_sec,run_id,elapsed_sec,event_type,source,label,data
+2026-06-19_13-35-38-302756,1781868938.302787,20260619_133538,0.000,run_start,logger,command_trolley_ready,
+2026-06-19_13-35-38-304263,1781868938.304304,20260619_133538,0.002,command,trolley_command,trolley_ready,trolley_ready
+2026-06-19_13-35-38-307258,1781868938.307317,20260619_133538,0.005,dropzone_status,dropzone,approach_goal_sent,"approach_goal_sent. Inspect the robot pose, then approve side alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'side_align'}"""
+2026-06-19_13-36-11-270822,1781868971.270901,20260619_133538,32.968,run_end,logger,auto_closed_before_command_trolley_ready,
+2026-06-19_13-36-11-272558,1781868971.272575,20260619_133611,0.000,run_start,logger,command_trolley_ready,
+2026-06-19_13-36-11-273476,1781868971.273509,20260619_133611,0.001,command,trolley_command,trolley_ready,trolley_ready
+2026-06-19_13-36-11-276228,1781868971.276294,20260619_133611,0.004,dropzone_status,dropzone,approach_goal_sent,"approach_goal_sent. Inspect the robot pose, then approve side alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'side_align'}"""
+2026-06-19_13-37-08-194963,1781869028.195059,20260619_133611,56.923,run_end,logger,auto_closed_before_command_trolley_ready,
+2026-06-19_13-37-08-197502,1781869028.197532,20260619_133708,0.000,run_start,logger,command_trolley_ready,
+2026-06-19_13-37-08-199036,1781869028.199084,20260619_133708,0.002,command,trolley_command,trolley_ready,trolley_ready
+2026-06-19_13-37-08-203294,1781869028.203356,20260619_133708,0.006,dropzone_status,dropzone,approach_goal_sent,"approach_goal_sent. Inspect the robot pose, then approve side alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'side_align'}"""
+2026-06-19_13-37-26-702925,1781869046.703006,20260619_133708,18.506,command,trolley_command,side_align,side_align
+2026-06-19_13-37-26-708780,1781869046.708857,20260619_133708,18.511,dropzone_status,dropzone,status,side_aligning via side_align_left. Waiting for side_align_left_done.
+2026-06-19_13-37-26-710258,1781869046.710321,20260619_133708,18.513,physical_status,physical_alignment,status,side_align_left_started
+2026-06-19_13-37-32-571275,1781869052.571371,20260619_133708,24.374,physical_status,physical_alignment,side_align_complete,"side_align_left_done | final camera=left ids=[22, 23, 24, 25, 26] target_pair=[24, 25] target_x=+0.3576 target_y=+0.2541 center_x=+0.3144 center_y=-0.0530 yaw=+179.71deg error_x=+0.0016 yaw_error=-0.29deg tolerance_x=0.0060 tolerance_yaw=2.00deg"
+2026-06-19_13-37-32-574208,1781869052.574284,20260619_133708,24.377,dropzone_status,dropzone,side_align_complete,"side_align_complete: side_align_left_done | final camera=left ids=[22, 23, 24, 25, 26] target_pair=[24, 25] target_x=+0.3576 target_y=+0.2541 center_x=+0.3144 center_y=-0.0530 yaw=+179.71deg error_x=+0.0016 yaw_error=-0.29deg tolerance_x=0.0060 tolerance_yaw=2.00deg. Optional: check trolley type with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'check_trolley_type'}"" or approve straight drive with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'drive_under'}"""
+2026-06-19_13-37-34-978948,1781869054.979034,20260619_133708,26.782,yolo_detection,yolo,trash_trolley,"{""classes"": [""trash_trolley""]}"
+2026-06-19_13-37-43-968504,1781869063.968579,20260619_133708,35.771,dropzone_status,dropzone,trolley_type_checked,trolley_type_checked: trash_trolley via live_yolov8_topic; remembered target=trash_dropoff. Next command: drive_under.
+2026-06-19_13-37-43-971801,1781869063.971867,20260619_133708,35.775,command,trolley_command,check_trolley_type,check_trolley_type
+2026-06-19_13-38-00-510675,1781869080.510754,20260619_133708,52.313,dropzone_status,dropzone,status,drive_under_active via drive_straight_under. Waiting for drive_straight_under_done.
+2026-06-19_13-38-00-511968,1781869080.512015,20260619_133708,52.315,physical_status,physical_alignment,status,drive_straight_under_started
+2026-06-19_13-38-00-516941,1781869080.517020,20260619_133708,52.320,command,trolley_command,drive_under,drive_under
+2026-06-19_13-38-09-972920,1781869089.973011,20260619_133708,61.776,physical_status,physical_alignment,under_trolley,drive_straight_under_done
+2026-06-19_13-38-09-976491,1781869089.976551,20260619_133708,61.779,dropzone_status,dropzone,under_trolley,"under_trolley. Inspect position, then approve final ArUco alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'fine_align'}"""
+2026-06-19_13-38-44-014843,1781869124.014930,20260619_133708,95.818,command,trolley_command,fine_align,fine_align
+2026-06-19_13-38-44-019192,1781869124.019284,20260619_133708,95.822,dropzone_status,dropzone,status,fine_aligning via fine_align_under. Waiting for fine_align_under_done.
+2026-06-19_13-38-44-022311,1781869124.022490,20260619_133708,95.825,physical_status,physical_alignment,status,front_rear_camera_switch_started
+2026-06-19_13-38-45-573353,1781869125.576366,20260619_133708,97.379,physical_status,physical_alignment,status,fine_align_under_started
+2026-06-19_13-39-12-070750,1781869152.070843,20260619_133708,123.873,physical_status,physical_alignment,fine_align_complete,"fine_align_under_done | final ids=[3, 12] center_x=+0.1290 center_y=-0.0002 yaw=-12.73deg orientation=normal error_x=-0.0035 error_y=-0.0064 yaw_error=-1.73deg target_x=+0.1325 target_y=+0.0062 tolerance_x=0.0040 tolerance_y=0.0100 tolerance_yaw=3.00deg"
+2026-06-19_13-39-12-074796,1781869152.074861,20260619_133708,123.877,dropzone_status,dropzone,fine_align_complete,"fine_align_complete: fine_align_under_done | final ids=[3, 12] center_x=+0.1290 center_y=-0.0002 yaw=-12.73deg orientation=normal error_x=-0.0035 error_y=-0.0064 yaw_error=-1.73deg target_x=+0.1325 target_y=+0.0062 tolerance_x=0.0040 tolerance_y=0.0100 tolerance_yaw=3.00deg. Remembered trash_trolley; approve delivery with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'deliver_trolley'}"""
+2026-06-19_13-40-27-248245,1781869227.248349,20260619_133708,199.051,manual_mark,operator,docking sucessfull,
+2026-06-19_13-40-32-503391,1781869232.503478,20260619_133708,204.306,command,trolley_command,deliver_trolley,deliver_trolley
+2026-06-19_13-40-32-505854,1781869232.505921,20260619_133708,204.309,dropzone_status,dropzone,dropoff_goal_sent,"dropoff_goal_sent: remembered trash_trolley -> trash_dropoff. When the robot arrives, approve trolley release with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'drive_out'}"""
+2026-06-19_13-41-13-307342,1781869273.307435,20260619_133708,245.110,command,trolley_command,drive_out,drive_out
+2026-06-19_13-41-13-308960,1781869273.309012,20260619_133708,245.112,dropzone_status,dropzone,status,drive_out_active for 7.0s. Publishing direct cmd_vel to release trolley.
+2026-06-19_13-41-20-310921,1781869280.311011,20260619_133708,252.114,dropzone_status,dropzone,drive_out_done,drive_out_done. Released trash_trolley; cleared trolley type. Next command: trolley_ready.
+2026-06-19_13-41-20-311469,1781869280.311502,20260619_133708,252.114,run_end,logger,drive_out_done,
+2026-06-19_13-41-58-818796,1781869318.818874,20260619_134158,0.000,run_start,logger,manual_mark_without_active_run,
+2026-06-19_13-41-58-821957,1781869318.822144,20260619_134158,0.004,manual_mark,operator,perfect_run,
+2026-06-19_13-42-16-682291,1781869336.682385,20260619_134158,17.864,run_end,logger,manual_end,
+2026-06-19_13-46-53-486307,1781869613.486335,20260619_134653,0.000,run_start,logger,command_trolley_ready,
+2026-06-19_13-46-53-488085,1781869613.488129,20260619_134653,0.002,command,trolley_command,trolley_ready,trolley_ready
+2026-06-19_13-46-53-499885,1781869613.499991,20260619_134653,0.014,dropzone_status,dropzone,approach_goal_sent,"approach_goal_sent. Inspect the robot pose, then approve side alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'side_align'}"""
+2026-06-19_13-47-26-282777,1781869646.282868,20260619_134653,32.797,command,trolley_command,charging,charging
+2026-06-19_13-48-00-448218,1781869680.448301,20260619_134653,66.962,command,trolley_command,charging,charging
+2026-06-19_13-48-44-273425,1781869724.273515,20260619_134653,110.787,run_end,logger,auto_closed_before_command_trolley_ready,
+2026-06-19_13-48-44-275478,1781869724.275504,20260619_134844,0.000,run_start,logger,command_trolley_ready,
+2026-06-19_13-48-44-279590,1781869724.279662,20260619_134844,0.004,command,trolley_command,trolley_ready,trolley_ready
+2026-06-19_13-48-44-280997,1781869724.281049,20260619_134844,0.006,dropzone_status,dropzone,approach_goal_sent,"approach_goal_sent. Inspect the robot pose, then approve side alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'side_align'}"""
+2026-06-19_13-48-59-168241,1781869739.168332,20260619_134844,14.893,command,trolley_command,side_align,side_align
+2026-06-19_13-48-59-173977,1781869739.174048,20260619_134844,14.899,dropzone_status,dropzone,status,side_aligning via side_align_left. Waiting for side_align_left_done.
+2026-06-19_13-48-59-174601,1781869739.174643,20260619_134844,14.899,physical_status,physical_alignment,status,side_align_left_started
+2026-06-19_13-49-06-771249,1781869746.771348,20260619_134844,22.496,physical_status,physical_alignment,side_align_complete,"side_align_left_done | final camera=left ids=[23, 24, 25, 26] target_pair=[24, 25] target_x=+0.3594 target_y=+0.2713 center_x=+0.3676 center_y=-0.0358 yaw=+179.75deg error_x=+0.0034 yaw_error=-0.25deg tolerance_x=0.0060 tolerance_yaw=2.00deg"
+2026-06-19_13-49-06-776398,1781869746.776479,20260619_134844,22.501,dropzone_status,dropzone,side_align_complete,"side_align_complete: side_align_left_done | final camera=left ids=[23, 24, 25, 26] target_pair=[24, 25] target_x=+0.3594 target_y=+0.2713 center_x=+0.3676 center_y=-0.0358 yaw=+179.75deg error_x=+0.0034 yaw_error=-0.25deg tolerance_x=0.0060 tolerance_yaw=2.00deg. Optional: check trolley type with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'check_trolley_type'}"" or approve straight drive with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'drive_under'}"""
+2026-06-19_13-49-08-698387,1781869748.698475,20260619_134844,24.423,yolo_detection,yolo,trash_trolley,"{""classes"": [""trash_trolley""]}"
+2026-06-19_13-49-26-308673,1781869766.308773,20260619_134844,42.033,command,trolley_command,check_trolley_type,check_trolley_type
+2026-06-19_13-49-26-310423,1781869766.310488,20260619_134844,42.035,dropzone_status,dropzone,trolley_type_checked,trolley_type_checked: trash_trolley via live_yolov8_topic; remembered target=trash_dropoff. Next command: drive_under.
+2026-06-19_13-49-40-274334,1781869780.274418,20260619_134844,55.999,manual_mark,operator,object_detection_correct,
+2026-06-19_13-49-51-345483,1781869791.345572,20260619_134844,67.070,command,trolley_command,drive_under,drive_under
+2026-06-19_13-49-51-349667,1781869791.349749,20260619_134844,67.074,dropzone_status,dropzone,status,drive_under_active via drive_straight_under. Waiting for drive_straight_under_done.
+2026-06-19_13-49-51-351361,1781869791.351413,20260619_134844,67.076,physical_status,physical_alignment,status,drive_straight_under_started
+2026-06-19_13-50-00-775206,1781869800.775297,20260619_134844,76.500,physical_status,physical_alignment,under_trolley,drive_straight_under_done
+2026-06-19_13-50-00-779925,1781869800.780014,20260619_134844,76.505,dropzone_status,dropzone,under_trolley,"under_trolley. Inspect position, then approve final ArUco alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'fine_align'}"""
+2026-06-19_13-50-08-739386,1781869808.739474,20260619_134844,84.464,command,trolley_command,fine_align,fine_align
+2026-06-19_13-50-08-741222,1781869808.741285,20260619_134844,84.466,dropzone_status,dropzone,status,fine_aligning via fine_align_under. Waiting for fine_align_under_done.
+2026-06-19_13-50-08-742852,1781869808.742898,20260619_134844,84.468,physical_status,physical_alignment,status,front_rear_camera_switch_started
+2026-06-19_13-50-10-273862,1781869810.273949,20260619_134844,85.999,physical_status,physical_alignment,status,fine_align_under_started
+2026-06-19_13-50-10-971665,1781869810.971744,20260619_134844,86.696,physical_status,physical_alignment,fine_align_complete,"fine_align_under_done | final ids=[3, 12] center_x=+0.1306 center_y=+0.0009 yaw=-13.02deg orientation=normal error_x=-0.0019 error_y=-0.0053 yaw_error=-2.02deg target_x=+0.1325 target_y=+0.0062 tolerance_x=0.0040 tolerance_y=0.0100 tolerance_yaw=3.00deg"
+2026-06-19_13-50-10-973548,1781869810.973596,20260619_134844,86.698,dropzone_status,dropzone,fine_align_complete,"fine_align_complete: fine_align_under_done | final ids=[3, 12] center_x=+0.1306 center_y=+0.0009 yaw=-13.02deg orientation=normal error_x=-0.0019 error_y=-0.0053 yaw_error=-2.02deg target_x=+0.1325 target_y=+0.0062 tolerance_x=0.0040 tolerance_y=0.0100 tolerance_yaw=3.00deg. Remembered trash_trolley; approve delivery with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'deliver_trolley'}"""
+2026-06-19_13-50-44-904193,1781869844.904284,20260619_134844,120.629,manual_mark,operator,docking sucessfull,
+2026-06-19_13-50-55-117266,1781869855.117356,20260619_134844,130.842,command,trolley_command,deliver_trolley,deliver_trolley
+2026-06-19_13-50-55-325800,1781869855.325875,20260619_134844,131.051,dropzone_status,dropzone,dropoff_goal_sent,"dropoff_goal_sent: remembered trash_trolley -> trash_dropoff. When the robot arrives, approve trolley release with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'drive_out'}"""
+2026-06-19_13-51-22-648237,1781869882.648361,20260619_134844,158.373,command,trolley_command,drive_out,drive_out
+2026-06-19_13-51-22-651480,1781869882.651643,20260619_134844,158.376,dropzone_status,dropzone,status,drive_out_active for 7.0s. Publishing direct cmd_vel to release trolley.
+2026-06-19_13-51-29-653701,1781869889.653830,20260619_134844,165.378,dropzone_status,dropzone,drive_out_done,drive_out_done. Released trash_trolley; cleared trolley type. Next command: trolley_ready.
+2026-06-19_13-51-29-654365,1781869889.654408,20260619_134844,165.379,run_end,logger,drive_out_done,
+2026-06-19_13-53-13-933669,1781869993.933698,20260619_135313,0.000,run_start,logger,command_trolley_ready,
+2026-06-19_13-53-13-935286,1781869993.935328,20260619_135313,0.002,command,trolley_command,trolley_ready,trolley_ready
+2026-06-19_13-53-13-942016,1781869993.944962,20260619_135313,0.011,dropzone_status,dropzone,approach_goal_sent,"approach_goal_sent. Inspect the robot pose, then approve side alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'side_align'}"""
+2026-06-19_13-53-32-298721,1781870012.298806,20260619_135313,18.365,command,trolley_command,side_align,side_align
+2026-06-19_13-53-32-304496,1781870012.304585,20260619_135313,18.371,dropzone_status,dropzone,status,side_aligning via side_align_left. Waiting for side_align_left_done.
+2026-06-19_13-53-32-305235,1781870012.305274,20260619_135313,18.372,physical_status,physical_alignment,status,side_align_left_started
+2026-06-19_13-53-50-973517,1781870030.973619,20260619_135313,37.040,physical_status,physical_alignment,side_align_complete,"side_align_left_done | final camera=left ids=[17, 18, 19, 20] target_pair=[18, 19] target_x=+0.3503 target_y=+0.2783 center_x=+0.3593 center_y=+0.5844 yaw=-179.92deg error_x=-0.0057 yaw_error=+0.08deg tolerance_x=0.0060 tolerance_yaw=2.00deg"
+2026-06-19_13-53-50-977689,1781870030.977768,20260619_135313,37.044,dropzone_status,dropzone,side_align_complete,"side_align_complete: side_align_left_done | final camera=left ids=[17, 18, 19, 20] target_pair=[18, 19] target_x=+0.3503 target_y=+0.2783 center_x=+0.3593 center_y=+0.5844 yaw=-179.92deg error_x=-0.0057 yaw_error=+0.08deg tolerance_x=0.0060 tolerance_yaw=2.00deg. Optional: check trolley type with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'check_trolley_type'}"" or approve straight drive with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'drive_under'}"""
+2026-06-19_13-53-52-969127,1781870032.969207,20260619_135313,39.036,yolo_detection,yolo,trash_trolley,"{""classes"": [""trash_trolley""]}"
+2026-06-19_13-54-00-297672,1781870040.297755,20260619_135313,46.364,dropzone_status,dropzone,trolley_type_checked,trolley_type_checked: trash_trolley via live_yolov8_topic; remembered target=trash_dropoff. Next command: drive_under.
+2026-06-19_13-54-00-493920,1781870040.494004,20260619_135313,46.560,command,trolley_command,check_trolley_type,check_trolley_type
+2026-06-19_13-54-12-212256,1781870052.212351,20260619_135313,58.279,manual_mark,operator,object_detection_correct,
+2026-06-19_13-54-21-390433,1781870061.390522,20260619_135313,67.457,command,trolley_command,drive_under,drive_under
+2026-06-19_13-54-21-395351,1781870061.395427,20260619_135313,67.462,dropzone_status,dropzone,status,drive_under_active via drive_straight_under. Waiting for drive_straight_under_done.
+2026-06-19_13-54-21-404201,1781870061.404276,20260619_135313,67.471,physical_status,physical_alignment,status,drive_straight_under_started
+2026-06-19_13-54-30-873322,1781870070.873405,20260619_135313,76.940,physical_status,physical_alignment,under_trolley,drive_straight_under_done
+2026-06-19_13-54-30-875893,1781870070.875980,20260619_135313,76.942,dropzone_status,dropzone,under_trolley,"under_trolley. Inspect position, then approve final ArUco alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'fine_align'}"""
+2026-06-19_13-54-43-421364,1781870083.421467,20260619_135313,89.488,command,trolley_command,fine_align,fine_align
+2026-06-19_13-54-43-423040,1781870083.423097,20260619_135313,89.490,dropzone_status,dropzone,status,fine_aligning via fine_align_under. Waiting for fine_align_under_done.
+2026-06-19_13-54-43-429260,1781870083.429372,20260619_135313,89.496,physical_status,physical_alignment,status,front_rear_camera_switch_started
+2026-06-19_13-54-44-973289,1781870084.973371,20260619_135313,91.040,physical_status,physical_alignment,status,fine_align_under_started
+2026-06-19_13-55-30-069913,1781870130.070001,20260619_135313,136.136,physical_status,physical_alignment,status,fine_align_under_timeout
+2026-06-19_13-55-30-071942,1781870130.072004,20260619_135313,136.138,dropzone_status,dropzone,status,fine_alignment_stopped: fine_align_under_timeout
+2026-06-19_13-56-07-474633,1781870167.474796,20260619_135313,173.541,manual_mark,operator,too_dark_added light_new_fine_aling_try,
+2026-06-19_13-56-36-324142,1781870196.324224,20260619_135313,202.391,command,trolley_command,fine_align,fine_align
+2026-06-19_13-56-36-325612,1781870196.325650,20260619_135313,202.392,dropzone_status,dropzone,status,fine_aligning via fine_align_under. Waiting for fine_align_under_done.
+2026-06-19_13-56-36-331838,1781870196.331941,20260619_135313,202.398,physical_status,physical_alignment,status,front_rear_camera_switch_started
+2026-06-19_13-56-37-870933,1781870197.871012,20260619_135313,203.937,physical_status,physical_alignment,status,fine_align_under_started
+2026-06-19_13-56-57-470810,1781870217.470891,20260619_135313,223.537,physical_status,physical_alignment,fine_align_complete,"fine_align_under_done | final ids=[3, 12] center_x=+0.1407 center_y=+0.0088 yaw=+164.99deg orientation=flipped_180 error_x=+0.0037 error_y=+0.0050 yaw_error=-0.01deg target_x=+0.1370 target_y=+0.0038 tolerance_x=0.0040 tolerance_y=0.0100 tolerance_yaw=3.00deg"
+2026-06-19_13-56-57-472760,1781870217.472807,20260619_135313,223.539,dropzone_status,dropzone,fine_align_complete,"fine_align_complete: fine_align_under_done | final ids=[3, 12] center_x=+0.1407 center_y=+0.0088 yaw=+164.99deg orientation=flipped_180 error_x=+0.0037 error_y=+0.0050 yaw_error=-0.01deg target_x=+0.1370 target_y=+0.0038 tolerance_x=0.0040 tolerance_y=0.0100 tolerance_yaw=3.00deg. Remembered trash_trolley; approve delivery with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'deliver_trolley'}"""
+2026-06-19_13-58-48-051289,1781870328.051365,20260619_135313,334.118,dropzone_status,dropzone,status,fine_aligning via fine_align_under. Waiting for fine_align_under_done.
+2026-06-19_13-58-48-058701,1781870328.058788,20260619_135313,334.125,physical_status,physical_alignment,status,front_rear_camera_switch_started
+2026-06-19_13-58-48-148465,1781870328.148556,20260619_135313,334.215,command,trolley_command,fine_align,fine_align
+2026-06-19_13-58-49-571680,1781870329.571771,20260619_135313,335.638,physical_status,physical_alignment,status,fine_align_under_started
+2026-06-19_13-58-50-274440,1781870330.274534,20260619_135313,336.341,physical_status,physical_alignment,fine_align_complete,"fine_align_under_done | final ids=[3, 12] center_x=+0.1364 center_y=+0.0001 yaw=+163.66deg orientation=flipped_180 error_x=-0.0006 error_y=-0.0037 yaw_error=-1.34deg target_x=+0.1370 target_y=+0.0038 tolerance_x=0.0040 tolerance_y=0.0100 tolerance_yaw=3.00deg"
+2026-06-19_13-58-50-279789,1781870330.279872,20260619_135313,336.346,dropzone_status,dropzone,fine_align_complete,"fine_align_complete: fine_align_under_done | final ids=[3, 12] center_x=+0.1364 center_y=+0.0001 yaw=+163.66deg orientation=flipped_180 error_x=-0.0006 error_y=-0.0037 yaw_error=-1.34deg target_x=+0.1370 target_y=+0.0038 tolerance_x=0.0040 tolerance_y=0.0100 tolerance_yaw=3.00deg. Remembered trash_trolley; approve delivery with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'deliver_trolley'}"""
+2026-06-19_13-58-55-597917,1781870335.597995,20260619_135313,341.664,manual_mark,operator,docking unsucessfull_helped_docking,
+2026-06-19_13-59-11-954990,1781870351.955077,20260619_135313,358.022,command,trolley_command,deliver_trolley,deliver_trolley
+2026-06-19_13-59-11-957121,1781870351.957176,20260619_135313,358.024,dropzone_status,dropzone,dropoff_goal_sent,"dropoff_goal_sent: remembered trash_trolley -> trash_dropoff. When the robot arrives, approve trolley release with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'drive_out'}"""
+2026-06-19_13-59-33-224778,1781870373.224865,20260619_135313,379.291,command,trolley_command,drive_out,drive_out
+2026-06-19_13-59-33-229118,1781870373.229187,20260619_135313,379.296,dropzone_status,dropzone,status,drive_out_active for 7.0s. Publishing direct cmd_vel to release trolley.
+2026-06-19_13-59-40-230059,1781870380.230144,20260619_135313,386.297,dropzone_status,dropzone,drive_out_done,drive_out_done. Released trash_trolley; cleared trolley type. Next command: trolley_ready.
+2026-06-19_13-59-40-230587,1781870380.230625,20260619_135313,386.297,run_end,logger,drive_out_done,
+2026-06-19_14-02-35-582732,1781870555.582766,20260619_140235,0.000,run_start,logger,manual_mark_without_active_run,
+2026-06-19_14-02-35-584532,1781870555.584572,20260619_140235,0.002,manual_mark,operator,reseting_start_position,
+2026-06-19_14-03-17-680316,1781870597.680395,20260619_140235,42.098,dropzone_status,dropzone,approach_goal_sent,"approach_goal_sent. Inspect the robot pose, then approve side alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'side_align'}"""
+2026-06-19_14-03-17-778063,1781870597.778163,20260619_140235,42.196,run_end,logger,auto_closed_before_command_trolley_ready,
+2026-06-19_14-03-17-780025,1781870597.780044,20260619_140317,0.000,run_start,logger,command_trolley_ready,
+2026-06-19_14-03-17-781040,1781870597.781076,20260619_140317,0.001,command,trolley_command,trolley_ready,trolley_ready
+2026-06-19_14-03-51-725611,1781870631.725704,20260619_140317,33.946,run_end,logger,auto_closed_before_command_trolley_ready,
+2026-06-19_14-03-51-727492,1781870631.727512,20260619_140351,0.000,run_start,logger,command_trolley_ready,
+2026-06-19_14-03-51-728474,1781870631.728506,20260619_140351,0.001,command,trolley_command,trolley_ready,trolley_ready
+2026-06-19_14-03-51-729450,1781870631.729481,20260619_140351,0.002,dropzone_status,dropzone,approach_goal_sent,"approach_goal_sent. Inspect the robot pose, then approve side alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'side_align'}"""
+2026-06-19_14-04-07-297811,1781870647.297899,20260619_140351,15.571,command,trolley_command,side_align,side_align
+2026-06-19_14-04-07-304759,1781870647.304834,20260619_140351,15.577,dropzone_status,dropzone,status,side_aligning via side_align_left. Waiting for side_align_left_done.
+2026-06-19_14-04-07-306002,1781870647.306050,20260619_140351,15.579,physical_status,physical_alignment,status,side_align_left_started
+2026-06-19_14-04-13-471241,1781870653.471332,20260619_140351,21.744,physical_status,physical_alignment,side_align_complete,"side_align_left_done | final camera=left ids=[17, 18, 19, 20] target_pair=[18, 19] target_x=+0.3564 target_y=+0.2735 center_x=+0.3584 center_y=+0.5793 yaw=-178.91deg error_x=+0.0004 yaw_error=+1.09deg tolerance_x=0.0060 tolerance_yaw=2.00deg"
+2026-06-19_14-04-13-477237,1781870653.477313,20260619_140351,21.750,dropzone_status,dropzone,side_align_complete,"side_align_complete: side_align_left_done | final camera=left ids=[17, 18, 19, 20] target_pair=[18, 19] target_x=+0.3564 target_y=+0.2735 center_x=+0.3584 center_y=+0.5793 yaw=-178.91deg error_x=+0.0004 yaw_error=+1.09deg tolerance_x=0.0060 tolerance_yaw=2.00deg. Optional: check trolley type with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'check_trolley_type'}"" or approve straight drive with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'drive_under'}"""
+2026-06-19_14-04-15-271129,1781870655.271208,20260619_140351,23.544,yolo_detection,yolo,laundry_trolley,"{""classes"": [""laundry_trolley""]}"
+2026-06-19_14-04-23-559743,1781870663.559825,20260619_140351,31.832,command,trolley_command,check_trolley_type,check_trolley_type
+2026-06-19_14-04-23-577009,1781870663.577104,20260619_140351,31.850,dropzone_status,dropzone,trolley_type_checked,trolley_type_checked: laundry_trolley via live_yolov8_topic; remembered target=laundry_dropoff. Next command: drive_under.
+2026-06-19_14-04-38-864852,1781870678.864935,20260619_140351,47.138,manual_mark,operator,object_detection_correct,
+2026-06-19_14-04-52-919208,1781870692.919300,20260619_140351,61.192,command,trolley_command,drive_under,drive_under
+2026-06-19_14-04-52-921569,1781870692.921638,20260619_140351,61.194,dropzone_status,dropzone,status,drive_under_active via drive_straight_under. Waiting for drive_straight_under_done.
+2026-06-19_14-04-52-927796,1781870692.927865,20260619_140351,61.201,physical_status,physical_alignment,status,drive_straight_under_started
+2026-06-19_14-05-02-372652,1781870702.372744,20260619_140351,70.645,physical_status,physical_alignment,under_trolley,drive_straight_under_done
+2026-06-19_14-05-02-375377,1781870702.375432,20260619_140351,70.648,dropzone_status,dropzone,under_trolley,"under_trolley. Inspect position, then approve final ArUco alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'fine_align'}"""
+2026-06-19_14-05-07-239467,1781870707.239555,20260619_140351,75.512,command,trolley_command,fine_align,fine_align
+2026-06-19_14-05-07-246040,1781870707.246119,20260619_140351,75.519,dropzone_status,dropzone,status,fine_aligning via fine_align_under. Waiting for fine_align_under_done.
+2026-06-19_14-05-07-246742,1781870707.246776,20260619_140351,75.519,physical_status,physical_alignment,status,front_rear_camera_switch_started
+2026-06-19_14-05-08-775016,1781870708.775095,20260619_140351,77.048,physical_status,physical_alignment,status,fine_align_under_started
+2026-06-19_14-05-14-670519,1781870714.670604,20260619_140351,82.943,physical_status,physical_alignment,fine_align_complete,"fine_align_under_done | final ids=[3, 12] center_x=+0.1389 center_y=+0.0134 yaw=+163.55deg orientation=flipped_180 error_x=+0.0019 error_y=+0.0096 yaw_error=-1.45deg target_x=+0.1370 target_y=+0.0038 tolerance_x=0.0040 tolerance_y=0.0100 tolerance_yaw=3.00deg"
+2026-06-19_14-05-14-673508,1781870714.673576,20260619_140351,82.946,dropzone_status,dropzone,fine_align_complete,"fine_align_complete: fine_align_under_done | final ids=[3, 12] center_x=+0.1389 center_y=+0.0134 yaw=+163.55deg orientation=flipped_180 error_x=+0.0019 error_y=+0.0096 yaw_error=-1.45deg target_x=+0.1370 target_y=+0.0038 tolerance_x=0.0040 tolerance_y=0.0100 tolerance_yaw=3.00deg. Remembered laundry_trolley; approve delivery with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'deliver_trolley'}"""
+2026-06-19_14-05-47-471383,1781870747.471467,20260619_140351,115.744,manual_mark,operator,docking sucessfull,
+2026-06-19_14-06-03-696123,1781870763.696234,20260619_140351,131.969,command,trolley_command,deliver_trolley,deliver_trolley
+2026-06-19_14-06-03-702160,1781870763.702263,20260619_140351,131.975,dropzone_status,dropzone,dropoff_goal_sent,"dropoff_goal_sent: remembered laundry_trolley -> laundry_dropoff. When the robot arrives, approve trolley release with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'drive_out'}"""
+2026-06-19_14-06-20-129287,1781870780.129449,20260619_140351,148.402,command,trolley_command,drive_out,drive_out
+2026-06-19_14-06-20-132738,1781870780.132867,20260619_140351,148.405,dropzone_status,dropzone,status,drive_out_active for 7.0s. Publishing direct cmd_vel to release trolley.
+2026-06-19_14-06-27-133437,1781870787.133524,20260619_140351,155.406,dropzone_status,dropzone,drive_out_done,drive_out_done. Released laundry_trolley; cleared trolley type. Next command: trolley_ready.
+2026-06-19_14-06-27-133969,1781870787.134011,20260619_140351,155.407,run_end,logger,drive_out_done,
+2026-06-19_14-07-29-889716,1781870849.889749,20260619_140729,0.000,run_start,logger,command_trolley_ready,
+2026-06-19_14-07-29-891335,1781870849.891374,20260619_140729,0.002,command,trolley_command,trolley_ready,trolley_ready
+2026-06-19_14-07-29-892851,1781870849.892891,20260619_140729,0.003,dropzone_status,dropzone,approach_goal_sent,"approach_goal_sent. Inspect the robot pose, then approve side alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'side_align'}"""
+2026-06-19_14-07-44-007674,1781870864.007758,20260619_140729,14.118,command,trolley_command,side_align,side_align
+2026-06-19_14-07-44-012327,1781870864.012403,20260619_140729,14.123,dropzone_status,dropzone,status,side_aligning via side_align_left. Waiting for side_align_left_done.
+2026-06-19_14-07-44-020780,1781870864.020864,20260619_140729,14.131,physical_status,physical_alignment,status,side_align_left_started
+2026-06-19_14-07-59-470945,1781870879.471032,20260619_140729,29.581,physical_status,physical_alignment,side_align_complete,"side_align_left_done | final camera=left ids=[18, 19, 20] target_pair=[18, 19] target_x=+0.3533 target_y=+0.2888 center_x=+0.4077 center_y=+0.5950 yaw=+179.80deg error_x=-0.0027 yaw_error=-0.20deg tolerance_x=0.0060 tolerance_yaw=2.00deg"
+2026-06-19_14-07-59-477441,1781870879.477535,20260619_140729,29.588,dropzone_status,dropzone,side_align_complete,"side_align_complete: side_align_left_done | final camera=left ids=[18, 19, 20] target_pair=[18, 19] target_x=+0.3533 target_y=+0.2888 center_x=+0.4077 center_y=+0.5950 yaw=+179.80deg error_x=-0.0027 yaw_error=-0.20deg tolerance_x=0.0060 tolerance_yaw=2.00deg. Optional: check trolley type with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'check_trolley_type'}"" or approve straight drive with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'drive_under'}"""
+2026-06-19_14-08-01-263374,1781870881.263451,20260619_140729,31.374,yolo_detection,yolo,laundry_trolley,"{""classes"": [""laundry_trolley""]}"
+2026-06-19_14-08-07-636166,1781870887.636253,20260619_140729,37.747,command,trolley_command,check_trolley_type,check_trolley_type
+2026-06-19_14-08-07-745876,1781870887.745965,20260619_140729,37.856,dropzone_status,dropzone,trolley_type_checked,trolley_type_checked: laundry_trolley via live_yolov8_topic; remembered target=laundry_dropoff. Next command: drive_under.
+2026-06-19_14-08-21-733033,1781870901.733115,20260619_140729,51.844,manual_mark,operator,object_detection_correct,
+2026-06-19_14-08-29-331396,1781870909.331476,20260619_140729,59.442,dropzone_status,dropzone,status,drive_under_active via drive_straight_under. Waiting for drive_straight_under_done.
+2026-06-19_14-08-29-334844,1781870909.334905,20260619_140729,59.445,physical_status,physical_alignment,status,drive_straight_under_started
+2026-06-19_14-08-29-337836,1781870909.337939,20260619_140729,59.448,command,trolley_command,drive_under,drive_under
+2026-06-19_14-08-38-775108,1781870918.775184,20260619_140729,68.886,physical_status,physical_alignment,under_trolley,drive_straight_under_done
+2026-06-19_14-08-38-780335,1781870918.780408,20260619_140729,68.891,dropzone_status,dropzone,under_trolley,"under_trolley. Inspect position, then approve final ArUco alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'fine_align'}"""
+2026-06-19_14-08-44-089409,1781870924.089487,20260619_140729,74.200,dropzone_status,dropzone,status,fine_aligning via fine_align_under. Waiting for fine_align_under_done.
+2026-06-19_14-08-44-091299,1781870924.091354,20260619_140729,74.202,physical_status,physical_alignment,status,front_rear_camera_switch_started
+2026-06-19_14-08-44-287982,1781870924.288093,20260619_140729,74.399,command,trolley_command,fine_align,fine_align
+2026-06-19_14-08-45-671596,1781870925.671673,20260619_140729,75.782,physical_status,physical_alignment,status,fine_align_under_started
+2026-06-19_14-09-30-769953,1781870970.770047,20260619_140729,120.880,physical_status,physical_alignment,status,fine_align_under_timeout
+2026-06-19_14-09-30-771347,1781870970.771401,20260619_140729,120.882,dropzone_status,dropzone,status,fine_alignment_stopped: fine_align_under_timeout
+2026-06-19_14-09-39-106241,1781870979.106322,20260619_140729,129.217,manual_mark,operator,too_dark_added light_new_fine_aling_try,
+2026-06-19_14-10-08-878212,1781871008.878307,20260619_140729,158.989,command,trolley_command,fine_align,fine_align
+2026-06-19_14-10-08-890419,1781871008.890505,20260619_140729,159.001,dropzone_status,dropzone,status,fine_aligning via fine_align_under. Waiting for fine_align_under_done.
+2026-06-19_14-10-08-891202,1781871008.891243,20260619_140729,159.002,physical_status,physical_alignment,status,front_rear_camera_switch_started
+2026-06-19_14-10-10-471695,1781871010.471787,20260619_140729,160.582,physical_status,physical_alignment,status,fine_align_under_started
+2026-06-19_14-10-55-473580,1781871055.473677,20260619_140729,205.584,physical_status,physical_alignment,status,fine_align_under_timeout
+2026-06-19_14-10-55-481754,1781871055.481864,20260619_140729,205.592,dropzone_status,dropzone,status,fine_alignment_stopped: fine_align_under_timeout
+2026-06-19_14-11-15-648940,1781871075.649020,20260619_140729,225.759,manual_mark,operator,docking unsucessfull_helped_docking,
+2026-06-19_14-11-37-750346,1781871097.750436,20260619_140729,247.861,command,trolley_command,fine_align,fine_align
+2026-06-19_14-11-37-753045,1781871097.753110,20260619_140729,247.864,dropzone_status,dropzone,status,fine_aligning via fine_align_under. Waiting for fine_align_under_done.
+2026-06-19_14-11-37-757727,1781871097.757797,20260619_140729,247.868,physical_status,physical_alignment,status,front_rear_camera_switch_started
+2026-06-19_14-11-39-272530,1781871099.272608,20260619_140729,249.383,physical_status,physical_alignment,status,fine_align_under_started
+2026-06-19_14-11-58-872092,1781871118.872232,20260619_140729,268.983,physical_status,physical_alignment,fine_align_complete,"fine_align_under_done | final ids=[3, 12] center_x=+0.1404 center_y=+0.0088 yaw=+164.10deg orientation=flipped_180 error_x=+0.0034 error_y=+0.0050 yaw_error=-0.90deg target_x=+0.1370 target_y=+0.0038 tolerance_x=0.0040 tolerance_y=0.0100 tolerance_yaw=3.00deg"
+2026-06-19_14-11-58-876875,1781871118.877031,20260619_140729,268.988,dropzone_status,dropzone,fine_align_complete,"fine_align_complete: fine_align_under_done | final ids=[3, 12] center_x=+0.1404 center_y=+0.0088 yaw=+164.10deg orientation=flipped_180 error_x=+0.0034 error_y=+0.0050 yaw_error=-0.90deg target_x=+0.1370 target_y=+0.0038 tolerance_x=0.0040 tolerance_y=0.0100 tolerance_yaw=3.00deg. Remembered laundry_trolley; approve delivery with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'deliver_trolley'}"""
+2026-06-19_14-13-03-050153,1781871183.050231,20260619_140729,333.161,dropzone_status,dropzone,status,fine_aligning via fine_align_under. Waiting for fine_align_under_done.
+2026-06-19_14-13-03-056645,1781871183.056723,20260619_140729,333.167,physical_status,physical_alignment,status,front_rear_camera_switch_started
+2026-06-19_14-13-03-145231,1781871183.145324,20260619_140729,333.256,command,trolley_command,fine_align,fine_align
+2026-06-19_14-13-04-572326,1781871184.572403,20260619_140729,334.683,physical_status,physical_alignment,status,fine_align_under_started
+2026-06-19_14-13-05-274069,1781871185.274146,20260619_140729,335.385,physical_status,physical_alignment,fine_align_complete,"fine_align_under_done | final ids=[3, 12] center_x=+0.1345 center_y=+0.0089 yaw=+165.30deg orientation=flipped_180 error_x=-0.0025 error_y=+0.0051 yaw_error=+0.30deg target_x=+0.1370 target_y=+0.0038 tolerance_x=0.0040 tolerance_y=0.0100 tolerance_yaw=3.00deg"
+2026-06-19_14-13-05-278037,1781871185.278096,20260619_140729,335.389,dropzone_status,dropzone,fine_align_complete,"fine_align_complete: fine_align_under_done | final ids=[3, 12] center_x=+0.1345 center_y=+0.0089 yaw=+165.30deg orientation=flipped_180 error_x=-0.0025 error_y=+0.0051 yaw_error=+0.30deg target_x=+0.1370 target_y=+0.0038 tolerance_x=0.0040 tolerance_y=0.0100 tolerance_yaw=3.00deg. Remembered laundry_trolley; approve delivery with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'deliver_trolley'}"""
+2026-06-19_14-13-16-776911,1781871196.776993,20260619_140729,346.887,command,trolley_command,deliver_trolley,deliver_trolley
+2026-06-19_14-13-16-784016,1781871196.784091,20260619_140729,346.895,dropzone_status,dropzone,dropoff_goal_sent,"dropoff_goal_sent: remembered laundry_trolley -> laundry_dropoff. When the robot arrives, approve trolley release with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'drive_out'}"""
+2026-06-19_14-13-33-250846,1781871213.250930,20260619_140729,363.361,dropzone_status,dropzone,status,drive_out_active for 7.0s. Publishing direct cmd_vel to release trolley.
+2026-06-19_14-13-33-261635,1781871213.261717,20260619_140729,363.372,command,trolley_command,drive_out,drive_out
+2026-06-19_14-13-40-252527,1781871220.252611,20260619_140729,370.363,dropzone_status,dropzone,drive_out_done,drive_out_done. Released laundry_trolley; cleared trolley type. Next command: trolley_ready.
+2026-06-19_14-13-40-253045,1781871220.253084,20260619_140729,370.363,run_end,logger,drive_out_done,
+2026-06-19_14-42-21-482893,1781872941.482919,20260619_144221,0.000,run_start,logger,manual_mark_without_active_run,
+2026-06-19_14-42-21-484315,1781872941.484346,20260619_144221,0.002,manual_mark,operator,reset_starting_point,
+2026-06-19_14-42-33-999786,1781872953.999875,20260619_144221,12.517,run_end,logger,auto_closed_before_command_trolley_ready,
+2026-06-19_14-42-34-001555,1781872954.001572,20260619_144234,0.000,run_start,logger,command_trolley_ready,
+2026-06-19_14-42-34-002467,1781872954.002504,20260619_144234,0.001,command,trolley_command,trolley_ready,trolley_ready
+2026-06-19_14-42-34-004519,1781872954.004757,20260619_144234,0.003,dropzone_status,dropzone,approach_goal_sent,"approach_goal_sent. Inspect the robot pose, then approve side alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'side_align'}"""
+2026-06-19_14-42-53-074576,1781872973.074659,20260619_144234,19.073,command,trolley_command,side_align,side_align
+2026-06-19_14-42-53-079255,1781872973.079322,20260619_144234,19.078,dropzone_status,dropzone,status,side_aligning via side_align_left. Waiting for side_align_left_done.
+2026-06-19_14-42-53-080421,1781872973.080465,20260619_144234,19.079,physical_status,physical_alignment,status,side_align_left_started
+2026-06-19_14-43-08-078531,1781872988.078618,20260619_144234,34.077,physical_status,physical_alignment,side_align_complete,"side_align_left_done | final camera=left ids=[23, 24, 25, 26] target_pair=[24, 25] target_x=+0.3555 target_y=+0.2667 center_x=+0.3715 center_y=-0.0403 yaw=-178.38deg error_x=-0.0005 yaw_error=+1.62deg tolerance_x=0.0060 tolerance_yaw=2.00deg"
+2026-06-19_14-43-08-082672,1781872988.082745,20260619_144234,34.081,dropzone_status,dropzone,side_align_complete,"side_align_complete: side_align_left_done | final camera=left ids=[23, 24, 25, 26] target_pair=[24, 25] target_x=+0.3555 target_y=+0.2667 center_x=+0.3715 center_y=-0.0403 yaw=-178.38deg error_x=-0.0005 yaw_error=+1.62deg tolerance_x=0.0060 tolerance_yaw=2.00deg. Optional: check trolley type with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'check_trolley_type'}"" or approve straight drive with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'drive_under'}"""
+2026-06-19_14-43-09-960323,1781872989.960404,20260619_144234,35.959,yolo_detection,yolo,laundry_trolley,"{""classes"": [""laundry_trolley""]}"
+2026-06-19_14-43-27-489867,1781873007.489949,20260619_144234,53.489,command,trolley_command,check_trolley_type,check_trolley_type
+2026-06-19_14-43-27-491066,1781873007.491103,20260619_144234,53.490,dropzone_status,dropzone,trolley_type_checked,trolley_type_checked: laundry_trolley via live_yolov8_topic; remembered target=laundry_dropoff. Next command: drive_under.
+2026-06-19_14-43-37-147570,1781873017.147652,20260619_144234,63.146,manual_mark,operator,object_detection_correct,
+2026-06-19_14-43-45-722909,1781873025.723021,20260619_144234,71.722,command,trolley_command,drive_under,drive_under
+2026-06-19_14-43-45-726551,1781873025.726635,20260619_144234,71.725,dropzone_status,dropzone,status,drive_under_active via drive_straight_under. Waiting for drive_straight_under_done.
+2026-06-19_14-43-45-728041,1781873025.728100,20260619_144234,71.727,physical_status,physical_alignment,status,drive_straight_under_started
+2026-06-19_14-43-55-173373,1781873035.173494,20260619_144234,81.172,physical_status,physical_alignment,under_trolley,drive_straight_under_done
+2026-06-19_14-43-55-176354,1781873035.176428,20260619_144234,81.175,dropzone_status,dropzone,under_trolley,"under_trolley. Inspect position, then approve final ArUco alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'fine_align'}"""
+2026-06-19_14-44-01-501520,1781873041.501606,20260619_144234,87.500,command,trolley_command,fine_align,fine_align
+2026-06-19_14-44-01-506866,1781873041.506942,20260619_144234,87.505,dropzone_status,dropzone,status,fine_aligning via fine_align_under. Waiting for fine_align_under_done.
+2026-06-19_14-44-01-508967,1781873041.509026,20260619_144234,87.508,physical_status,physical_alignment,status,front_rear_camera_switch_started
+2026-06-19_14-44-03-072450,1781873043.072535,20260619_144234,89.071,physical_status,physical_alignment,status,fine_align_under_started
+2026-06-19_14-44-13-370657,1781873053.370755,20260619_144234,99.369,physical_status,physical_alignment,fine_align_complete,"fine_align_under_done | final ids=[3, 12] center_x=+0.1291 center_y=-0.0015 yaw=-13.23deg orientation=normal error_x=-0.0034 error_y=-0.0077 yaw_error=-2.23deg target_x=+0.1325 target_y=+0.0062 tolerance_x=0.0040 tolerance_y=0.0100 tolerance_yaw=3.00deg"
+2026-06-19_14-44-13-372874,1781873053.372929,20260619_144234,99.371,dropzone_status,dropzone,fine_align_complete,"fine_align_complete: fine_align_under_done | final ids=[3, 12] center_x=+0.1291 center_y=-0.0015 yaw=-13.23deg orientation=normal error_x=-0.0034 error_y=-0.0077 yaw_error=-2.23deg target_x=+0.1325 target_y=+0.0062 tolerance_x=0.0040 tolerance_y=0.0100 tolerance_yaw=3.00deg. Remembered laundry_trolley; approve delivery with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'deliver_trolley'}"""
+2026-06-19_14-45-05-757128,1781873105.757212,20260619_144234,151.756,manual_mark,operator,docking sucessfull,
+2026-06-19_14-45-14-205651,1781873114.205745,20260619_144234,160.204,command,trolley_command,deliver_trolley,deliver_trolley
+2026-06-19_14-45-14-209995,1781873114.210074,20260619_144234,160.209,dropzone_status,dropzone,dropoff_goal_sent,"dropoff_goal_sent: remembered laundry_trolley -> laundry_dropoff. When the robot arrives, approve trolley release with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'drive_out'}"""
+2026-06-19_14-45-31-257474,1781873131.257561,20260619_144234,177.256,command,trolley_command,drive_out,drive_out
+2026-06-19_14-45-31-259034,1781873131.259079,20260619_144234,177.258,dropzone_status,dropzone,status,drive_out_active for 7.0s. Publishing direct cmd_vel to release trolley.
+2026-06-19_14-45-38-263210,1781873138.263297,20260619_144234,184.262,dropzone_status,dropzone,drive_out_done,drive_out_done. Released laundry_trolley; cleared trolley type. Next command: trolley_ready.
+2026-06-19_14-45-38-263769,1781873138.263811,20260619_144234,184.262,run_end,logger,drive_out_done,
+2026-06-19_14-46-01-269409,1781873161.269433,20260619_144601,0.000,run_start,logger,manual_mark_without_active_run,
+2026-06-19_14-46-01-270949,1781873161.271003,20260619_144601,0.002,manual_mark,operator,whole_run_sucessfull,
+2026-06-19_14-47-00-350998,1781873220.351095,20260619_144601,59.082,command,trolley_command,charging,charging
+2026-06-19_14-47-04-004933,1781873224.005018,20260619_144601,62.736,command,trolley_command,charging,charging
+2026-06-19_14-47-19-595171,1781873239.595258,20260619_144601,78.326,run_end,logger,auto_closed_before_command_trolley_ready,
+2026-06-19_14-47-19-597095,1781873239.597117,20260619_144719,0.000,run_start,logger,command_trolley_ready,
+2026-06-19_14-47-19-598249,1781873239.598285,20260619_144719,0.001,command,trolley_command,trolley_ready,trolley_ready
+2026-06-19_14-47-19-602341,1781873239.602404,20260619_144719,0.005,dropzone_status,dropzone,approach_goal_sent,"approach_goal_sent. Inspect the robot pose, then approve side alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'side_align'}"""
+2026-06-19_14-47-30-720399,1781873250.720500,20260619_144719,11.124,command,trolley_command,charging,charging
+2026-06-19_14-48-06-594375,1781873286.594457,20260619_144719,46.997,run_end,logger,auto_closed_before_command_trolley_ready,
+2026-06-19_14-48-06-596161,1781873286.596181,20260619_144806,0.000,run_start,logger,command_trolley_ready,
+2026-06-19_14-48-06-597128,1781873286.597160,20260619_144806,0.001,command,trolley_command,trolley_ready,trolley_ready
+2026-06-19_14-48-06-598114,1781873286.598147,20260619_144806,0.002,dropzone_status,dropzone,approach_goal_sent,"approach_goal_sent. Inspect the robot pose, then approve side alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'side_align'}"""
+2026-06-19_14-48-21-984045,1781873301.984169,20260619_144806,15.388,command,trolley_command,side_align,side_align
+2026-06-19_14-48-21-988842,1781873301.988919,20260619_144806,15.393,dropzone_status,dropzone,status,side_aligning via side_align_left. Waiting for side_align_left_done.
+2026-06-19_14-48-21-990079,1781873301.990121,20260619_144806,15.394,physical_status,physical_alignment,status,side_align_left_started
+2026-06-19_14-48-27-672370,1781873307.672455,20260619_144806,21.076,physical_status,physical_alignment,side_align_complete,"side_align_left_done | final camera=left ids=[23, 24, 25, 26] target_pair=[24, 25] target_x=+0.3576 target_y=+0.2735 center_x=+0.3761 center_y=-0.0334 yaw=-178.28deg error_x=+0.0016 yaw_error=+1.72deg tolerance_x=0.0060 tolerance_yaw=2.00deg"
+2026-06-19_14-48-27-674830,1781873307.674884,20260619_144806,21.079,dropzone_status,dropzone,side_align_complete,"side_align_complete: side_align_left_done | final camera=left ids=[23, 24, 25, 26] target_pair=[24, 25] target_x=+0.3576 target_y=+0.2735 center_x=+0.3761 center_y=-0.0334 yaw=-178.28deg error_x=+0.0016 yaw_error=+1.72deg tolerance_x=0.0060 tolerance_yaw=2.00deg. Optional: check trolley type with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'check_trolley_type'}"" or approve straight drive with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'drive_under'}"""
+2026-06-19_14-48-29-699438,1781873309.699523,20260619_144806,23.103,yolo_detection,yolo,laundry_trolley,"{""classes"": [""laundry_trolley""]}"
+2026-06-19_14-48-36-284056,1781873316.284142,20260619_144806,29.688,command,trolley_command,check_trolley_type,check_trolley_type
+2026-06-19_14-48-36-290058,1781873316.290138,20260619_144806,29.694,dropzone_status,dropzone,trolley_type_checked,trolley_type_checked: laundry_trolley via live_yolov8_topic; remembered target=laundry_dropoff. Next command: drive_under.
+2026-06-19_14-48-48-420706,1781873328.420797,20260619_144806,41.825,manual_mark,operator,object_detection_correct,
+2026-06-19_14-48-57-246441,1781873337.246521,20260619_144806,50.650,dropzone_status,dropzone,status,drive_under_active via drive_straight_under. Waiting for drive_straight_under_done.
+2026-06-19_14-48-57-255604,1781873337.255775,20260619_144806,50.660,physical_status,physical_alignment,status,drive_straight_under_started
+2026-06-19_14-48-57-341494,1781873337.341731,20260619_144806,50.746,command,trolley_command,drive_under,drive_under
+2026-06-19_14-49-06-675425,1781873346.675509,20260619_144806,60.079,physical_status,physical_alignment,under_trolley,drive_straight_under_done
+2026-06-19_14-49-06-676811,1781873346.676862,20260619_144806,60.081,dropzone_status,dropzone,under_trolley,"under_trolley. Inspect position, then approve final ArUco alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'fine_align'}"""
+2026-06-19_14-49-12-363646,1781873352.363734,20260619_144806,65.768,command,trolley_command,fine_align,fine_align
+2026-06-19_14-49-12-368571,1781873352.368639,20260619_144806,65.773,dropzone_status,dropzone,status,fine_aligning via fine_align_under. Waiting for fine_align_under_done.
+2026-06-19_14-49-12-370645,1781873352.370699,20260619_144806,65.775,physical_status,physical_alignment,status,front_rear_camera_switch_started
+2026-06-19_14-49-13-971197,1781873353.971280,20260619_144806,67.375,physical_status,physical_alignment,status,fine_align_under_started
+2026-06-19_14-49-23-671170,1781873363.671423,20260619_144806,77.075,physical_status,physical_alignment,fine_align_complete,"fine_align_under_done | final ids=[3, 12] center_x=+0.1363 center_y=+0.0060 yaw=-12.41deg orientation=normal error_x=+0.0038 error_y=-0.0002 yaw_error=-1.41deg target_x=+0.1325 target_y=+0.0062 tolerance_x=0.0040 tolerance_y=0.0100 tolerance_yaw=3.00deg"
+2026-06-19_14-49-23-674417,1781873363.674483,20260619_144806,77.078,dropzone_status,dropzone,fine_align_complete,"fine_align_complete: fine_align_under_done | final ids=[3, 12] center_x=+0.1363 center_y=+0.0060 yaw=-12.41deg orientation=normal error_x=+0.0038 error_y=-0.0002 yaw_error=-1.41deg target_x=+0.1325 target_y=+0.0062 tolerance_x=0.0040 tolerance_y=0.0100 tolerance_yaw=3.00deg. Remembered laundry_trolley; approve delivery with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'deliver_trolley'}"""
+2026-06-19_14-49-39-864822,1781873379.864908,20260619_144806,93.269,dropzone_status,dropzone,dropoff_goal_sent,"dropoff_goal_sent: remembered laundry_trolley -> laundry_dropoff. When the robot arrives, approve trolley release with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'drive_out'}"""
+2026-06-19_14-49-39-871257,1781873379.871344,20260619_144806,93.275,command,trolley_command,deliver_trolley,deliver_trolley
+2026-06-19_14-50-02-109162,1781873402.109251,20260619_144806,115.513,command,trolley_command,drive_out,drive_out
+2026-06-19_14-50-02-119007,1781873402.119080,20260619_144806,115.523,dropzone_status,dropzone,status,drive_out_active for 7.0s. Publishing direct cmd_vel to release trolley.
+2026-06-19_14-50-09-117730,1781873409.117821,20260619_144806,122.522,dropzone_status,dropzone,drive_out_done,drive_out_done. Released laundry_trolley; cleared trolley type. Next command: trolley_ready.
+2026-06-19_14-50-09-118325,1781873409.118370,20260619_144806,122.522,run_end,logger,drive_out_done,
+2026-06-19_14-50-13-094375,1781873413.094404,20260619_145013,0.000,run_start,logger,manual_mark_without_active_run,
+2026-06-19_14-50-13-095933,1781873413.095971,20260619_145013,0.002,manual_mark,operator,whole_run_sucessfull,
+2026-06-19_14-50-19-933419,1781873419.933508,20260619_145013,6.839,command,trolley_command,charging,charging
+2026-06-19_14-53-04-374889,1781873584.374969,20260619_145013,171.281,dropzone_status,dropzone,approach_goal_sent,"approach_goal_sent. Inspect the robot pose, then approve side alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'side_align'}"""
+2026-06-19_14-53-04-567990,1781873584.568084,20260619_145013,171.474,run_end,logger,auto_closed_before_command_trolley_ready,
+2026-06-19_14-53-04-569968,1781873584.569988,20260619_145304,0.000,run_start,logger,command_trolley_ready,
+2026-06-19_14-53-04-570912,1781873584.570944,20260619_145304,0.001,command,trolley_command,trolley_ready,trolley_ready
+2026-06-19_14-53-20-368038,1781873600.368125,20260619_145304,15.798,command,trolley_command,charging,charging
+2026-06-19_14-53-43-390836,1781873623.390916,20260619_145304,38.821,run_end,logger,auto_closed_before_command_trolley_ready,
+2026-06-19_14-53-43-392653,1781873623.392672,20260619_145343,0.000,run_start,logger,command_trolley_ready,
+2026-06-19_14-53-43-393718,1781873623.393759,20260619_145343,0.001,command,trolley_command,trolley_ready,trolley_ready
+2026-06-19_14-53-43-397388,1781873623.397453,20260619_145343,0.005,dropzone_status,dropzone,approach_goal_sent,"approach_goal_sent. Inspect the robot pose, then approve side alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'side_align'}"""
+2026-06-19_14-54-22-600210,1781873662.600290,20260619_145343,39.208,command,trolley_command,charging,charging
+2026-06-19_14-54-30-833393,1781873670.833493,20260619_145343,47.441,run_end,logger,auto_closed_before_command_trolley_ready,
+2026-06-19_14-54-30-835301,1781873670.835320,20260619_145430,0.000,run_start,logger,command_trolley_ready,
+2026-06-19_14-54-30-838203,1781873670.838254,20260619_145430,0.003,command,trolley_command,trolley_ready,trolley_ready
+2026-06-19_14-54-30-840333,1781873670.840389,20260619_145430,0.005,dropzone_status,dropzone,approach_goal_sent,"approach_goal_sent. Inspect the robot pose, then approve side alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'side_align'}"""
+2026-06-19_14-54-43-297072,1781873683.297158,20260619_145430,12.462,dropzone_status,dropzone,status,side_aligning via side_align_left. Waiting for side_align_left_done.
+2026-06-19_14-54-43-298595,1781873683.298641,20260619_145430,12.463,physical_status,physical_alignment,status,side_align_left_started
+2026-06-19_14-54-43-303737,1781873683.303835,20260619_145430,12.469,command,trolley_command,side_align,side_align
+2026-06-19_14-55-15-675104,1781873715.675180,20260619_145430,44.840,physical_status,physical_alignment,side_align_complete,"side_align_left_done | final camera=left ids=[18, 19, 20, 21] target_pair=[18, 19] target_x=+0.3616 target_y=+0.2856 center_x=+0.4674 center_y=+0.5940 yaw=-178.80deg error_x=+0.0056 yaw_error=+1.20deg tolerance_x=0.0060 tolerance_yaw=2.00deg"
+2026-06-19_14-55-15-680009,1781873715.680074,20260619_145430,44.845,dropzone_status,dropzone,side_align_complete,"side_align_complete: side_align_left_done | final camera=left ids=[18, 19, 20, 21] target_pair=[18, 19] target_x=+0.3616 target_y=+0.2856 center_x=+0.4674 center_y=+0.5940 yaw=-178.80deg error_x=+0.0056 yaw_error=+1.20deg tolerance_x=0.0060 tolerance_yaw=2.00deg. Optional: check trolley type with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'check_trolley_type'}"" or approve straight drive with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'drive_under'}"""
+2026-06-19_14-55-17-432503,1781873717.432592,20260619_145430,46.597,yolo_detection,yolo,trash_trolley,"{""classes"": [""trash_trolley""]}"
+2026-06-19_14-55-52-821560,1781873752.821725,20260619_145430,81.987,manual_mark,operator,trolley_ready_drove_too_far,
+2026-06-19_14-56-02-031929,1781873762.032303,20260619_145430,91.197,command,trolley_command,check_trolley_type,check_trolley_type
+2026-06-19_14-56-02-036553,1781873762.036798,20260619_145430,91.202,dropzone_status,dropzone,trolley_type_checked,trolley_type_checked: trash_trolley via live_yolov8_topic; remembered target=trash_dropoff. Next command: drive_under.
+2026-06-19_14-56-20-426884,1781873780.426991,20260619_145430,109.592,manual_mark,operator,object_detection_correct,
+2026-06-19_14-56-33-593990,1781873793.594080,20260619_145430,122.759,command,trolley_command,drive_under,drive_under
+2026-06-19_14-56-33-596322,1781873793.596379,20260619_145430,122.761,dropzone_status,dropzone,status,drive_under_active via drive_straight_under. Waiting for drive_straight_under_done.
+2026-06-19_14-56-33-602338,1781873793.602415,20260619_145430,122.767,physical_status,physical_alignment,status,drive_straight_under_started
+2026-06-19_14-56-43-072418,1781873803.072505,20260619_145430,132.237,physical_status,physical_alignment,under_trolley,drive_straight_under_done
+2026-06-19_14-56-43-074631,1781873803.074686,20260619_145430,132.239,dropzone_status,dropzone,under_trolley,"under_trolley. Inspect position, then approve final ArUco alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'fine_align'}"""
+2026-06-19_14-57-22-134124,1781873842.134225,20260619_145430,171.299,manual_mark,operator,drive_under_unsucessfull_trolley had the brakes_rotated_in,
+2026-06-19_14-58-04-426867,1781873884.426961,20260619_145430,213.592,manual_mark,operator,reset_to_start,
+2026-06-19_14-59-51-598531,1781873991.598631,20260619_145430,320.763,command,trolley_command,charging,charging
+2026-06-19_15-00-00-909495,1781874000.909580,20260619_145430,330.074,run_end,logger,auto_closed_before_command_trolley_ready,
+2026-06-19_15-00-00-911276,1781874000.911294,20260619_150000,0.000,run_start,logger,command_trolley_ready,
+2026-06-19_15-00-00-913321,1781874000.913377,20260619_150000,0.002,command,trolley_command,trolley_ready,trolley_ready
+2026-06-19_15-00-00-924380,1781874000.924462,20260619_150000,0.013,dropzone_status,dropzone,approach_goal_sent,"approach_goal_sent. Inspect the robot pose, then approve side alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'side_align'}"""
+2026-06-19_15-00-16-490967,1781874016.491054,20260619_150000,15.580,dropzone_status,dropzone,status,side_aligning via side_align_left. Waiting for side_align_left_done.
+2026-06-19_15-00-16-497906,1781874016.497982,20260619_150000,15.587,command,trolley_command,side_align,side_align
+2026-06-19_15-00-16-501180,1781874016.501260,20260619_150000,15.590,physical_status,physical_alignment,status,side_align_left_started
+2026-06-19_15-00-38-376645,1781874038.376723,20260619_150000,37.466,physical_status,physical_alignment,side_align_complete,"side_align_left_done | final camera=left ids=[17, 18, 19, 20] target_pair=[18, 19] target_x=+0.3514 target_y=+0.2723 center_x=+0.3595 center_y=+0.5781 yaw=-179.83deg error_x=-0.0046 yaw_error=+0.17deg tolerance_x=0.0060 tolerance_yaw=2.00deg"
+2026-06-19_15-00-38-381507,1781874038.381593,20260619_150000,37.470,dropzone_status,dropzone,side_align_complete,"side_align_complete: side_align_left_done | final camera=left ids=[17, 18, 19, 20] target_pair=[18, 19] target_x=+0.3514 target_y=+0.2723 center_x=+0.3595 center_y=+0.5781 yaw=-179.83deg error_x=-0.0046 yaw_error=+0.17deg tolerance_x=0.0060 tolerance_yaw=2.00deg. Optional: check trolley type with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'check_trolley_type'}"" or approve straight drive with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'drive_under'}"""
+2026-06-19_15-00-40-290888,1781874040.290969,20260619_150000,39.380,yolo_detection,yolo,trash_trolley,"{""classes"": [""trash_trolley""]}"
+2026-06-19_15-00-51-239523,1781874051.239610,20260619_150000,50.328,command,trolley_command,check_trolley_type,check_trolley_type
+2026-06-19_15-00-51-240836,1781874051.240893,20260619_150000,50.330,dropzone_status,dropzone,trolley_type_checked,trolley_type_checked: trash_trolley via live_yolov8_topic; remembered target=trash_dropoff. Next command: drive_under.
+2026-06-19_15-01-02-676967,1781874062.677084,20260619_150000,61.766,manual_mark,operator,object_detection_correct,
+2026-06-19_15-01-10-153477,1781874070.153591,20260619_150000,69.242,command,trolley_command,drive_under,drive_under
+2026-06-19_15-01-10-155270,1781874070.155341,20260619_150000,69.244,dropzone_status,dropzone,status,drive_under_active via drive_straight_under. Waiting for drive_straight_under_done.
+2026-06-19_15-01-10-170042,1781874070.170119,20260619_150000,69.259,physical_status,physical_alignment,status,drive_straight_under_started
+2026-06-19_15-01-19-571832,1781874079.571943,20260619_150000,78.661,physical_status,physical_alignment,under_trolley,drive_straight_under_done
+2026-06-19_15-01-19-574118,1781874079.574177,20260619_150000,78.663,dropzone_status,dropzone,under_trolley,"under_trolley. Inspect position, then approve final ArUco alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'fine_align'}"""
+2026-06-19_15-01-23-272171,1781874083.272254,20260619_150000,82.361,command,trolley_command,fine_align,fine_align
+2026-06-19_15-01-23-282680,1781874083.282757,20260619_150000,82.372,dropzone_status,dropzone,status,fine_aligning via fine_align_under. Waiting for fine_align_under_done.
+2026-06-19_15-01-23-284251,1781874083.284302,20260619_150000,82.373,physical_status,physical_alignment,status,front_rear_camera_switch_started
+2026-06-19_15-01-24-872416,1781874084.872513,20260619_150000,83.961,physical_status,physical_alignment,status,fine_align_under_started
+2026-06-19_15-01-29-271886,1781874089.272004,20260619_150000,88.361,physical_status,physical_alignment,fine_align_complete,"fine_align_under_done | final ids=[3, 12] center_x=+0.1365 center_y=+0.0128 yaw=+164.36deg orientation=flipped_180 error_x=-0.0005 error_y=+0.0090 yaw_error=-0.64deg target_x=+0.1370 target_y=+0.0038 tolerance_x=0.0040 tolerance_y=0.0100 tolerance_yaw=3.00deg"
+2026-06-19_15-01-29-282737,1781874089.282822,20260619_150000,88.372,dropzone_status,dropzone,fine_align_complete,"fine_align_complete: fine_align_under_done | final ids=[3, 12] center_x=+0.1365 center_y=+0.0128 yaw=+164.36deg orientation=flipped_180 error_x=-0.0005 error_y=+0.0090 yaw_error=-0.64deg target_x=+0.1370 target_y=+0.0038 tolerance_x=0.0040 tolerance_y=0.0100 tolerance_yaw=3.00deg. Remembered trash_trolley; approve delivery with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'deliver_trolley'}"""
+2026-06-19_15-02-30-472012,1781874150.472110,20260619_150000,149.561,manual_mark,operator,docking sucessfull,
+2026-06-19_15-02-42-886291,1781874162.886382,20260619_150000,161.975,command,trolley_command,deliver_trolley,deliver_trolley
+2026-06-19_15-02-42-891644,1781874162.891715,20260619_150000,161.981,dropzone_status,dropzone,dropoff_goal_sent,"dropoff_goal_sent: remembered trash_trolley -> trash_dropoff. When the robot arrives, approve trolley release with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'drive_out'}"""
+2026-06-19_15-03-08-793525,1781874188.793612,20260619_150000,187.882,command,trolley_command,drive_out,drive_out
+2026-06-19_15-03-08-794830,1781874188.794873,20260619_150000,187.884,dropzone_status,dropzone,status,drive_out_active for 7.0s. Publishing direct cmd_vel to release trolley.
+2026-06-19_15-03-15-798420,1781874195.798514,20260619_150000,194.887,dropzone_status,dropzone,drive_out_done,drive_out_done. Released trash_trolley; cleared trolley type. Next command: trolley_ready.
+2026-06-19_15-03-15-798968,1781874195.799013,20260619_150000,194.888,run_end,logger,drive_out_done,
+2026-06-19_15-05-11-448683,1781874311.448710,20260619_150511,0.000,run_start,logger,command_trolley_ready,
+2026-06-19_15-05-11-450113,1781874311.450153,20260619_150511,0.002,command,trolley_command,trolley_ready,trolley_ready
+2026-06-19_15-05-11-454718,1781874311.454781,20260619_150511,0.006,dropzone_status,dropzone,approach_goal_sent,"approach_goal_sent. Inspect the robot pose, then approve side alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'side_align'}"""
+2026-06-19_15-05-22-748086,1781874322.748171,20260619_150511,11.300,command,trolley_command,side_align,side_align
+2026-06-19_15-05-22-752206,1781874322.752289,20260619_150511,11.304,dropzone_status,dropzone,status,side_aligning via side_align_left. Waiting for side_align_left_done.
+2026-06-19_15-05-22-753700,1781874322.753768,20260619_150511,11.305,physical_status,physical_alignment,status,side_align_left_started
+2026-06-19_15-05-33-872624,1781874333.872725,20260619_150511,22.424,physical_status,physical_alignment,side_align_complete,"side_align_left_done | final camera=left ids=[16, 17, 18, 19] target_pair=[18, 19] target_x=+0.3508 target_y=+0.2521 center_x=+0.2362 center_y=+0.5556 yaw=-178.46deg error_x=-0.0052 yaw_error=+1.54deg tolerance_x=0.0060 tolerance_yaw=2.00deg"
+2026-06-19_15-05-33-874862,1781874333.874933,20260619_150511,22.426,dropzone_status,dropzone,side_align_complete,"side_align_complete: side_align_left_done | final camera=left ids=[16, 17, 18, 19] target_pair=[18, 19] target_x=+0.3508 target_y=+0.2521 center_x=+0.2362 center_y=+0.5556 yaw=-178.46deg error_x=-0.0052 yaw_error=+1.54deg tolerance_x=0.0060 tolerance_yaw=2.00deg. Optional: check trolley type with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'check_trolley_type'}"" or approve straight drive with ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'drive_under'}"""
+2026-06-19_15-05-35-678446,1781874335.678532,20260619_150511,24.230,yolo_detection,yolo,trash_trolley,"{""classes"": [""trash_trolley""]}"
+2026-06-19_15-05-38-419723,1781874338.419806,20260619_150511,26.971,command,trolley_command,check_trolley_type,check_trolley_type
+2026-06-19_15-05-38-420983,1781874338.421026,20260619_150511,26.972,dropzone_status,dropzone,trolley_type_checked,trolley_type_checked: trash_trolley via live_yolov8_topic; remembered target=trash_dropoff. Next command: drive_under.
+2026-06-19_15-05-47-944565,1781874347.944651,20260619_150511,36.496,command,trolley_command,drive_under,drive_under
+2026-06-19_15-05-47-947444,1781874347.947506,20260619_150511,36.499,dropzone_status,dropzone,status,drive_under_active via drive_straight_under. Waiting for drive_straight_under_done.
+2026-06-19_15-05-47-956603,1781874347.956683,20260619_150511,36.508,physical_status,physical_alignment,status,drive_straight_under_started
+2026-06-19_15-05-57-472754,1781874357.472836,20260619_150511,46.024,physical_status,physical_alignment,under_trolley,drive_straight_under_done
+2026-06-19_15-05-57-476161,1781874357.476221,20260619_150511,46.028,dropzone_status,dropzone,under_trolley,"under_trolley. Inspect position, then approve final ArUco alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'fine_align'}"""
+2026-06-19_15-06-36-047948,1781874396.048033,20260619_150511,84.599,manual_mark,operator,drive_under_unsucessfull_retry,
+2026-06-19_15-06-40-586790,1781874400.588212,20260619_150511,89.140,run_end,logger,auto_closed_before_command_trolley_ready,
+2026-06-19_15-06-40-590374,1781874400.590400,20260619_150640,0.000,run_start,logger,command_trolley_ready,
+2026-06-19_15-06-40-591669,1781874400.591714,20260619_150640,0.001,command,trolley_command,trolley_ready,trolley_ready
+2026-06-19_15-06-40-598134,1781874400.598215,20260619_150640,0.008,dropzone_status,dropzone,approach_goal_sent,"approach_goal_sent. Inspect the robot pose, then approve side alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'side_align'}"""
+2026-06-19_15-07-00-654839,1781874420.654928,20260619_150640,20.065,command,trolley_command,side_align,side_align
+2026-06-19_15-07-00-657662,1781874420.657720,20260619_150640,20.067,dropzone_status,dropzone,status,side_aligning via side_align_left. Waiting for side_align_left_done.
+2026-06-19_15-07-00-658654,1781874420.658695,20260619_150640,20.068,physical_status,physical_alignment,status,side_align_left_started
+2026-06-19_15-08-04-121724,1781874484.121829,20260619_150640,83.532,manual_mark,operator,aruko_node_died,
+2026-06-19_15-08-56-973891,1781874536.973977,20260619_150640,136.384,command,trolley_command,side_align,side_align
+2026-06-19_15-08-56-978860,1781874536.978938,20260619_150640,136.389,dropzone_status,dropzone,status,"ignored side_align; current phase=side_aligning. Send status to see the next expected command, or stop to cancel."
+2026-06-19_15-09-30-068175,1781874570.068266,20260619_150640,169.478,run_end,logger,auto_closed_before_command_trolley_ready,
+2026-06-19_15-09-30-069933,1781874570.069952,20260619_150930,0.000,run_start,logger,command_trolley_ready,
+2026-06-19_15-09-30-070877,1781874570.070920,20260619_150930,0.001,command,trolley_command,trolley_ready,trolley_ready
+2026-06-19_15-09-30-071839,1781874570.071876,20260619_150930,0.003,dropzone_status,dropzone,approach_goal_sent,"approach_goal_sent. Inspect the robot pose, then approve side alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'side_align'}"""
+2026-06-19_15-09-41-979747,1781874581.979829,20260619_150930,11.910,command,trolley_command,stop,stop
+2026-06-19_15-09-41-996001,1781874581.996080,20260619_150930,11.926,dropzone_status,dropzone,status,stopped. Alignment controller was commanded to stop.
+2026-06-19_15-09-41-996660,1781874581.996691,20260619_150930,11.927,physical_status,physical_alignment,status,stopped
+2026-06-19_15-09-46-591276,1781874586.591358,20260619_150930,16.522,run_end,logger,auto_closed_before_command_trolley_ready,
+2026-06-19_15-09-46-593079,1781874586.593098,20260619_150946,0.000,run_start,logger,command_trolley_ready,
+2026-06-19_15-09-46-594019,1781874586.594050,20260619_150946,0.001,command,trolley_command,trolley_ready,trolley_ready
+2026-06-19_15-09-46-595095,1781874586.595143,20260619_150946,0.002,dropzone_status,dropzone,approach_goal_sent,"approach_goal_sent. Inspect the robot pose, then approve side alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'side_align'}"""
+2026-06-19_15-09-58-502919,1781874598.503003,20260619_150946,11.910,command,trolley_command,side_align,side_align
+2026-06-19_15-09-58-508769,1781874598.508845,20260619_150946,11.916,dropzone_status,dropzone,status,side_aligning via side_align_left. Waiting for side_align_left_done.
+2026-06-19_15-09-58-509401,1781874598.509429,20260619_150946,11.916,physical_status,physical_alignment,status,side_align_left_started
+2026-06-19_15-10-46-937353,1781874646.938451,20260619_150946,60.345,manual_mark,operator,aruko_node_died_again_restarting_robot,
+2026-06-19_15-10-59-944516,1781874659.944642,20260619_150946,73.352,run_end,logger,logger_shutdown,

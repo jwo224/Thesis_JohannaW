@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mecanum_bot">
+
+  <xacro:include filename="color_include.xacro" />
+  <xacro:include filename="robot_core.xacro" />
+
+  <!-- =========================
+       GAZEBO PERFORMANCE TIPS
+       =========================
+       If Gazebo (especially in VirtualBox) is slow/flickering:
+       - Comment out sensors you don’t need right now (cameras, extra lidars).
+       - Cameras are the heaviest: set <visualize>false</visualize>, reduce resolution, reduce update_rate.
+       - Run headless (no GUI): ros2 launch gazebo_ros gazebo.launch.py gui:=false
+       - Make sure to turn OFF 3D-Acellertion in VM
+  -->
+
+  <!-- Gazebo materials, sensor plugins, collision tweaks -->
+  <xacro:include filename="gazebo.xacro"/>
+
+  <!-- Gazebo control plugins (omni drive, joint state, etc.) -->
+  <xacro:include filename="gazebo_control.xacro"/>
+
+  <!-- LIDAR sensor(s): disable if not needed to reduce CPU -->
+  <xacro:include filename="lidar.xacro"/>
+  
+  
+  <xacro:include filename="IMU.xacro"/>
+
+  <!-- Cameras: biggest performance hit; comment out to speed up simulation -->
+  <xacro:include filename="camera.xacro"/> 
+
+</robot>

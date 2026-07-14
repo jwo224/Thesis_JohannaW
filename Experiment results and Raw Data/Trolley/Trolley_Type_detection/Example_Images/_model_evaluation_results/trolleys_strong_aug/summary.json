@@ -1,0 +1,14 @@
+{
+  "model": "trolleys_strong_aug",
+  "model_path": "C:\\Users\\johan\\Desktop\\Master Thesis\\Source code\\YOLO Datasets\\Models\\trolleys_strong_aug\\weights\\best.pt",
+  "n_images": 79,
+  "accuracy": 0.6962025316455697,
+  "per_class_accuracy": {
+    "Empty": 0.14285714285714285,
+    "Laundry": 0.7619047619047619,
+    "Trash": 0.9473684210526315,
+    "None": 1.0
+  },
+  "n_correct": 55,
+  "n_wrong": 24
+}

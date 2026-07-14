@@ -1,0 +1,15 @@
+SLAM Notes:
+
+
+first mapping ( mapper_params_file_asynchronous as original but change to correct laserscan and baselink)
+
+ros2 launch slam_toolbox online_async_launch.py   slam_params_file:=/home/group4/Nursing-Home-Robot/src/my_robot_description/config/mapper_params_online_async.yaml   use_sim_time:=true
+
+
+save map (svae map or serial map)
+
+change param to localization add path to map file
+start same: ros2 launch slam_toolbox online_async_launch.py   slam_params_file:=/home/group4/Nursing-Home-Robot/src/my_robot_description/config/mapper_params_online_async.yaml   use_sim_time:=true
+
+
+NAV2

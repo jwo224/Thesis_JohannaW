@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="DropZone">
+    <static>true</static>
+
+    <link name="drop_zone_link">
+      <visual name="blue_floor_marking">
+        <pose>0 0 0.001 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.060 0.615 0.002</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.0 0.15 1.0 0.75</ambient>
+          <diffuse>0.0 0.25 1.0 0.75</diffuse>
+          <specular>0.0 0.0 0.0 1.0</specular>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

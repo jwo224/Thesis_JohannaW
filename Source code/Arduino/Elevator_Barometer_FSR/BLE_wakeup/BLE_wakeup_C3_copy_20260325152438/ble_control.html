@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ESP32 BLE Control</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 500px; margin: 40px auto; padding: 20px; }
+        button { padding: 10px 20px; margin: 8px 4px; font-size: 15px; cursor: pointer; border-radius: 8px; border: 1px solid #ccc; background: #f0f0f0; }
+        button:hover { background: #ddd; }
+        button:disabled { opacity: 0.4; cursor: default; }
+        #log { margin-top: 20px; padding: 12px; background: #f8f8f8; border: 1px solid #ddd; border-radius: 8px; min-height: 200px; font-family: monospace; font-size: 13px; white-space: pre-wrap; }
+        #status { margin: 10px 0; font-weight: bold; color: #555; }
+    </style>
+</head>
+<body>
+    <h2>ESP32 BLE Control</h2>
+    <div id="status">Not connected</div>
+
+    <button id="connectBtn" onclick="connect()">Connect to ESP32</button>
+    <button id="wakeBtn" onclick="sendWakeUp()" disabled>Send "wake up"</button>
+    <button id="disconnectBtn" onclick="disconnect()" disabled>Disconnect</button>
+
+    <div id="log">Messages will appear here...\n</div>
+
+    <script>
+        const SERVICE_UUID  = '12345678-1234-1234-1234-123456789abc';
+        const CHAR_UUID_RX  = '87654321-4321-4321-4321-cba987654321';
+        const CHAR_UUID_TX  = '11111111-1111-1111-1111-111111111111';
+
+        let device, rxChar;
+
+        function log(msg) {
+            const box = document.getElementById('log');
+            const time = new Date().toLocaleTimeString();
+            box.textContent += `[${time}] ${msg}\n`;
+            box.scrollTop = box.scrollHeight;
+        }
+
+        function setStatus(msg, color = '#555') {
+            const s = document.getElementById('status');
+            s.textContent = msg;
+            s.style.color = color;
+        }
+
+        async function connect() {
+            try {
+                log('Scanning for ESP32...');
+                device = await navigator.bluetooth.requestDevice({
+                    filters: [{ services: [SERVICE_UUID] }]
+                });
+
+                log('Connecting to ' + device.name + '...');
+                const server = await device.gatt.connect();
+
+                const service = await server.getPrimaryService(SERVICE_UUID);
+
+                rxChar = await service.getCharacteristic(CHAR_UUID_RX);
+                const txChar = await service.getCharacteristic(CHAR_UUID_TX);
+
+                await txChar.startNotifications();
+                txChar.addEventListener('characteristicvaluechanged', (e) => {
+                    const msg = new TextDecoder().decode(e.target.value);
+                    log('ESP32: ' + msg);
+                });
+
+                device.addEventListener('gattserverdisconnected', () => {
+                    setStatus('Disconnected', 'red');
+                    document.getElementById('wakeBtn').disabled = true;
+                    document.getElementById('disconnectBtn').disabled = true;
+                    document.getElementById('connectBtn').disabled = false;
+                    log('Disconnected from ESP32');
+                });
+
+                setStatus('Connected to ' + device.name, 'green');
+                document.getElementById('wakeBtn').disabled = false;
+                document.getElementById('disconnectBtn').disabled = false;
+                document.getElementById('connectBtn').disabled = true;
+                log('Connected! Subscribed to notifications.');
+
+            } catch (err) {
+                log('Error: ' + err.message);
+                setStatus('Connection failed', 'red');
+            }
+        }
+
+        async function sendWakeUp() {
+            try {
+                const encoder = new TextEncoder();
+                await rxChar.writeValue(encoder.encode('wake up'));
+                log('Sent: wake up');
+            } catch (err) {
+                log('Error sending: ' + err.message);
+            }
+        }
+
+        function disconnect() {
+            if (device && device.gatt.connected) {
+                device.gatt.disconnect();
+            }
+        }
+    </script>
+</body>
+</html>

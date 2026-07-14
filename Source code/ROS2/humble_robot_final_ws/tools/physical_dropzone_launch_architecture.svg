@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="820" viewBox="0 0 1320 820">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#111111"/>
+    </marker>
+    <style>
+      .box { fill: #e11b0c; stroke: #111111; stroke-width: 1; }
+      .soft-box { fill: #ffffff; stroke: #111111; stroke-width: 1; }
+      .external { fill: #f8f8f8; stroke: #6a4aa3; stroke-width: 1.2; stroke-dasharray: 5 4; }
+      .launch { fill: #e11b0c; stroke: #111111; stroke-width: 1; }
+      .label { font-family: Arial, Helvetica, sans-serif; font-size: 15px; font-weight: 700; fill: #ffffff; text-anchor: middle; dominant-baseline: middle; }
+      .small-label { font-family: Arial, Helvetica, sans-serif; font-size: 12.5px; font-weight: 700; fill: #ffffff; text-anchor: middle; dominant-baseline: middle; }
+      .dark-label { font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: 700; fill: #111111; text-anchor: middle; dominant-baseline: middle; }
+      .edge-label { font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; fill: #111111; }
+      .blue-label { font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 700; fill: #001eff; }
+      .title { font-family: Arial, Helvetica, sans-serif; font-size: 21px; font-weight: 700; fill: #111111; text-anchor: middle; }
+      .line { fill: none; stroke: #111111; stroke-width: 1.3; marker-end: url(#arrow); }
+      .dash-line { fill: none; stroke: #111111; stroke-width: 1.3; stroke-dasharray: 5 4; marker-end: url(#arrow); }
+      .thin { fill: none; stroke: #111111; stroke-width: 1.1; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1320" height="820" fill="#ffffff"/>
+  <text x="660" y="34" class="title">humble_robot_final_ws - Physical ArUco, Dropzone Mission, and YOLO Launch Architecture</text>
+
+  <!-- Launch command boxes -->
+  <rect x="20" y="65" width="365" height="62" class="launch"/>
+  <text x="202.5" y="88" class="label">physical_aruco_front_rear.launch.py</text>
+  <text x="202.5" y="111" class="small-label">ros2 launch gr4_camera_config ...</text>
+
+  <rect x="470" y="65" width="365" height="62" class="launch"/>
+  <text x="652.5" y="88" class="label">dropzone_mission.launch.py</text>
+  <text x="652.5" y="111" class="small-label">ros2 launch gr4_dropzone_mission ...</text>
+
+  <rect x="920" y="65" width="375" height="62" class="launch"/>
+  <text x="1107.5" y="86" class="label">launch_yolov8_camera.launch.py</text>
+  <text x="1107.5" y="109" class="small-label">camera:=front, save_every_n_frames:=1</text>
+
+  <!-- Physical cameras and ArUco -->
+  <rect x="55" y="190" width="250" height="70" class="box"/>
+  <text x="180" y="213" class="label">physical_camera_pair_node</text>
+  <text x="180" y="235" class="small-label">front_rear, 1920x1080, 10 fps</text>
+
+  <rect x="20" y="340" width="190" height="66" class="box"/>
+  <text x="115" y="362" class="label">front_trolley_</text>
+  <text x="115" y="384" class="label">aruco_node</text>
+
+  <rect x="250" y="340" width="190" height="66" class="box"/>
+  <text x="345" y="362" class="label">rear_trolley_</text>
+  <text x="345" y="384" class="label">aruco_node</text>
+
+  <path d="M202 127 L180 190" class="line"/>
+  <path d="M150 260 L115 340" class="line"/>
+  <text x="28" y="306" class="edge-label">/camera_front/image_raw</text>
+  <path d="M215 260 L345 340" class="line"/>
+  <text x="277" y="306" class="edge-label">/camera_rear/image_raw</text>
+
+  <rect x="55" y="495" width="350" height="78" class="soft-box"/>
+  <text x="230" y="518" class="dark-label">camera debug outputs</text>
+  <text x="230" y="541" class="dark-label">/front/aruco_image, /rear/aruco_image</text>
+  <text x="230" y="562" class="dark-label">/front/aruco_poses, /rear/aruco_poses</text>
+
+  <path d="M115 406 L180 495" class="thin"/>
+  <path d="M345 406 L280 495" class="thin"/>
+
+  <!-- Mission controller -->
+  <rect x="500" y="190" width="290" height="82" class="box"/>
+  <text x="645" y="214" class="label">dropzone_mission</text>
+  <text x="645" y="237" class="small-label">dropzones.yaml parameters</text>
+  <text x="645" y="258" class="small-label">staged trolley/dropzone state machine</text>
+
+  <path d="M652 127 L645 190" class="line"/>
+
+  <rect x="482" y="330" width="160" height="56" class="soft-box"/>
+  <text x="562" y="349" class="dark-label">operator / UI</text>
+  <text x="562" y="370" class="dark-label">/trolley_command</text>
+
+  <rect x="680" y="330" width="170" height="56" class="soft-box"/>
+  <text x="765" y="349" class="dark-label">mission feedback</text>
+  <text x="765" y="370" class="dark-label">/dropzone_mission_status</text>
+
+  <path d="M562 330 L610 272" class="line"/>
+  <path d="M680 358 L645 272" class="line"/>
+
+  <rect x="510" y="460" width="270" height="78" class="soft-box"/>
+  <text x="645" y="483" class="dark-label">mission visualization + Nav2 goal</text>
+  <text x="645" y="506" class="dark-label">/delivery_zones</text>
+  <text x="645" y="527" class="dark-label">/goal_pose_raw</text>
+
+  <path d="M645 272 L645 460" class="line"/>
+
+  <!-- YOLO -->
+  <rect x="955" y="190" width="285" height="82" class="box"/>
+  <text x="1097.5" y="213" class="label">yolov8_camera_detector</text>
+  <text x="1097.5" y="236" class="small-label">camera front, rotate_180=true</text>
+  <text x="1097.5" y="257" class="small-label">save every frame to yolo logs</text>
+
+  <path d="M1107 127 L1097 190" class="line"/>
+  <path d="M305 224 L955 214" class="line"/>
+  <text x="620" y="203" class="edge-label">/camera_front/image_raw</text>
+
+  <rect x="985" y="338" width="230" height="68" class="soft-box"/>
+  <text x="1100" y="360" class="dark-label">YOLO results</text>
+  <text x="1100" y="381" class="dark-label">/Yolov8_Inference</text>
+
+  <rect x="985" y="460" width="230" height="78" class="soft-box"/>
+  <text x="1100" y="482" class="dark-label">debug output</text>
+  <text x="1100" y="504" class="dark-label">annotated image topic</text>
+  <text x="1100" y="525" class="dark-label">JPEG + CSV logs</text>
+
+  <path d="M1097 272 L1100 338" class="line"/>
+  <path d="M1097 272 L1100 460" class="line"/>
+  <path d="M985 372 L790 245" class="line"/>
+  <text x="830" y="337" class="edge-label">trolley type detection</text>
+  <path d="M790 223 L955 223" class="line"/>
+  <text x="813" y="211" class="edge-label">/yolov8_detector_command enable/disable</text>
+
+  <!-- Physical docking and external systems -->
+  <rect x="500" y="630" width="290" height="92" class="external"/>
+  <text x="645" y="654" class="blue-label">required external node</text>
+  <text x="645" y="681" class="dark-label">physical_trolley_alignment_controller</text>
+  <text x="645" y="703" class="dark-label">not launched by these 3 commands</text>
+
+  <rect x="70" y="630" width="310" height="92" class="external"/>
+  <text x="225" y="654" class="blue-label">robot base / navigation stack</text>
+  <text x="225" y="681" class="dark-label">Nav2, TF, odom, cmd_vel mux</text>
+  <text x="225" y="703" class="dark-label">must already be running separately</text>
+
+  <rect x="900" y="630" width="330" height="92" class="external"/>
+  <text x="1065" y="654" class="blue-label">camera coverage note</text>
+  <text x="1065" y="681" class="dark-label">front/rear ArUco are launched here</text>
+  <text x="1065" y="703" class="dark-label">side_align_left needs left camera/left ArUco</text>
+
+  <path d="M115 406 L500 666" class="line"/>
+  <text x="244" y="617" class="edge-label">/front/aruco_markers</text>
+  <path d="M345 406 L500 690" class="line"/>
+  <text x="365" y="602" class="edge-label">/rear/aruco_markers</text>
+
+  <path d="M645 272 L645 630" class="line"/>
+  <text x="662" y="596" class="edge-label">/physical_docking_command</text>
+  <path d="M790 676 L645 272" class="line"/>
+  <text x="728" y="600" class="edge-label">/physical_docking_status</text>
+
+  <path d="M500 676 L380 676" class="line"/>
+  <text x="392" y="662" class="edge-label">/cmd_vel, /cmd_vel_joy</text>
+  <path d="M510 507 L380 666" class="line"/>
+  <text x="400" y="557" class="edge-label">/goal_pose_raw</text>
+  <path d="M645 538 L380 704" class="line"/>
+  <text x="408" y="717" class="edge-label">dropzone exit direct velocity</text>
+
+  <path d="M790 238 L900 674" class="dash-line"/>
+  <text x="797" y="430" class="edge-label">possible mismatch for side alignment</text>
+
+  <!-- Summary flow -->
+  <rect x="95" y="750" width="1130" height="40" class="soft-box"/>
+  <text x="660" y="771" class="dark-label">Typical flow: operator sends /trolley_command -> mission enables YOLO and sends Nav2/alignment commands -> ArUco + YOLO feedback guide staged pickup/dropzone decisions.</text>
+</svg>

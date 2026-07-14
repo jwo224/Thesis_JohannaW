@@ -1,0 +1,196 @@
+Yes. Use this terminal layout.
+
+**Robot Terminal 1: Rebuild**
+After files are copied/edited on the robot:
+
+
+cd ~/gr4_ws
+source /opt/ros/humble/setup.bash
+colcon build --packages-select gr4_dropzone_mission gr4_camera_config
+source install/setup.bash
+
+
+**Robot Terminal 2: Nav2**
+If Nav2 is not already running:
+
+
+export ROS_DOMAIN_ID=138
+source /opt/ros/humble/setup.bash
+source ~/gr4_ws/install/setup.bash
+
+ros2 launch articubot_one nav.launch.py map:=/home/rocket/maps/mekagangen.yaml
+
+
+**Robot Terminal 3: Dropzone Mission**
+This sends the approach goal and controls the manual stages:
+
+
+export ROS_DOMAIN_ID=138
+source /opt/ros/humble/setup.bash
+source ~/gr4_ws/install/setup.bash
+
+ros2 launch gr4_dropzone_mission dropzone_mission.launch.py
+
+
+**Robot Terminal 4: ArUco Cameras + Alignment Controller**
+
+
+export ROS_DOMAIN_ID=138
+source /opt/ros/humble/setup.bash
+source ~/gr4_ws/install/setup.bash
+ros2 launch gr4_camera_config physical_staged_trolley_mission.launch.py enable_motion:=true
+
+
+
+source /opt/ros/humble/setup.bash
+source ~/gr4_ws/install/setup.bash
+
+ros2 launch object_detection launch_yolov8_camera.launch.py camera:=left model:=trolleys.pt confidence:=0.25
+
+
+
+
+
+
+**Dev PC Terminal 1: Watch Status**
+
+
+export ROS_DOMAIN_ID=138
+source /opt/ros/humble/setup.bash
+source ~/gr4_ws/install/setup.bash
+
+ros2 topic echo /dropzone_mission_status
+```
+
+**Dev PC Terminal 2: Send Stage Commands**
+Send these one by one. Wait and inspect after each stage.
+
+1. Drive to approach pose:
+
+```bash
+export ROS_DOMAIN_ID=138
+source /opt/ros/humble/setup.bash
+source ~/gr4_ws/install/setup.bash
+
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'trolley_ready'}"
+```
+
+2. Start left-side ArUco alignment:
+
+```bash
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'side_align'}"
+```
+
+3. Drive straight under trolley:
+
+```bash
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'drive_under'}"
+```
+
+4. Fine alignment under trolley:
+
+```bash
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'fine_align'}"
+
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'mark aruko_node_died'}"
+
+
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'trolley_ready'}"
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'side_align'}"
+
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'drove_to_far_helped'}"
+
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'side_align_stopped_restart'}"
+
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'check_trolley_type'}"
+
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'mark object_detection_correct'}"
+
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'drive_under'}"
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'mark drive_under_unsucessfull_retry'}"
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'fine_align'}"
+
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'mark fine aling with_light'}"
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'mark docking sucessfull'}"
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'mark docking unsucessfull_robot_drove_to_far_under'}"
+
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'mark docking sucessfull'}"
+
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'mark docking unsucessfull helped'}"
+
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'mark docking unsucessfull_retry_with_light'}"
+
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'deliver_trolley'}"
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'drive_out'}"
+
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'charging'}"
+
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'mark recalibrate_start'}"
+
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'whole_run_success_with_lights'}"
+```
+
+Useful debug commands:
+
+```bash
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'status'}"
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'stop'}"
+ros2 topic pub --once /cmd_vel geometry_msgs/msg/Twist "{}"
+```
+
+Important: do **not** separately launch `physical_aruco_front_rear.launch.py` while using `physical_staged_trolley_mission.launch.py`, because the staged launch already starts the camera/ArUco nodes it needs.
+
+
+
+  
+  
+
+ros2 topic pub --once /initialpose geometry_msgs/msg/PoseWithCovarianceStamped "{
+  header: {frame_id: 'map'},
+  pose: {
+    pose: {
+      position: {x: 1.99777, y: -0.232068, z: 0.0},
+      orientation: {x: 0.0, y: 0.0, z: 0.700552, w: 0.713601}
+    },
+    covariance: [
+      0.01, 0.0, 0.0, 0.0, 0.0, 0.0,
+      0.0, 0.01, 0.0, 0.0, 0.0, 0.0,
+      0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+      0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+      0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+      0.0, 0.0, 0.0, 0.0, 0.0, 0.0076
+    ]
+  }
+}"
+
+  
+  ros2 launch gr4_camera_config physical_staged_trolley_mission.launch.py \
+  enable_motion:=true \
+  side_target_offset_x:=0.356 \
+  side_target_pair_offsets_x:='18,19:0.356;24,25:0.349' \
+  side_align_x_tolerance:=0.006 \
+  fine_control_mode:=step \
+  fine_sequential_alignment:=true \
+  fine_use_all_under_markers:=true \
+  use_orientation_target_offsets:=true \
+  target_offset_x_normal:=0.1325 \
+  target_offset_y_normal:=0.0062 \
+  fine_target_yaw_deg_normal:=-11.0 \
+  target_offset_x_flipped:=0.134 \
+  target_offset_y_flipped:=0.0038 \
+  fine_target_yaw_deg_flipped:=165.0 \
+  fine_position_tolerance_x:=0.004 \
+  fine_position_tolerance_y:=0.010 \
+  fine_yaw_tolerance_deg:=3.0 \
+  fine_max_wz:=0.050 \
+  fine_min_wz:=0.035 \
+  fine_step_max_pulse_sec:=0.18 \
+  fine_step_settle_sec:=0.45 \
+  fine_step_error_fraction:=0.35 \
+  under_vx_sign:=-1.0
+
+
+final targets center_x=+0.1344 center_y=+0.0034 yaw=+166.23deg orientation=flip
+
+
+

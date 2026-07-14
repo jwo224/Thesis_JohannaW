@@ -1,0 +1,79 @@
+I checked it: your original config was not correct for the camera IDs you found. I updated both:
+
+[config/camera_mapping.yaml](/home/rocket/gr4_ws/src/gr4_camera_config/config/camera_mapping.yaml:1)  
+[physical_four_camera_node.py](/home/rocket/gr4_ws/src/gr4_camera_config/gr4_camera_config/physical_four_camera_node.py:14)
+
+The correct mapping from your snapshots is now:
+
+```yaml
+left:  /dev/video0  -> 2.4.4.1
+right: /dev/video2  -> 2.4.4.2
+rear:  /dev/video4  -> 2.4.4.3
+front: /dev/video6  -> 2.4.4.4
+```
+
+Since `physical_four_camera_node.py` was changed, rebuild before running the robot camera node:
+
+```bash
+cd ~/gr4_ws
+colcon build --packages-select gr4_camera_config
+source install/setup.bash
+```
+
+Here is a cleaner documentation text you can use:
+
+```markdown
+# Cameras
+
+## Simulation
+
+The simulated camera setup is used as the reference layout. The real robot cameras should match the same logical names: `front`, `rear`, `left`, and `right`.
+
+## Real Robot
+
+The real robot uses four USB cameras connected to the Jetson. The front and rear cameras were adjusted to have a similar orientation to the simulated cameras, but with a slightly different angle to improve ArUco marker visibility. Because of this, there may be small differences between the real robot and the simulation.
+
+## Identifying Cameras
+
+Before running the camera nodes, identify which physical camera corresponds to each `/dev/video*` device.
+
+Run:
+
+```bash
+cd ~/gr4_ws
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+ros2 run gr4_camera_config identify_cameras
+```
+
+The script lists all visible video devices and saves labeled snapshots in:
+
+```bash
+~/gr4_ws/camera_identification/
+```
+
+Only the `video-index0` devices can normally capture images. The `video-index1` devices may appear, but usually cannot be opened by OpenCV.
+
+After checking the saved images, the current camera mapping is:
+
+| Snapshot | Physical camera | Stable USB path |
+|---|---|---|
+| `video0.jpg` | left camera | `platform-3610000.usb-usb-0:2.4.4.1:1.0-video-index0` |
+| `video2.jpg` | right camera | `platform-3610000.usb-usb-0:2.4.4.2:1.0-video-index0` |
+| `video4.jpg` | rear camera | `platform-3610000.usb-usb-0:2.4.4.3:1.0-video-index0` |
+| `video6.jpg` | front camera | `platform-3610000.usb-usb-0:2.4.4.4:1.0-video-index0` |
+
+The mapping is stored in:
+
+```bash
+src/gr4_camera_config/config/camera_mapping.yaml
+```
+
+The runtime camera node also contains the same mapping in:
+
+```bash
+src/gr4_camera_config/gr4_camera_config/physical_four_camera_node.py
+```
+
+If USB cables or hub ports are changed, rerun `identify_cameras` and update the mapping if needed.
+```

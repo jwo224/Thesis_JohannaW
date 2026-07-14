@@ -1,0 +1,2 @@
+wall_time,ros_time_sec,camera,camera_topic,frame_id,image_file,class_name,confidence,left,top,right,bottom,center_x,center_y,width,height
+2026-06-19_19-12-36-432689,1781889153.522688,left,/camera_left/image_raw,camera_left_optical_link,/home/rocket/gr4_ws/yolo_detection_logs/left_20260619_190023/images/left_frame_001530_2026-06-19_19-12-36-432689.jpg,trash_trolley,0.9762645959854126,6,5,1270,708,638.0,356.5,1264,703

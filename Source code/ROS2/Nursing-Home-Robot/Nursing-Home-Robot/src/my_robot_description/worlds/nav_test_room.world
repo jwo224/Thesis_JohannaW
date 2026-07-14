@@ -1,0 +1,133 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="nav_test_room">
+
+    <plugin name="gazebo_ros_init" filename="libgazebo_ros_init.so">
+      <ros>
+        <namespace>/</namespace>
+      </ros>
+    </plugin>
+
+    <plugin name="gazebo_ros_factory" filename="libgazebo_ros_factory.so">
+      <ros>
+        <namespace>/</namespace>
+      </ros>
+    </plugin>
+
+    <plugin name="gazebo_ros_state" filename="libgazebo_ros_state.so">
+      <ros>
+        <namespace>/</namespace>
+      </ros>
+      <update_rate>20.0</update_rate>
+    </plugin>
+
+    <plugin name="trolley_attach_plugin" filename="libtrolley_attach_plugin.so">
+      <ros>
+        <namespace>/</namespace>
+      </ros>
+      <robot_model>mecanum_bot</robot_model>
+      <robot_link>base_link</robot_link>
+      <trolley_model>Trolley</trolley_model>
+      <trolley_link>link</trolley_link>
+    </plugin>
+
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <model name="test_room_walls">
+      <static>true</static>
+
+      <link name="walls">
+        <collision name="north_wall_collision">
+          <pose>3.0 3.0 0.5 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>8.0 0.10 1.0</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="north_wall_visual">
+          <pose>3.0 3.0 0.5 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>8.0 0.10 1.0</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.78 0.78 0.74 1.0</ambient>
+            <diffuse>0.78 0.78 0.74 1.0</diffuse>
+          </material>
+        </visual>
+
+        <collision name="south_wall_collision">
+          <pose>3.0 -3.0 0.5 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>8.0 0.10 1.0</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="south_wall_visual">
+          <pose>3.0 -3.0 0.5 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>8.0 0.10 1.0</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.78 0.78 0.74 1.0</ambient>
+            <diffuse>0.78 0.78 0.74 1.0</diffuse>
+          </material>
+        </visual>
+
+        <collision name="west_wall_collision">
+          <pose>-1.0 0.0 0.5 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.10 6.0 1.0</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="west_wall_visual">
+          <pose>-1.0 0.0 0.5 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.10 6.0 1.0</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.78 0.78 0.74 1.0</ambient>
+            <diffuse>0.78 0.78 0.74 1.0</diffuse>
+          </material>
+        </visual>
+
+        <collision name="east_wall_collision">
+          <pose>7.0 0.0 0.5 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.10 6.0 1.0</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="east_wall_visual">
+          <pose>7.0 0.0 0.5 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.10 6.0 1.0</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.78 0.78 0.74 1.0</ambient>
+            <diffuse>0.78 0.78 0.74 1.0</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>

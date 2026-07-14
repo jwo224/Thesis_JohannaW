@@ -1,0 +1,5 @@
+Actual,Empty,Laundry,Trash,None
+Empty,17,1,3,0
+Laundry,5,10,3,3
+Trash,4,0,12,3
+None,4,0,0,14

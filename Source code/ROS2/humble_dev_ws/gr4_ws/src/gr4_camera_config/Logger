@@ -1,0 +1,57 @@
+Logger for testing Trolley Workflow:
+
+cd ~/gr4_ws
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+python3 tools/mission_run_logger.py
+
+
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'new_run'}"
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'mark before_drive_under'}"
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'end_run'}"
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'status'}"
+
+
+
+The logger commands are only for the CSV logger. They do not move the robot.
+
+`new_run`
+Starts a fresh test run in the CSV. If another run is active, it closes that run first. Use this right before you begin a trolley test.
+
+```bash
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'new_run'}"
+```
+
+`mark <label>`
+Adds a manual note into the event CSV at the current time. Useful for things like “robot looked left”, “operator pressed side_align”, “bad angle”, etc.
+
+```bash
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'mark before_drive_under'}"
+```
+
+`end_run`
+Ends the active run and writes one row to the summary CSV with total time and milestone times:
+approach goal, side align complete, trolley type checked, under trolley, first fine ArUco estimate,
+fine align complete, dropoff goal, and drive out.
+
+```bash
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'end_run'}"
+```
+
+`abort_run`
+Also ends the active run, but marks the summary as aborted instead of normal/manual end.
+
+```bash
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'abort_run'}"
+```
+
+`status`
+Prints/publishes where the CSV files are and whether a run is active.
+
+```bash
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'status'}"
+```
+
+Also: the logger auto-starts a run when it sees `/trolley_command` with `trolley_ready`.
+By default it auto-ends when `/dropzone_mission_status` reports `drive_out_done`.
+For docking-only tests, send `end_run` after `fine_align_complete`.

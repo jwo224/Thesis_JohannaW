@@ -1,0 +1,221 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Physical Trolley Workflow" id="physical-trolley-workflow-v2">
+    <mxGraphModel dx="2000" dy="1300" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="Physical Robot Trolley Workflow Architecture" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=26;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="20" width="1200" height="45" as="geometry" />
+        </mxCell>
+
+        <mxCell id="launch_note" value="&lt;b&gt;Main workflow launch&lt;/b&gt;&lt;br&gt;physical_staged_trolley_mission.launch.py starts camera TF, camera switching, all four ArUco nodes, and the physical alignment controller.&lt;br&gt;Do not launch physical_aruco_front_rear.launch.py separately at the same time." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8f8f8;strokeColor=#6a4aa3;fontColor=#111111;fontStyle=1;fontSize=14;dashed=1;dashPattern=5 5;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="80" width="450" height="105" as="geometry" />
+        </mxCell>
+
+        <mxCell id="operator" value="&lt;b&gt;Operator / supervisor&lt;/b&gt;&lt;br&gt;manual stage commands&lt;br&gt;/trolley_command" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e11b0c;strokeColor=#111111;fontColor=#ffffff;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="680" y="95" width="280" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="mission" value="&lt;b&gt;dropzone_mission&lt;/b&gt;&lt;br&gt;high-level workflow state machine&lt;br&gt;trolley_ready, side_align, check_trolley_type,&lt;br&gt;drive_under, fine_align, deliver, drive_out" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e11b0c;strokeColor=#111111;fontColor=#ffffff;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="640" y="245" width="360" height="130" as="geometry" />
+        </mxCell>
+
+        <mxCell id="alignment" value="&lt;b&gt;physical_trolley_alignment_controller&lt;/b&gt;&lt;br&gt;low-level visual alignment&lt;br&gt;uses ArUco, odom, TF, and camera switching&lt;br&gt;publishes status and direct velocity commands" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e11b0c;strokeColor=#111111;fontColor=#ffffff;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="620" y="505" width="400" height="125" as="geometry" />
+        </mxCell>
+
+        <mxCell id="stage_side" value="1. side_align_left / side_align_right&lt;br&gt;uses left/right side markers&lt;br&gt;commands /cmd_vel and /cmd_vel_joy" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontColor=#111111;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="350" y="725" width="310" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="stage_drive" value="2. drive_straight_under&lt;br&gt;uses odom distance and front/rear markers&lt;br&gt;sets lidar ignore radius during motion" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontColor=#111111;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="705" y="725" width="340" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="stage_fine" value="3. fine_align_under&lt;br&gt;uses front/rear underside markers&lt;br&gt;corrects yaw, then Y, then X" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontColor=#111111;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1090" y="725" width="310" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="base" value="&lt;b&gt;Robot base / navigation stack&lt;/b&gt;&lt;br&gt;Nav2, localization, odometry, TF,&lt;br&gt;twist mux, motor control&lt;br&gt;executes /goal_pose_raw and /cmd_vel" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e11b0c;strokeColor=#111111;fontColor=#ffffff;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="620" y="930" width="400" height="115" as="geometry" />
+        </mxCell>
+
+        <mxCell id="camera_tf" value="physical_camera_tf.launch.py&lt;br&gt;camera optical frames to base_link&lt;br&gt;/tf_static" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontColor=#111111;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="80" y="95" width="300" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="camera_manager" value="&lt;b&gt;physical_camera_pair_node&lt;/b&gt;&lt;br&gt;opens active camera pair&lt;br&gt;left, right, front_rear, left_right&lt;br&gt;status: /physical_camera_pair_status" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e11b0c;strokeColor=#111111;fontColor=#ffffff;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="70" y="245" width="330" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="side_aruco" value="&lt;b&gt;side ArUco nodes&lt;/b&gt;&lt;br&gt;left_trolley_aruco_node&lt;br&gt;right_trolley_aruco_node&lt;br&gt;side marker size 0.038 m" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e11b0c;strokeColor=#111111;fontColor=#ffffff;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="70" y="455" width="330" height="115" as="geometry" />
+        </mxCell>
+
+        <mxCell id="under_aruco" value="&lt;b&gt;front/rear ArUco nodes&lt;/b&gt;&lt;br&gt;front_trolley_aruco_node&lt;br&gt;rear_trolley_aruco_node&lt;br&gt;under marker size 0.08 m" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e11b0c;strokeColor=#111111;fontColor=#ffffff;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="70" y="630" width="330" height="115" as="geometry" />
+        </mxCell>
+
+        <mxCell id="yolo" value="&lt;b&gt;yolov8_camera_detector&lt;/b&gt;&lt;br&gt;live trolley classification&lt;br&gt;input camera selected by launch parameter&lt;br&gt;publishes /Yolov8_Inference" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e11b0c;strokeColor=#111111;fontColor=#ffffff;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1210" y="260" width="330" height="115" as="geometry" />
+        </mxCell>
+
+        <mxCell id="status" value="Mission status / monitoring&lt;br&gt;/dropzone_mission_status&lt;br&gt;/delivery_zones" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontColor=#111111;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1210" y="455" width="330" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="yolo_debug" value="YOLO debug output&lt;br&gt;/inference_result&lt;br&gt;saved annotated images and CSV logs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontColor=#111111;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1210" y="590" width="330" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_operator_mission" edge="1" parent="1" source="operator" target="mission" value="/trolley_command" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_mission_status" edge="1" parent="1" source="mission" target="status" value="/dropzone_mission_status&lt;br&gt;/delivery_zones" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1100" y="310" />
+              <mxPoint x="1100" y="495" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e_mission_alignment" edge="1" parent="1" source="mission" target="alignment" value="/physical_docking_command&lt;br&gt;side_align, drive_under, fine_align, stop" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_alignment_mission" edge="1" parent="1" source="alignment" target="mission" value="/physical_docking_status&lt;br&gt;done, stopped, timeout" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1065" y="568" />
+              <mxPoint x="1065" y="310" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e_camera_tf_alignment" edge="1" parent="1" source="camera_tf" target="alignment" value="/tf_static camera transforms" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="470" y="135" />
+              <mxPoint x="470" y="568" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e_alignment_camera" edge="1" parent="1" source="alignment" target="camera_manager" value="/physical_camera_pair_command&lt;br&gt;left, right, front_rear" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="520" y="568" />
+              <mxPoint x="520" y="305" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e_camera_side" edge="1" parent="1" source="camera_manager" target="side_aruco" value="/camera_left/image_raw&lt;br&gt;/camera_right/image_raw" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_camera_under" edge="1" parent="1" source="camera_manager" target="under_aruco" value="/camera_front/image_raw&lt;br&gt;/camera_rear/image_raw" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="235" y="400" />
+              <mxPoint x="235" y="630" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e_side_alignment" edge="1" parent="1" source="side_aruco" target="alignment" value="/left/aruco_markers&lt;br&gt;/right/aruco_markers" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_under_alignment" edge="1" parent="1" source="under_aruco" target="alignment" value="/front/aruco_markers&lt;br&gt;/rear/aruco_markers" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="520" y="688" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e_camera_yolo" edge="1" parent="1" source="camera_manager" target="yolo" value="selected image topic&lt;br&gt;e.g. /camera_left/image_raw or /camera_front/image_raw" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="235" y="215" />
+              <mxPoint x="1375" y="215" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e_mission_yolo" edge="1" parent="1" source="mission" target="yolo" value="/yolov8_detector_command&lt;br&gt;enable / disable" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_yolo_mission" edge="1" parent="1" source="yolo" target="mission" value="/Yolov8_Inference&lt;br&gt;trolley class + confidence" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1375" y="410" />
+              <mxPoint x="820" y="410" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e_yolo_debug" edge="1" parent="1" source="yolo" target="yolo_debug" value="/inference_result&lt;br&gt;logs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_mission_base" edge="1" parent="1" source="mission" target="base" value="/goal_pose_raw&lt;br&gt;approach, delivery, return" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1090" y="310" />
+              <mxPoint x="1090" y="988" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e_alignment_base" edge="1" parent="1" source="alignment" target="base" value="/cmd_vel, /cmd_vel_joy&lt;br&gt;alignment motion" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_base_alignment" edge="1" parent="1" source="base" target="alignment" value="/odom, /tf, /tf_static" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="560" y="988" />
+              <mxPoint x="560" y="568" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e_alignment_stage_side" edge="1" parent="1" source="alignment" target="stage_side" value="side_align" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="505" y="670" />
+              <mxPoint x="505" y="725" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e_alignment_stage_drive" edge="1" parent="1" source="alignment" target="stage_drive" value="drive_under" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_alignment_stage_fine" edge="1" parent="1" source="alignment" target="stage_fine" value="fine_align" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1245" y="670" />
+              <mxPoint x="1245" y="725" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e_stage_side_drive" edge="1" parent="1" source="stage_side" target="stage_drive" value="operator approves next stage" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_stage_drive_fine" edge="1" parent="1" source="stage_drive" target="stage_fine" value="operator approves next stage" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

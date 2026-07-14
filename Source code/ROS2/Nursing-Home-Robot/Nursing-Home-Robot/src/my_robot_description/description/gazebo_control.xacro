@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <gazebo>
+        <plugin name="omni_steering" filename="libgazebo_ros_planar_move.so">
+        
+          <ros>
+           <!-- optional -->
+             <namespace>/</namespace>
+
+             <!-- optional remaps (defaults are cmd_vel and odom) -->
+             <remapping>cmd_vel:=cmd_vel</remapping>
+             <remapping>odom:=odom</remapping>
+          </ros>
+
+	    <update_rate>100</update_rate>
+	    <publish_rate>10</publish_rate>
+
+	    <!-- output -->
+	    <publish_odom>true</publish_odom>
+	    <publish_odom_tf>true</publish_odom_tf>
+	    <odometry_frame>odom</odometry_frame>
+	    <robot_base_frame>base_link</robot_base_frame> 
+        </plugin>
+    </gazebo>
+
+
+</robot>
+
+

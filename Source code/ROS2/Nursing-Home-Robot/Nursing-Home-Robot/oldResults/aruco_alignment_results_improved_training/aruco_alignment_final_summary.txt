@@ -1,0 +1,25 @@
+Final ArUco Holonomic Alignment Result
+=====================================
+
+Final time: 149.800 s
+
+ArUco-estimated final alignment:
+  Distance error x: +0.0108 m
+  Lateral error y: +0.0011 m
+  Angle error: +0.943 deg
+
+Gazebo true final alignment:
+  True distance error x: +0.0103 m
+  True lateral error y: +0.0115 m
+  True angle error: +2.073 deg
+
+ArUco estimation error compared with Gazebo truth:
+  Distance estimation error: +0.0006 m
+  Lateral estimation error: -0.0103 m
+  Angle estimation error: -1.130 deg
+
+Additional data:
+  ArUco panel distance: 0.9778 m
+  True panel distance: 0.9750 m
+  Front markers: 5
+  Rear markers: 6

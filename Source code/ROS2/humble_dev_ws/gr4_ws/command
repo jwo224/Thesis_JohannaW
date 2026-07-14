@@ -1,0 +1,35 @@
+cd /home/rocket/gr4_ws
+source install/setup.bash
+export ROS_DOMAIN_ID=138
+
+ros2 launch gr4_camera_config physical_staged_trolley_mission.launch.py \
+  enable_motion:=true \
+  side_marker_ids:=16,17,18,19,20,21,22,23,24,25,26,27 \
+  side_target_pair_ids:='18,19;24,25' \
+  side_target_offset_x:=0.00 \
+  side_align_x_tolerance:=0.015 \
+  side_align_yaw_tolerance_deg:=4.0 \
+  under_marker_ids:=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 \
+  side_max_vx:=0.020 \
+  side_min_vx:=0.010 \
+  side_max_wz:=0.035 \
+  side_vx_sign:=-1.0 \
+  side_wz_sign:=1.0 \
+  straight_under_speed:=0.035 \
+  straight_under_vy_sign:=1.0 \
+  straight_under_duration_sec:=20.0 \
+  straight_under_vx_bias:=0.0 \
+  straight_under_wz_bias:=-0.006 \
+  drive_under_timeout:=20.0 \
+  fine_max_vx:=0.0 \
+  fine_max_vy:=0.015 \
+  fine_max_wz:=0.0 \
+  fine_min_vxy:=0.0 \
+  fine_min_vy:=0.012 \
+  fine_position_tolerance:=0.006 \
+  fine_yaw_tolerance_deg:=10.0
+  
+  
+  
+  
+  

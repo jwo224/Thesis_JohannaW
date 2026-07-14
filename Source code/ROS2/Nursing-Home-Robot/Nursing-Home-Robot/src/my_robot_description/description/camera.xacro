@@ -1,0 +1,183 @@
+<?xml version="1.0"?>
+  <!-- =========================
+        Camera
+       =========================
+       - Cameras are computational heavy: set <visualize>false</visualize> (turns of visualization) , reduce resolution, or reduce update_rate.
+  -->
+
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <joint name="camera_front" type="fixed">
+    <parent link="base_link"/>
+    <child link="camera_front_link"/>
+    <origin xyz="0.23314 0 0.06986" rpy="0 -0.436332 0"/>
+  </joint>
+
+  <link name="camera_front_link"></link>
+
+
+  <joint name="camera_front_optical" type="fixed">
+    <parent link="camera_front_link"/>
+    <child link="camera_front_optical_link"/>
+    <origin xyz="0 0 0" rpy="-1.5708 0 -1.5708"/>
+
+  </joint>
+
+  
+  
+  <link name="camera_front_optical_link"></link>
+  
+
+
+
+  <gazebo reference="camera_front_link">
+   	<sensor name="camera_front" type="camera">
+	  <pose>0 0 0 0 0 0</pose>
+	  <visualize>true</visualize>
+	  <update_rate>10</update_rate>
+	  <camera>
+	    <horizontal_fov>1.422</horizontal_fov>
+	    <image>
+	      <format>R8G8B8</format>
+	      <width>480</width>
+	      <height>640</height>
+	    </image>
+	    <clip>
+	      <near>0.05</near>
+	      <far>8.0</far>
+	    </clip>
+	  </camera>
+	  <plugin name="camera_front_controller" filename="libgazebo_ros_camera.so">
+	    <frame_name>camera_front_optical_link</frame_name>
+	  </plugin>
+	</sensor>
+
+    </gazebo>
+
+  <!-- REAR CAMERA (same settings, rotated 180° to look backwards) -->
+  <joint name="camera_rear" type="fixed">
+    <parent link="base_link"/>
+    <child link="camera_rear_link"/>
+    <!-- same xyz, yaw flipped by +pi -->
+    <origin xyz="-0.23314 0 0.06986" rpy="0 -0.436332 3.14159265"/>
+  </joint>
+
+  <link name="camera_rear_link"></link>
+
+  <joint name="camera_rear_optical" type="fixed">
+    <parent link="camera_rear_link"/>
+    <child link="camera_rear_optical_link"/>
+    <origin xyz="0 0 0" rpy="-1.5708 0 -1.5708"/>
+  </joint>
+
+  <link name="camera_rear_optical_link"></link>
+
+  <gazebo reference="camera_rear_link">
+     <sensor name="camera_rear" type="camera">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>10</update_rate>
+      <camera>
+        <horizontal_fov>1.422</horizontal_fov>
+        <image>
+          <format>R8G8B8</format>
+          <width>480</width>
+          <height>640</height>
+        </image>
+        <clip>
+          <near>0.05</near>
+          <far>8.0</far>
+        </clip>
+      </camera>
+      <plugin name="camera_rear_controller" filename="libgazebo_ros_camera.so">
+        <frame_name>camera_rear_optical_link</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
+  
+<!-- LEFT CAMERA (landscape, looks left) -->
+<joint name="camera_left" type="fixed">
+  <parent link="base_link"/>
+  <child link="camera_left_link"/>
+  <!-- x=0, y=+0.25591 (left), z same; pitch -15deg, yaw +90deg -->
+  <origin xyz="0 0.25591 0.07175" rpy="0 -0.261799 1.5708"/>
+</joint>
+
+<link name="camera_left_link"></link>
+
+<joint name="camera_left_optical" type="fixed">
+  <parent link="camera_left_link"/>
+  <child link="camera_left_optical_link"/>
+  <origin xyz="0 0 0" rpy="-1.5708 0 -1.5708"/>
+</joint>
+
+<link name="camera_left_optical_link"></link>
+
+<gazebo reference="camera_left_link">
+  <sensor name="camera_left" type="camera">
+    <pose>0 0 0 0 0 0</pose>
+    <visualize>false</visualize>
+    <update_rate>10</update_rate>
+    <camera>
+      <horizontal_fov>1.422</horizontal_fov>
+      <image>
+        <format>R8G8B8</format>
+        <width>320</width>
+        <height>240</height>
+      </image>
+      <clip>
+        <near>0.05</near>
+        <far>8.0</far>
+      </clip>
+    </camera>
+    <plugin name="camera_left_controller" filename="libgazebo_ros_camera.so">
+      <frame_name>camera_left_optical_link</frame_name>
+    </plugin>
+  </sensor>
+</gazebo>
+
+<!-- RIGHT CAMERA (landscape, looks right) -->
+<joint name="camera_right" type="fixed">
+  <parent link="base_link"/>
+  <child link="camera_right_link"/>
+  <!-- x=0, y=-0.25591 (right), z same; pitch -15deg, yaw -90deg -->
+  <origin xyz="0 -0.25591 0.07175" rpy="0 -0.261799 -1.5708"/>
+</joint>
+
+<link name="camera_right_link"></link>
+
+<joint name="camera_right_optical" type="fixed">
+  <parent link="camera_right_link"/>
+  <child link="camera_right_optical_link"/>
+  <origin xyz="0 0 0" rpy="-1.5708 0 -1.5708"/>
+</joint>
+
+<link name="camera_right_optical_link"></link>
+
+<gazebo reference="camera_right_link">
+  <sensor name="camera_right" type="camera">
+    <pose>0 0 0 0 0 0</pose>
+    <visualize>false</visualize>
+    <update_rate>10</update_rate>
+    <camera>
+      <horizontal_fov>1.422</horizontal_fov>
+      <image>
+        <format>R8G8B8</format>
+        <width>320</width>
+        <height>240</height>
+      </image>
+      <clip>
+        <near>0.05</near>
+        <far>8.0</far>
+      </clip>
+    </camera>
+    <plugin name="camera_right_controller" filename="libgazebo_ros_camera.so">
+      <frame_name>camera_right_optical_link</frame_name>
+    </plugin>
+  </sensor>
+</gazebo>
+
+
+
+</robot>

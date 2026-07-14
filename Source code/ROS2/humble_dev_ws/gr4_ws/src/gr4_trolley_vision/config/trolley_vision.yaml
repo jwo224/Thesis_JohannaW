@@ -1,0 +1,47 @@
+cameras:
+  front:
+    device: /dev/v4l/by-path/platform-3610000.usb-usb-0:2.4.4.3:1.0-video-index0
+    image_topic: /camera_front/image_raw
+    camera_info_topic: /camera_front/camera_info
+    frame_id: camera_front_optical_link
+    marker_size: 0.080
+    aruco_topic: /front/aruco_markers
+    aruco_poses_topic: /front/aruco_poses
+    aruco_image_topic: /front/aruco_image
+  rear:
+    device: /dev/v4l/by-path/platform-3610000.usb-usb-0:2.4.4.2:1.0-video-index0
+    image_topic: /camera_rear/image_raw
+    camera_info_topic: /camera_rear/camera_info
+    frame_id: camera_rear_optical_link
+    marker_size: 0.080
+    aruco_topic: /rear/aruco_markers
+    aruco_poses_topic: /rear/aruco_poses
+    aruco_image_topic: /rear/aruco_image
+  left:
+    device: /dev/v4l/by-path/platform-3610000.usb-usb-0:2.4.4.1:1.0-video-index0
+    image_topic: /camera_left/image_raw
+    camera_info_topic: /camera_left/camera_info
+    frame_id: camera_left_optical_link
+    marker_size: 0.038
+    aruco_topic: /left/aruco_markers
+    aruco_poses_topic: /left/aruco_poses
+    aruco_image_topic: /left/aruco_image
+  right:
+    device: /dev/v4l/by-path/platform-3610000.usb-usb-0:2.4.4.4:1.0-video-index0
+    image_topic: /camera_right/image_raw
+    camera_info_topic: /camera_right/camera_info
+    frame_id: camera_right_optical_link
+    marker_size: 0.038
+    aruco_topic: /right/aruco_markers
+    aruco_poses_topic: /right/aruco_poses
+    aruco_image_topic: /right/aruco_image
+
+camera:
+  width: 640
+  height: 480
+  fps: 15.0
+  # Approximate pinhole intrinsics. Replace with real calibration for accurate pose.
+  fx: 615.0
+  fy: 615.0
+  cx: 320.0
+  cy: 240.0

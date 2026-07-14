@@ -1,0 +1,85 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Simplified Trolley Workflow" id="trolley-workflow-diagram-simplified">
+    <mxGraphModel dx="1300" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1300" pageHeight="760" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="Simplified Staged Trolley Workflow" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="25" width="960" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="approach" value="&lt;b&gt;Approach trolley&lt;/b&gt;&lt;br&gt;Nav2 goal&lt;br&gt;trolley_ready" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e11b0c;strokeColor=#111111;fontColor=#ffffff;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="70" y="130" width="210" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="align" value="&lt;b&gt;Align with trolley&lt;/b&gt;&lt;br&gt;side ArUco alignment&lt;br&gt;side_align" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e11b0c;strokeColor=#111111;fontColor=#ffffff;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="360" y="130" width="230" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="classify" value="&lt;b&gt;Classify trolley&lt;/b&gt;&lt;br&gt;YOLO detector&lt;br&gt;check_trolley_type" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e11b0c;strokeColor=#111111;fontColor=#ffffff;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="680" y="130" width="230" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="decision" value="Loaded trolley?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontColor=#111111;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1025" y="125" width="130" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="empty" value="&lt;b&gt;Empty trolley&lt;/b&gt;&lt;br&gt;return / wait" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8f8f8;strokeColor=#6a4aa3;fontColor=#111111;fontStyle=1;fontSize=15;dashed=1;dashPattern=5 5;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="310" width="170" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dock" value="&lt;b&gt;Docking sequence&lt;/b&gt;&lt;br&gt;drive_under + fine_align&lt;br&gt;front/rear ArUco" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e11b0c;strokeColor=#111111;fontColor=#ffffff;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="710" y="440" width="250" height="95" as="geometry" />
+        </mxCell>
+
+        <mxCell id="deliver" value="&lt;b&gt;Deliver trolley&lt;/b&gt;&lt;br&gt;laundry or trash drop-off&lt;br&gt;deliver_trolley" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e11b0c;strokeColor=#111111;fontColor=#ffffff;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="390" y="440" width="240" height="95" as="geometry" />
+        </mxCell>
+
+        <mxCell id="return" value="&lt;b&gt;Drive out and return&lt;/b&gt;&lt;br&gt;drive_out&lt;br&gt;return to charging" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e11b0c;strokeColor=#111111;fontColor=#ffffff;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="90" y="440" width="240" height="95" as="geometry" />
+        </mxCell>
+
+        <mxCell id="note" value="All motion stages were supervised. The operator inspected the robot, trolley, camera output, and ROS status before sending the next command." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8f8f8;strokeColor=#6a4aa3;fontColor=#111111;fontStyle=1;fontSize=14;dashed=1;dashPattern=5 5;" vertex="1" parent="1">
+          <mxGeometry x="250" y="625" width="790" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" edge="1" parent="1" source="approach" target="align" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="align" target="classify" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="classify" target="decision" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="decision" target="empty" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#6a4aa3;dashed=1;dashPattern=5 5;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="decision" target="dock" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1090" y="270" />
+              <mxPoint x="835" y="270" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="dock" target="deliver" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="deliver" target="return" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#111111;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="empty" target="return" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=13;strokeColor=#6a4aa3;dashed=1;dashPattern=5 5;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1095" y="590" />
+              <mxPoint x="210" y="590" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

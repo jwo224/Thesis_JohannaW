@@ -1,0 +1,2 @@
+mission_param_overrides:=local_max_vx=0.08;local_max_vy=0.1;local_max_wz=0.3;direct_close_speed=0.1;attached_local_max_vx=0.14;attached_local_max_vy=0.24;attached_local_max_wz=0.45;return_local_max_vx=0.18;return_local_max_vy=0.18;return_local_max_wz=0.45;drive_under_max_vx=0.05;drive_under_max_vy=0.12;drive_under_max_wz=0.16;straight_under_speed=0.16;pickup_aruco_clearance=0.85;attached_lidar_ignore_radius=3.2;straight_under_stop_y=0.16
+holonomic_param_overrides:=max_vx=0.16;max_vy=0.16;max_wz=0.16

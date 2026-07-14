@@ -1,0 +1,53 @@
+Start it in a separate terminal on the robot:
+
+```bash
+ssh rocket@192.168.8.221
+export ROS_DOMAIN_ID=138
+source /opt/ros/humble/setup.bash
+source ~/gr4_ws/install/setup.bash
+
+python3 ~/gr4_ws/tools/mission_run_logger.py
+```
+
+Then control it from another terminal with:
+
+```bash
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'new_run'}"
+```
+
+Add a manual mark:
+
+```bash
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'mark before_side_align'}"
+
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'mark object_detection_correct'}"
+
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'mark docking sucessfull'}"
+
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'mark docking sucessfull_after_changeing_goal_x_from_137_to_134'}"
+
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'mark docking unsucessfull'}"
+
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'mark reseting_start_position'}"
+```
+
+Check logger status:
+
+```bash
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'status'}"
+ros2 topic echo /mission_run_logger_status
+```
+
+End the run manually:
+
+```bash
+ros2 topic pub --once /mission_run_logger_command std_msgs/msg/String "{data: 'end_run'}"
+```
+
+Logs are saved here:
+
+```bash
+~/gr4_ws/mission_run_logs
+```
+
+It should also auto-start when you send `trolley_ready`, but I’d start it manually with `new_run` when testing so the timing is clean.

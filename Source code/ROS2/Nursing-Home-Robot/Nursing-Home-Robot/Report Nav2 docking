@@ -1,0 +1,96 @@
+**Simulation Report**
+
+**Title: Autonomous Holonomic Nursing-Home Delivery Robot With ArUco-Based Trolley Docking in ROS 2 and Gazebo**
+
+**Abstract**  
+This simulation implements an autonomous mecanum-wheel robot for a nursing-home logistics task: navigate from a charging zone, locate and dock under a trolley, transport it to an orange drop-off zone, detach it, return safely to the charging zone, reset the trolley to the pickup zone, and wait for another mission command. The system combines ROS 2 Humble, Gazebo, Nav2, SLAM Toolbox, custom holonomic control, ArUco marker perception, and Gazebo service-based trolley attachment. The final implementation supports both complete mission execution and staged testing through launch-time mission steps.
+
+**1. System Overview**  
+The simulation environment contains a mecanum-drive robot, a trolley, a charging zone, a blue pickup/drop zone, and an orange delivery drop zone. The robot is equipped with cameras, lidar, odometry, and simulated control plugins. The main goal was not only to make the robot reach poses, but to complete a full trolley-handling workflow with realistic docking behavior.
+
+The final mission flow is:
+
+1. Start at the charging zone.
+2. Navigate to the trolley pickup approach.
+3. Use ArUco markers to align with the trolley.
+4. Drive under the trolley using direct holonomic motion.
+5. Fine-align under the trolley.
+6. Attach the trolley through a Gazebo service.
+7. Drive to the orange drop-off zone.
+8. Detach the trolley.
+9. Return to charging without crossing drop zones.
+10. Reset the trolley back onto the blue zone.
+11. Wait for the next `trolley_ready` command.
+
+**2. Navigation Architecture**  
+Initial navigation relied heavily on Nav2 and DWB local planning. This caused several issues: circular driving, overshooting, poor holonomic behavior, collisions with obstacles, and costmap confusion around the trolley. To solve this, the architecture was changed to use Nav2 mainly for lifecycle/map infrastructure while introducing a custom holonomic goal controller for planar movement.
+
+The custom controller listens on `/holonomic_goal` and publishes `/cmd_vel`. It computes body-frame `vx`, `vy`, and `wz` commands directly from odometry error. This better matches the mecanum robot’s true motion model than the original differential-style behavior. Obstacle avoidance was added using lidar scans, but the controller also supports a dynamic lidar ignore radius for the attached-trolley phase.
+
+**3. Trolley Detection and Docking**  
+The trolley is marked with multiple ArUco markers. Four camera directions were used: front, rear, left, and right. During docking, ArUco detections are transformed into `base_link`, allowing the robot to estimate the trolley center and yaw.
+
+The docking behavior was split into multiple phases:
+
+- Approach the trolley lane.
+- Drive closer until ArUco markers are reliably visible.
+- Side-align with the trolley before entry.
+- Drive straight under the trolley while ignoring costmap/lidar.
+- Fine-center under the trolley using ArUco marker geometry.
+- Attach the trolley.
+
+This phased structure was necessary because direct Nav2 docking was unreliable near the trolley. The final docking stage uses tight ArUco tolerances, but after attach the ArUco callbacks are disabled to stop perception spam and prevent stale marker data from influencing later phases.
+
+**4. Trolley Attachment and Delivery**  
+Attachment and detachment are handled using Gazebo services. After successful docking, the controller calls `/attach_trolley`. Once attached, the robot changes its behavior:
+
+- Larger lidar ignore region is enabled.
+- Nav2 obstacle layers are disabled to prevent the trolley or its wheels from being treated as obstacles.
+- Costmaps are cleared.
+- Attached movement uses stronger velocity limits and relaxed yaw tolerance.
+
+This was required because the robot initially detected the trolley’s own wheels as obstacles, causing the delivery phase to stall. The solution combines a circular lidar ignore radius, a trolley-shaped rectangular ignore region, and temporary disabling of Nav2 obstacle layers.
+
+**5. Mission Step Testing**  
+To avoid restarting the entire simulation for every test, `sim.launch.py` was extended with a `mission_step` argument:
+
+```bash
+ros2 launch my_robot_description sim.launch.py mission_step:=step0
+ros2 launch my_robot_description sim.launch.py mission_step:=step1
+ros2 launch my_robot_description sim.launch.py mission_step:=step2
+ros2 launch my_robot_description sim.launch.py mission_step:=step3
+```
+
+The steps are:
+
+- `step0`: full mission from charging.
+- `step1`: start near trolley before docking.
+- `step2`: start under trolley before attach.
+- `step3`: start docked/attached and continue delivery.
+
+After a staged mission completes, the controller resets itself to `step0`, so the next `trolley_ready` command runs the full mission normally.
+
+**6. Return and Reset Behavior**  
+After delivering the trolley to the orange zone, the robot detaches, clears costmaps, re-enables normal obstacle behavior, and returns to charging through fixed safe lane segments. This avoids crossing the blue or orange drop zones.
+
+Once the robot reaches charging, the trolley is repositioned back onto the blue zone using Gazebo’s `/set_entity_state` service. This allows repeated mission cycles without manually resetting the world.
+
+**7. Key Engineering Problems Solved**
+
+- Robot drove in circles: fixed by switching to a direct holonomic controller.
+- Robot overshot goals: reduced speed limits and added braking behavior.
+- Robot collided with walls/obstacles: tuned obstacle avoidance and costmaps.
+- Robot failed near trolley: added ArUco-based docking phases.
+- Robot pushed trolley incorrectly: separated approach, entry, final alignment, and attach.
+- ArUco spam after docking: disabled ArUco processing after attach.
+- Trolley detected as obstacle after attach: added lidar ignore region and disabled Nav2 obstacle layers while attached.
+- Repeat testing was slow: added launch-time mission steps.
+- Repeated missions needed manual reset: added automatic trolley reset to blue zone.
+
+**8. Final Outcome**  
+The simulation now demonstrates a full autonomous trolley-handling mission. The robot can start from charging, navigate to the trolley, dock underneath using ArUco markers, attach the trolley, transport it to the orange zone, detach it, return to charging while avoiding drop zones, reset the trolley, and wait for a new command.
+
+This produces a complete closed-loop logistics workflow suitable for demonstrating autonomous service-robot behavior in a nursing-home scenario.
+
+**9. Future Improvements**  
+Further work could improve path quality using a planner specifically designed for holonomic robots, add semantic zones to prevent crossing marked areas, replace manual Gazebo attachment with a physics-based latch, and integrate a formal behavior tree for mission phases. The ArUco system could also be fused with ground-truth or lidar-based trolley pose estimation for more robust docking under poor camera visibility.

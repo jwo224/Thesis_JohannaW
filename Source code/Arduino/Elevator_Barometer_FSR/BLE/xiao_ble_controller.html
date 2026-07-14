@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XIAO BLE FSR Servo Controller</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 720px;
+      margin: 30px auto;
+      padding: 0 16px;
+      background: #f7f7f7;
+      color: #222;
+    }
+
+    h1 {
+      font-size: 1.7rem;
+      margin-bottom: 8px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 18px;
+      margin: 16px 0;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    button {
+      padding: 12px 16px;
+      margin: 6px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      background: #2563eb;
+      color: white;
+    }
+
+    button.secondary {
+      background: #555;
+    }
+
+    button.danger {
+      background: #dc2626;
+    }
+
+    button.success {
+      background: #16a34a;
+    }
+
+    button:disabled {
+      background: #aaa;
+      cursor: not-allowed;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 100px;
+      margin: 6px;
+    }
+
+    #log {
+      background: #111;
+      color: #0f0;
+      padding: 12px;
+      border-radius: 10px;
+      height: 260px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      font-family: Consolas, monospace;
+      font-size: 0.9rem;
+    }
+
+    .status {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>XIAO BLE FSR Servo Controller</h1>
+  <p>Connect to your XIAO nRF52840 Sense and send BLE UART commands.</p>
+
+  <div class="card">
+    <p>Status: <span id="status" class="status">Not connected</span></p>
+    <button id="connectBtn">Connect BLE</button>
+    <button id="disconnectBtn" class="secondary" disabled>Disconnect</button>
+  </div>
+
+  <div class="card">
+    <h2>Basic Commands</h2>
+    <button onclick="sendCommand('OPEN')">OPEN</button>
+    <button onclick="sendCommand('CLOSE')">CLOSE</button>
+    <button onclick="sendCommand('PRESS')" class="success">PRESS</button>
+    <button onclick="sendCommand('STOP')" class="danger">STOP</button>
+    <button onclick="sendCommand('STATUS')" class="secondary">STATUS</button>
+  </div>
+
+  <div class="card">
+    <h2>Servo Angle</h2>
+    <input id="angleInput" type="number" min="0" max="180" value="90" />
+    <button onclick="sendGoto()">Send GOTO</button>
+  </div>
+
+  <div class="card">
+    <h2>FSR Threshold</h2>
+    <input id="thresholdInput" type="number" min="0" max="4095" value="200" />
+    <button onclick="sendThreshold()">Set THRESH</button>
+  </div>
+
+  <div class="card">
+    <h2>Custom Command</h2>
+    <input id="customInput" type="text" value="STATUS" style="width: 220px;" />
+    <button onclick="sendCustom()">Send</button>
+  </div>
+
+  <div class="card">
+    <h2>Log</h2>
+    <pre id="log"></pre>
+  </div>
+
+  <script>
+    // Nordic UART Service UUIDs used by Adafruit Bluefruit BLEUart
+    const UART_SERVICE_UUID = '6e400001-b5a3-f393-e0a9-e50e24dcca9e';
+    const UART_RX_UUID      = '6e400002-b5a3-f393-e0a9-e50e24dcca9e'; // browser writes to this
+    const UART_TX_UUID      = '6e400003-b5a3-f393-e0a9-e50e24dcca9e'; // browser receives notifications from this
+
+    let device = null;
+    let server = null;
+    let service = null;
+    let rxCharacteristic = null;
+    let txCharacteristic = null;
+
+    const statusEl = document.getElementById('status');
+    const logEl = document.getElementById('log');
+    const connectBtn = document.getElementById('connectBtn');
+    const disconnectBtn = document.getElementById('disconnectBtn');
+
+    connectBtn.addEventListener('click', connectBLE);
+    disconnectBtn.addEventListener('click', disconnectBLE);
+
+    function log(message) {
+      const time = new Date().toLocaleTimeString();
+      logEl.textContent += `[${time}] ${message}\n`;
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    function setConnected(isConnected) {
+      statusEl.textContent = isConnected ? 'Connected' : 'Not connected';
+      connectBtn.disabled = isConnected;
+      disconnectBtn.disabled = !isConnected;
+    }
+
+    async function connectBLE() {
+      try {
+        log('Requesting BLE device...');
+
+        device = await navigator.bluetooth.requestDevice({
+          filters: [
+            { namePrefix: 'XIAO' },
+            { services: [UART_SERVICE_UUID] }
+          ],
+          optionalServices: [UART_SERVICE_UUID]
+        });
+
+        device.addEventListener('gattserverdisconnected', onDisconnected);
+
+        log(`Connecting to ${device.name || 'BLE device'}...`);
+        server = await device.gatt.connect();
+
+        service = await server.getPrimaryService(UART_SERVICE_UUID);
+        rxCharacteristic = await service.getCharacteristic(UART_RX_UUID);
+        txCharacteristic = await service.getCharacteristic(UART_TX_UUID);
+
+        await txCharacteristic.startNotifications();
+        txCharacteristic.addEventListener('characteristicvaluechanged', handleNotifications);
+
+        setConnected(true);
+        log('Connected. Try STATUS, GOTO 90, or PRESS.');
+      } catch (error) {
+        log('Connection error: ' + error);
+        setConnected(false);
+      }
+    }
+
+    function disconnectBLE() {
+      if (device && device.gatt.connected) {
+        device.gatt.disconnect();
+      }
+    }
+
+    function onDisconnected() {
+      setConnected(false);
+      log('Disconnected.');
+    }
+
+    function handleNotifications(event) {
+      const value = event.target.value;
+      const decoder = new TextDecoder('utf-8');
+      const message = decoder.decode(value);
+      log('XIAO: ' + message.trim());
+    }
+
+    async function sendCommand(command) {
+      if (!rxCharacteristic) {
+        log('Not connected. Click Connect BLE first.');
+        return;
+      }
+
+      try {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(command + '\n');
+        await rxCharacteristic.writeValue(data);
+        log('Sent: ' + command);
+      } catch (error) {
+        log('Send error: ' + error);
+      }
+    }
+
+    function sendGoto() {
+      let angle = parseInt(document.getElementById('angleInput').value, 10);
+      if (isNaN(angle)) angle = 90;
+      angle = Math.max(0, Math.min(180, angle));
+      sendCommand('GOTO ' + angle);
+    }
+
+    function sendThreshold() {
+      let threshold = parseInt(document.getElementById('thresholdInput').value, 10);
+      if (isNaN(threshold)) threshold = 200;
+      threshold = Math.max(0, Math.min(4095, threshold));
+      sendCommand('THRESH ' + threshold);
+    }
+
+    function sendCustom() {
+      const command = document.getElementById('customInput').value.trim();
+      if (command.length > 0) {
+        sendCommand(command);
+      }
+    }
+
+    if (!navigator.bluetooth) {
+      log('Web Bluetooth is not supported in this browser. Use Chrome or Edge on desktop/Android.');
+      connectBtn.disabled = true;
+    }
+  </script>
+</body>
+</html>

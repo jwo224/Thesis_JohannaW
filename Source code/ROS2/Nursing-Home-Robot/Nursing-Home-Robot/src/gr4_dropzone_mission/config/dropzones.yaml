@@ -1,0 +1,44 @@
+dropzone_mission:
+  ros__parameters:
+    command_topic: /trolley_command
+    marker_topic: /delivery_zones
+    goal_pose_topic: /goal_pose_raw
+    marker_publish_period: 1.0
+    frame_id: map
+    trolley_drive_wait_sec: 12.0
+    detection_model_path: ~/Nursing-Home-Robot/src/object_detection/scripts/trolleys.pt
+    test_image_path: ~/Nursing-Home-Robot/src/object_detection/test_images/current_trolley.jpg
+    test_image_directory: ~/Nursing-Home-Robot/src/object_detection/test_images
+    detection_confidence: 0.25
+
+    # Tune these coordinates from RViz on the saved real map.
+    # yaw is in radians.
+    zones:
+      charging:
+        x: 0.0
+        y: 0.0
+        yaw: 0.0
+        width: 0.8
+        height: 0.8
+        color: [0.65, 0.65, 0.65, 0.35]
+      trolley_dropzone:
+        x: 0.0
+        y: 0.8
+        yaw: 0.0
+        width: 0.9
+        height: 0.9
+        color: [0.0, 0.8, 0.25, 0.35]
+      laundry_dropoff:
+        x: 0.62
+        y: -0.9
+        yaw: 0.0
+        width: 1.0
+        height: 1.0
+        color: [0.0, 0.35, 1.0, 0.35]
+      trash_dropoff:
+        x: -1.5
+        y: 0.84
+        yaw: 0.0
+        width: 1.0
+        height: 1.0
+        color: [1.0, 0.25, 0.0, 0.35]

@@ -1,0 +1,15 @@
+wall_time,ros_time_sec,run_id,elapsed_sec,event_type,source,label,data
+2026-06-19_21-33-38-134937,1781897618.134945,20260619_213338,0.000,run_start,logger,command_trolley_ready,
+2026-06-19_21-33-38-135441,1781897618.135462,20260619_213338,0.001,command,trolley_command,trolley_ready,trolley_ready
+2026-06-19_21-33-38-137471,1781897618.137499,20260619_213338,0.003,dropzone_status,dropzone,approach_goal_sent,"approach_goal_sent. Inspect the robot pose, then approve side alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'side_align'}"""
+2026-06-19_21-34-13-667738,1781897653.667765,20260619_213338,35.533,physical_status,physical_alignment,status,stopped
+2026-06-19_21-34-13-668129,1781897653.668150,20260619_213338,35.533,dropzone_status,dropzone,status,stopped. Alignment controller was commanded to stop.
+2026-06-19_21-34-23-652416,1781897663.652454,20260619_213338,45.518,dropzone_status,dropzone,approach_goal_sent,"approach_goal_sent. Inspect the robot pose, then approve side alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'side_align'}"""
+2026-06-19_21-36-24-816593,1781897784.816617,20260619_213338,166.682,run_end,logger,auto_closed_before_command_trolley_ready,
+2026-06-19_21-36-24-817204,1781897784.817209,20260619_213624,0.000,run_start,logger,command_trolley_ready,
+2026-06-19_21-36-24-817532,1781897784.817541,20260619_213624,0.000,command,trolley_command,trolley_ready,trolley_ready
+2026-06-19_21-36-24-817818,1781897784.817827,20260619_213624,0.001,dropzone_status,dropzone,approach_goal_sent,"approach_goal_sent. Inspect the robot pose, then approve side alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'side_align'}"""
+2026-06-19_21-36-42-187213,1781897802.187238,20260619_213624,17.370,dropzone_status,dropzone,status,stopped. Alignment controller was commanded to stop.
+2026-06-19_21-36-42-187588,1781897802.187600,20260619_213624,17.370,physical_status,physical_alignment,status,stopped
+2026-06-19_21-36-51-910771,1781897811.910796,20260619_213624,27.094,dropzone_status,dropzone,approach_goal_sent,"approach_goal_sent. Inspect the robot pose, then approve side alignment with: ros2 topic pub --once /trolley_command std_msgs/msg/String ""{data: 'side_align'}"""
+2026-06-19_21-37-32-142150,1781897852.142192,20260619_213624,67.325,run_end,logger,logger_shutdown,

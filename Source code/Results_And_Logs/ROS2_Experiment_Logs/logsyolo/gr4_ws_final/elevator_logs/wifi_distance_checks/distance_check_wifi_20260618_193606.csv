@@ -1,0 +1,1 @@
+timestamp,distance_m,attempt,url,success,elapsed_ms,http_status,esp32_rssi_dbm,robot_wifi_signal_dbm,robot_wifi_interface,robot_wifi_ssid,response,error

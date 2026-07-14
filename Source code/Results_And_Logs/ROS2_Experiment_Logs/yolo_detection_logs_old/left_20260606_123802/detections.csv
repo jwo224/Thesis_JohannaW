@@ -1,0 +1,2 @@
+wall_time,ros_time_sec,camera,camera_topic,frame_id,image_file,class_name,confidence,left,top,right,bottom,center_x,center_y,width,height
+2026-06-06_12-41-07-944892,1780742465.7990987,left,/camera_left/image_raw,camera_left_optical_link,/home/rocket/gr4_ws/yolo_detection_logs/left_20260606_123802/images/left_frame_000210_2026-06-06_12-41-07-944892.jpg,laundry_trolley,0.45290407538414,0,84,1280,720,640.0,402.0,1280,636

@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="ChargingZone">
+    <static>true</static>
+
+    <link name="charging_zone_link">
+      <visual name="charging_floor_marking">
+        <pose>0 0 0.001 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.80 0.80 0.002</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.0 0.75 0.35 0.65</ambient>
+          <diffuse>0.0 0.95 0.45 0.65</diffuse>
+          <specular>0.0 0.0 0.0 1.0</specular>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

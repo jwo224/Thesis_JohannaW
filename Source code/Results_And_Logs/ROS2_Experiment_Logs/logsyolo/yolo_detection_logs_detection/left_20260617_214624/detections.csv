@@ -1,0 +1,6 @@
+wall_time,ros_time_sec,camera,camera_topic,frame_id,image_file,class_name,confidence,left,top,right,bottom,center_x,center_y,width,height
+2026-06-17_21-46-33-130261,1781725590.994961,left,/camera_left/image_raw,camera_left_optical_link,/home/rocket/gr4_ws/yolo_detection_logs/left_20260617_214624/images/left_frame_000010_2026-06-17_21-46-33-130261.jpg,,,,,,,,,,
+2026-06-17_21-46-41-383874,1781725598.902688,left,/camera_left/image_raw,camera_left_optical_link,/home/rocket/gr4_ws/yolo_detection_logs/left_20260617_214624/images/left_frame_000020_2026-06-17_21-46-41-383874.jpg,,,,,,,,,,
+2026-06-17_21-46-49-554244,1781725607.5231476,left,/camera_left/image_raw,camera_left_optical_link,/home/rocket/gr4_ws/yolo_detection_logs/left_20260617_214624/images/left_frame_000030_2026-06-17_21-46-49-554244.jpg,,,,,,,,,,
+2026-06-17_21-46-57-439086,1781725615.3574944,left,/camera_left/image_raw,camera_left_optical_link,/home/rocket/gr4_ws/yolo_detection_logs/left_20260617_214624/images/left_frame_000040_2026-06-17_21-46-57-439086.jpg,,,,,,,,,,
+2026-06-17_21-47-05-368592,1781725623.1788714,left,/camera_left/image_raw,camera_left_optical_link,/home/rocket/gr4_ws/yolo_detection_logs/left_20260617_214624/images/left_frame_000050_2026-06-17_21-47-05-368592.jpg,,,,,,,,,,

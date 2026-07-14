@@ -1,0 +1,83 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 432] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 1888 >>
+stream
+1 1 1 rg 0 0 792 432 re f
+BT /F1 15 Tf 238 405 Td (Configured Drop-Zones in the Map Frame) Tj ET
+0.86 0.86 0.86 RG 0.5 w
+150.031 55 m 150.031 377 l S
+BT /F1 8 Tf 145.031 36 Td (-1) Tj ET
+268.503 55 m 268.503 377 l S
+BT /F1 8 Tf 263.503 36 Td (0) Tj ET
+386.976 55 m 386.976 377 l S
+BT /F1 8 Tf 381.976 36 Td (1) Tj ET
+505.448 55 m 505.448 377 l S
+BT /F1 8 Tf 500.448 36 Td (2) Tj ET
+623.921 55 m 623.921 377 l S
+BT /F1 8 Tf 618.921 36 Td (3) Tj ET
+742.393 55 m 742.393 377 l S
+BT /F1 8 Tf 737.393 36 Td (4) Tj ET
+185.573 -4.236 m 641.427 -4.236 l S
+BT /F1 8 Tf 42 -7.236 Td (-2) Tj ET
+185.573 55 m 641.427 55 l S
+BT /F1 8 Tf 42 52 Td (-1.5) Tj ET
+185.573 114.236 m 641.427 114.236 l S
+BT /F1 8 Tf 42 111.236 Td (-1) Tj ET
+185.573 173.472 m 641.427 173.472 l S
+BT /F1 8 Tf 42 170.472 Td (-0.5) Tj ET
+185.573 232.709 m 641.427 232.709 l S
+BT /F1 8 Tf 42 229.709 Td (0) Tj ET
+185.573 291.945 m 641.427 291.945 l S
+BT /F1 8 Tf 42 288.945 Td (0.5) Tj ET
+185.573 351.181 m 641.427 351.181 l S
+BT /F1 8 Tf 42 348.181 Td (1) Tj ET
+185.573 410.417 m 641.427 410.417 l S
+BT /F1 8 Tf 42 407.417 Td (1.5) Tj ET
+185.573 469.653 m 641.427 469.653 l S
+BT /F1 8 Tf 42 466.653 Td (2) Tj ET
+0.25 0.25 0.25 RG 1 w
+185.573 55 455.855 322 re S
+BT /F1 10 Tf 364 16 Td (map x [m]) Tj ET
+BT /F1 10 Tf 12 205 Td (map y [m]) Tj ET
+0.878 0.878 0.878 rg
+0.65 0.65 0.65 RG 1.6 w
+457.795 157.826 94.778 94.778 re B
+0.65 0.65 0.65 RG 1.2 w
+505.184 205.215 m 541.2 205.215 l S
+541.2 205.215 2.5 0 360 arc f
+0.12 0.12 0.12 rg BT /F1 9 Tf 471.184 264.604 Td (Charging New-Zone \(1.998, -0.232\)) Tj ET
+1 0.965 0.65 rg
+1 0.9 0 RG 1.6 w
+247.771 111.274 41.465 29.618 re B
+1 0.9 0 RG 1.2 w
+268.503 126.083 m 284.26 126.083 l S
+284.26 126.083 2.5 0 360 arc f
+0.12 0.12 0.12 rg BT /F1 9 Tf 234.503 152.893 Td (Staging pose \(0, -0.9\)) Tj ET
+0.3 0.3 0.3 rg BT /F1 8 Tf 575 24 Td (Colors and dimensions from dropzones.yaml) Tj ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000311 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+2251
+%%EOF

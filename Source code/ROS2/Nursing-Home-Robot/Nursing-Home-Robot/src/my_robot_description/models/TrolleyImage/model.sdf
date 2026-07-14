@@ -1,0 +1,43 @@
+<?xml version='1.0'?>
+<sdf version='1.7'>
+  <model name='TrolleyImage'>
+    <pose>-0.9925 -1.6825 0 0 0 0</pose>
+    <static>true</static>
+
+    <link name='Wall_0'>
+      
+      <!-- Rotate 90 degrees -->
+      <pose>-0.1175 -1.6075 0 0 0 1.5708</pose>
+
+      <!-- Collision -->
+      <collision name='Wall_0_Collision'>
+        <pose>0 0 1.25 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.75 0.15 2.5</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <!-- Visual -->
+      <visual name='Wall_0_Visual'>
+        <pose>0 0 1.25 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.75 0.15 2.5</size>
+          </box>
+        </geometry>
+
+        <material>
+          <script>
+            <uri>model://TrolleyImage/materials/scripts</uri>
+            <uri>model://TrolleyImage/materials/textures</uri>
+            <name>Trolley/ImageTexture</name>
+          </script>
+        </material>
+
+      </visual>
+
+    </link>
+  </model>
+</sdf>

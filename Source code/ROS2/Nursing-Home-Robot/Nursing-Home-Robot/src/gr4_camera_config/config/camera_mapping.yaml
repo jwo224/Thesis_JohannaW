@@ -1,0 +1,20 @@
+cameras:
+  left:
+    device: /dev/v4l/by-path/platform-3610000.usb-usb-0:2.4.4.1:1.0-video-index0
+    current_dev: /dev/video0
+    note: Left camera
+
+  rear:
+    device: /dev/v4l/by-path/platform-3610000.usb-usb-0:2.4.4.2:1.0-video-index0
+    current_dev: /dev/video2
+    note: Rear camera
+
+  front:
+    device: /dev/v4l/by-path/platform-3610000.usb-usb-0:2.4.4.3:1.0-video-index0
+    current_dev: /dev/video4
+    note: Front camera
+
+  right:
+    device: /dev/v4l/by-path/platform-3610000.usb-usb-0:2.4.4.4:1.0-video-index0
+    current_dev: /dev/video6
+    note: Right camera

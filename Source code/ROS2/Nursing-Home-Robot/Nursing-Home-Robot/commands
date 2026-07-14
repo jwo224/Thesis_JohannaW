@@ -1,0 +1,390 @@
+
+Twist MUX:
+ros2 run twist_mux twist_mux   --ros-args   --params-file /home/group4/Nursing-Home-Robot/src/my_robot_description/config/twist_mux.yaml   -r cmd_vel_out:=diff_cont/cmd_vel_unstamped
+
+
+
+New Teleop:
+ros2 run teleop_twist_keyboard teleop_twist_keyboard   --ros-args -r cmd_vel:=cmd_vel_joy
+
+
+SLAM:
+ros2 launch slam_toolbox online_async_launch.py   slam_params_file:=/home/group4/Nursing-Home-Robot/src/my_robot_description/config/mapper_params_online_async.yaml   use_sim_time:=true
+
+NAV2:
+ros2 launch nav2_bringup navigation_launch.py use_sim_time:=true
+
+AMCL:
+ros2 launch nav2_bringup localization_launch.py map:=Test_room2_save.yaml use_sim_time:=true
+
+
+
+
+run simulation:
+ros2 launch my_robot_description sim.launch.py
+
+run simulation from mission test steps:
+ros2 launch my_robot_description sim.launch.py mission_step:=step0
+ros2 launch my_robot_description sim.launch.py mission_step:=step1
+ros2 launch my_robot_description sim.launch.py mission_step:=step2
+ros2 launch my_robot_description sim.launch.py mission_step:=step3
+
+baseline mission batch test, using the parameters from sim.launch.py:
+ros2 launch my_robot_description mission_baseline_batch_test.launch.py runs:=10
+
+step0 = robot at charger/origin, full mission
+step1 = robot outside trolley, start with ArUco alignment and docking
+step2 = robot under trolley, start with final ArUco alignment and attach
+step3 = robot under trolley/docked pose, attach and drive to orange
+
+cd /home/group4/Nursing-Home-Robot
+source install/setup.bash
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: trolley_ready}"
+
+
+clean rebuild:
+pkill -f gzserver
+pkill -f gzclient
+pkill -f gazebo
+rm -rf build install log --packages-select my_robot_description
+colcon build --packages-select my_robot_description
+
+cd ~/Nursing-Home-Robot
+source /opt/ros/humble/setup.bash
+
+
+source install/setup.bash
+ros2 launch my_robot_description sim.launch.py
+
+cd ~/Nursing-Home-Robot
+source /opt/ros/humble/setup.bash
+rm -rf build install log
+colcon build
+
+source install/setup.bash
+
+ros2 launch my_robot_description sim.launch.py
+
+colcon build
+source install/setup.bash
+
+ros2 launch my_robot_description sim.launch.py
+
+
+Install Controllers: sudo apt install ros-humble-ros2-control ros-humble-ros2-controllers
+sudo apt install ros-humble-ros2controlcli
+
+
+Real ROBOT:
+SSH to robot. rocket@192.168.8.221 pw rocket
+
+Camera:
+export ROS_DOMAIN_ID=138
+source ~/gr4_ws/install/setup.bash
+ros2 launch gr4_camera_config physical_aruco_front_rear.launch.py
+
+ros2 run gr4_camera_config aruco_web_stream
+
+Drop zones:
+cd ~/gr4_ws
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+export ROS_DOMAIN_ID=138
+ros2 launch gr4_dropzone_mission dropzone_mission.launch.py
+
+Staged trolley ArUco camera/controller launch for manual pickup:
+cd ~/gr4_ws
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+export ROS_DOMAIN_ID=138
+ros2 launch gr4_camera_config physical_staged_trolley_mission.launch.py enable_motion:=true
+
+If launch crashes with "Invalid camera_pair 'left'":
+  the robot still has the old physical_four_camera_node.py installed
+  copy physical_four_camera_node.py to the robot, rebuild gr4_camera_config, and source install/setup.bash again
+
+Trolley-ready approach:
+  trolley_stage_offset_y is now 0.9 instead of 1.0 for a slightly stricter approach pose
+  if Nav2 still stops too loosely, tune the robot Nav2 goal_checker xy/yaw tolerances
+
+If drive_under is blocked by Nav2/lidar/twist mux, launch explicitly with:
+ros2 launch gr4_camera_config physical_staged_trolley_mission.launch.py \
+  enable_motion:=true \
+  straight_under_distance_m:=1.30 \
+  straight_under_speed:=0.07 \
+  straight_under_x_hold_kp:=0.30 \
+  straight_under_max_vx_correction:=0.025 \
+  drive_under_extra_cmd_vel_topic:=/cmd_vel_joy \
+  drive_under_lidar_ignore_radius:=1.25 \
+  drive_under_stop_on_under_markers:=true \
+  drive_under_marker_stop_min_progress:=0.20 \
+  drive_under_marker_stop_hold_sec:=0.0 \
+  fine_acquire_enable:=true \
+  fine_acquire_front_seen_vx:=0.012 \
+  fine_reacquire_after_pair_loss:=true \
+  fine_position_tolerance_x:=0.025 \
+  fine_position_tolerance_y:=0.010 \
+  side_require_target_pair_visible:=false
+
+If fine_align sees visible=[] under the trolley, drive_under did not go far enough:
+  drive_under now uses front/rear cameras and stops early once enough underside ArUcos are visible
+  straight_under_distance_m default is now 1.30 as a maximum distance
+  if it is still short, relaunch with straight_under_distance_m:=1.35
+  if it goes too far, relaunch with straight_under_distance_m:=1.25
+  tune early stop with drive_under_marker_stop_min_progress:=0.20 and drive_under_marker_stop_hold_sec:=0.0
+
+Fine-align debugging:
+  the controller now logs and publishes fine_debug once per second on /physical_docking_status
+  it includes front/rear/left/right ArUco IDs, active pair, target, error, and cmd_vel
+ros2 topic echo /physical_docking_status
+
+If fine_align detects only front underside ArUcos and no rear ArUcos:
+  it now creeps toward robot front with fine_acquire_front_seen_vx:=0.012
+  if that is the wrong direction, relaunch with fine_acquire_front_seen_vx:=-0.012
+
+Fine alignment can run with one front and one rear underside ArUco:
+  min_under_markers default is now 2, with front=1 and rear=1 still required
+  fine align now chooses one sane front/rear marker pair instead of averaging every flickering marker
+  sparse fine-align pairs must use opposite trolley local-y rows, e.g. 12+3 or 10+5, not same-row pairs like 10+3
+  fine_estimate_window_size default is 3 so it does not wait too long for sparse markers
+  fine yaw tolerance default is now 12 deg so it prioritizes x/y centering
+  fine_reacquire_after_pair_loss default is true so if rear/front markers disappear after a pair was seen, it can creep to recover them
+
+Calibration note:
+  trolley_reference_summary_20260603_200123.csv is a flipped_180 centered pose
+  all four markers estimate target_offset_x=0.1378 target_offset_y=0.0037
+  staged defaults use target_offset_x=0.1378 target_offset_y=0.0038
+  the successful hand-assisted fine-align also ended at target_offset_x=0.1378 target_offset_y=0.0038
+  fine_align now keeps x tolerance at 0.025m but tightens y tolerance to 0.010m
+  optional separate normal/flipped offsets exist:
+  use_orientation_target_offsets:=true
+  target_offset_x_normal:=... target_offset_y_normal:=...
+  target_offset_x_flipped:=0.1378 target_offset_y_flipped:=0.0038
+
+Restart fine alignment while under the trolley:
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'fine_align'}"
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'restart_fine_align'}"
+
+If drive_under still drifts slightly left/right:
+  try straight_under_vx_bias:=0.005 or straight_under_vx_bias:=-0.005
+
+Check which physical camera pair is active:
+ros2 topic echo --once /physical_camera_pair_status
+ros2 topic pub --once /physical_camera_pair_command std_msgs/msg/String "{data: 'left'}"
+ros2 topic echo --once /physical_camera_pair_status
+ros2 topic pub --once /physical_camera_pair_command std_msgs/msg/String "{data: 'front_rear'}"
+ros2 topic echo --once /physical_camera_pair_status
+
+During side_align_left, only the left camera should show fresh image hz:
+ros2 topic hz /camera_left/image_raw
+ros2 topic hz /camera_right/image_raw
+
+After front_rear switch, only front/rear should show fresh image hz:
+ros2 topic hz /camera_front/image_raw
+ros2 topic hz /camera_rear/image_raw
+ros2 topic hz /camera_left/image_raw
+ros2 topic hz /camera_right/image_raw
+
+Check if fine alignment can actually see underside markers:
+ros2 topic echo --once /front/aruco_markers
+ros2 topic echo --once /rear/aruco_markers
+
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'charging'}"
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'laundry'}"
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'trash'}"
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'trolley'}"
+
+Manual staged trolley pickup:
+ros2 topic echo /dropzone_mission_status
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'trolley_ready'}"
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'side_align'}"
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'drive_under'}"
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'fine_align'}"
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'status'}"
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'stop'}"
+
+if you want to change the coordinates of the dropzones, edit the dropzones.yaml file in the gr4_dropzone_mission package, then rebuild and relaunch the mission.
+
+Test Object detection:
+ros2 launch object_detection launch_yolov8_camera.launch.py camera:=front save_every_n_frames:=1
+
+Manual pickup with trolley type memory and delivery:
+Terminal A - YOLO trolley type detector, start before check_trolley_type:
+cd ~/gr4_ws
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+export ROS_DOMAIN_ID=138
+ros2 launch object_detection launch_yolov8_camera.launch.py camera:=left model:=trolleys.pt confidence:=0.25
+
+Terminal B - staged flow commands:
+ros2 topic echo /dropzone_mission_status
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'trolley_ready'}"
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'side_align'}"
+
+After side_align_complete choose one:
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'check_trolley_type'}"
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'drive_under'}"
+
+After check_trolley_type, the status should say via live_yolov8_topic.
+If it says via image_file_yolo, the robot is running old code/config or image-file fallback was enabled.
+
+If detection is wrong or missing, manually remember the type:
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'laundry_trolley'}"
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'trash_trolley'}"
+
+If the detector sees an empty trolley:
+  mission status becomes empty_trolley_detected and the robot is sent back to charging
+  manual override for testing:
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'empty_trolley'}"
+
+Then continue:
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'drive_under'}"
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'fine_align'}"
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'deliver_trolley'}"
+
+After the robot arrives at the remembered laundry/trash dropzone:
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'drive_out'}"
+
+Tune drive_out if needed in gr4_dropzone_mission/config/dropzones.yaml:
+  dropzone_exit_vy default is -0.07
+  dropzone_exit_duration_sec default is 4.0
+
+Calibrate docking position:
+
+export ROS_DOMAIN_ID=138
+source ~/gr4_ws/install/setup.bash
+ros2 launch gr4_camera_config physical_aruco_front_rear.launch.py
+
+
+export ROS_DOMAIN_ID=138
+source ~/gr4_ws/install/setup.bash
+ros2 run gr4_camera_config trolley_reference_logger
+
+
+align outside of trolley:
+export ROS_DOMAIN_ID=138
+source ~/gr4_ws/install/setup.bash
+ros2 launch gr4_camera_config physical_side_align_left.launch.py
+
+export ROS_DOMAIN_ID=138
+source ~/gr4_ws/install/setup.bash
+ros2 topic pub /physical_docking_command std_msgs/msg/String "data: 'side_align_left'" --once
+
+ros2 topic pub /physical_docking_command std_msgs/msg/String "data: 'stop'" --once
+ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "{}" --once
+
+ros2 topic pub /physical_docking_command std_msgs/msg/String "data: 'under_trolley_align'" --once
+
+
+
+Yes. Use this terminal layout.
+
+**Robot Terminal 1: Rebuild**
+After files are copied/edited on the robot:
+
+```bash
+ssh rocket@192.168.8.221
+cd ~/gr4_ws
+source /opt/ros/humble/setup.bash
+colcon build --packages-select gr4_dropzone_mission gr4_camera_config
+source install/setup.bash
+```
+
+**Robot Terminal 2: Nav2**
+If Nav2 is not already running:
+
+```bash
+ssh rocket@192.168.8.221
+export ROS_DOMAIN_ID=138
+source /opt/ros/humble/setup.bash
+source ~/gr4_ws/install/setup.bash
+
+ros2 launch articubot_one nav.launch.py map:=/home/rocket/maps/mekagangen.yaml
+```
+
+**Robot Terminal 3: Dropzone Mission**
+This sends the approach goal and controls the manual stages:
+
+```bash
+ssh rocket@192.168.8.221
+export ROS_DOMAIN_ID=138
+source /opt/ros/humble/setup.bash
+source ~/gr4_ws/install/setup.bash
+
+ros2 launch gr4_dropzone_mission dropzone_mission.launch.py
+```
+
+**Robot Terminal 4: ArUco Cameras + Alignment Controller**
+Start in debug first:
+
+```bash
+ssh rocket@192.168.8.221
+export ROS_DOMAIN_ID=138
+source /opt/ros/humble/setup.bash
+source ~/gr4_ws/install/setup.bash
+
+ros2 launch gr4_camera_config physical_staged_trolley_mission.launch.py enable_motion:=true
+```
+
+When you are ready for real movement, stop it with `Ctrl+C`, then restart with:
+
+```bash
+ros2 launch gr4_camera_config physical_staged_trolley_mission.launch.py enable_motion:=false
+```
+
+**Dev PC Terminal 1: Watch Status**
+This can be on your dev PC:
+
+```bash
+export ROS_DOMAIN_ID=138
+source /opt/ros/humble/setup.bash
+source ~/gr4_ws/install/setup.bash
+
+ros2 topic echo /dropzone_mission_status
+```
+
+**Dev PC Terminal 2: Send Stage Commands**
+Send these one by one. Wait and inspect after each stage.
+
+1. Drive to approach pose:
+
+```bash
+export ROS_DOMAIN_ID=138
+source /opt/ros/humble/setup.bash
+source ~/gr4_ws/install/setup.bash
+
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'trolley_ready'}"
+```
+
+2. Start left-side ArUco alignment:
+
+```bash
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'side_align'}"
+```
+
+3. Drive straight under trolley:
+
+```bash
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'drive_under'}"
+```
+
+4. Fine alignment under trolley:
+
+```bash
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'fine_align'}"
+```
+
+Useful debug commands:
+
+```bash
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'status'}"
+ros2 topic pub --once /trolley_command std_msgs/msg/String "{data: 'stop'}"
+ros2 topic pub --once /cmd_vel geometry_msgs/msg/Twist "{}"
+```
+
+Important: do **not** separately launch `physical_aruco_front_rear.launch.py` while using `physical_staged_trolley_mission.launch.py`, because the staged launch already starts the camera/ArUco nodes it needs.
+
+
+
+Identify Cameras: 
+ros2 run gr4_camera_config identify_cameras.py

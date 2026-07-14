@@ -1,0 +1,5 @@
+max_v,max_wz,max_successful_lateral_offset_m,max_successful_yaw_offset_deg,average_lateral_alignment_time_s,average_yaw_alignment_time_s,lateral_success_count,yaw_success_count
+0.02,0.08,0.2,8.0,92.91079647200448,60.76200609207153,7,5
+0.04,0.12,0.18,14.0,59.95834943226406,99.92795546849568,7,3
+0.06,0.15,0.2,12.0,66.94136813708714,86.04594987630844,7,4
+0.08,0.2,0.2,20.0,54.344193617502846,122.92195284366608,9,6

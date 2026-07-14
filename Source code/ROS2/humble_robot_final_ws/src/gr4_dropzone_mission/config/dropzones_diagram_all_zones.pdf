@@ -1,0 +1,98 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 432] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 2746 >>
+stream
+1 1 1 rg 0 0 792 432 re f
+BT /F1 15 Tf 247 402 Td (Configured Drop-Zones in the Map Frame) Tj ET
+0.86 0.86 0.86 RG 0.5 w
+141.474 58 m 141.474 270.763 l S
+0.25 0.25 0.25 rg BT /F1 8 Tf 136.474 38 Td (-4) Tj ET
+228.316 58 m 228.316 270.763 l S
+0.25 0.25 0.25 rg BT /F1 8 Tf 223.316 38 Td (-3) Tj ET
+315.158 58 m 315.158 270.763 l S
+0.25 0.25 0.25 rg BT /F1 8 Tf 310.158 38 Td (-2) Tj ET
+402 58 m 402 270.763 l S
+0.25 0.25 0.25 rg BT /F1 8 Tf 397 38 Td (-1) Tj ET
+488.842 58 m 488.842 270.763 l S
+0.25 0.25 0.25 rg BT /F1 8 Tf 483.842 38 Td (0) Tj ET
+575.684 58 m 575.684 270.763 l S
+0.25 0.25 0.25 rg BT /F1 8 Tf 570.684 38 Td (1) Tj ET
+662.526 58 m 662.526 270.763 l S
+0.25 0.25 0.25 rg BT /F1 8 Tf 657.526 38 Td (2) Tj ET
+0.86 0.86 0.86 RG 0.5 w
+72 66.684 m 732 66.684 l S
+0.25 0.25 0.25 rg BT /F1 8 Tf 42 63.684 Td (-1) Tj ET
+0.86 0.86 0.86 RG 0.5 w
+72 110.105 m 732 110.105 l S
+0.25 0.25 0.25 rg BT /F1 8 Tf 42 107.105 Td (-0.5) Tj ET
+0.86 0.86 0.86 RG 0.5 w
+72 153.526 m 732 153.526 l S
+0.25 0.25 0.25 rg BT /F1 8 Tf 42 150.526 Td (0) Tj ET
+0.86 0.86 0.86 RG 0.5 w
+72 196.947 m 732 196.947 l S
+0.25 0.25 0.25 rg BT /F1 8 Tf 42 193.947 Td (0.5) Tj ET
+0.86 0.86 0.86 RG 0.5 w
+72 240.368 m 732 240.368 l S
+0.25 0.25 0.25 rg BT /F1 8 Tf 42 237.368 Td (1) Tj ET
+0.25 0.25 0.25 RG 1 w
+72 58 660 212.763 re S
+0.878 0.878 0.878 rg 0.65 0.65 0.65 RG 1.8 w
+627.596 98.636 69.474 69.474 re B
+0.65 0.65 0.65 RG 1.2 w
+662.333 133.373 m 684.564 133.373 l S
+0.65 0.65 0.65 rg 662.333 133.373 2.5 0 360 arc f
+0.1 0.1 0.1 rg BT /F1 9 Tf 624.333 179.11 Td (Charging \(1.998, -0.232\)) Tj ET
+0.65 0.93 0.738 rg 0 0.8 0.25 RG 1.8 w
+362.921 162.211 78.158 78.158 re B
+0 0.8 0.25 RG 1.2 w
+402 201.289 m 427.011 201.289 l S
+0 0.8 0.25 rg 402 201.289 2.5 0 360 arc f
+0.1 0.1 0.1 rg BT /F1 9 Tf 364 251.368 Td (Trolley pickup \(-1, 0.55\)) Tj ET
+0.65 0.773 1 rg 0 0.35 1 RG 1.8 w
+184.895 157.868 86.842 86.842 re B
+0 0.35 1 RG 1.2 w
+228.316 201.289 m 256.105 201.289 l S
+0 0.35 1 rg 228.316 201.289 2.5 0 360 arc f
+0.1 0.1 0.1 rg BT /F1 9 Tf 190.316 255.711 Td (Laundry drop-off \(-3, 0.55\)) Tj ET
+1 0.738 0.65 rg 1 0.25 0 RG 1.8 w
+98.053 157.868 86.842 86.842 re B
+1 0.25 0 RG 1.2 w
+141.474 201.289 m 169.263 201.289 l S
+1 0.25 0 rg 141.474 201.289 2.5 0 360 arc f
+0.1 0.1 0.1 rg BT /F1 9 Tf 103.474 255.711 Td (Trash drop-off \(-4, 0.55\)) Tj ET
+1 0.965 0.65 rg 1 0.9 0 RG 1.8 w
+386.803 112.276 30.395 21.711 re B
+1 0.9 0 RG 1.2 w
+402 123.132 m 408.947 123.132 l S
+1 0.9 0 rg 402 123.132 2.5 0 360 arc f
+0.1 0.1 0.1 rg BT /F1 9 Tf 364 144.987 Td (Staging pose \(-1, -0.35\)) Tj ET
+0.1 0.1 0.1 rg BT /F1 10 Tf 360 18 Td (map x [m]) Tj ET
+BT /F1 10 Tf 16 205 Td (map y [m]) Tj ET
+0.3 0.3 0.3 rg BT /F1 8 Tf 570 24 Td (Colors and coordinates from dropzones.yaml) Tj ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000311 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+3109
+%%EOF

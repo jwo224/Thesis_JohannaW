@@ -1,0 +1,126 @@
+cd ~/Nursing-Home-Robot/src
+
+python3 - <<'PY'
+from collections import Counter
+from datetime import datetime
+from pathlib import Path
+import cv2
+from ultralytics import YOLO
+
+source = Path("object_detection/test_images/trolley_rotated")
+output = Path("object_detection/runs") / (
+    "trolley_classified_" + datetime.now().strftime("%Y%m%d_%H%M%S")
+)
+model = YOLO("object_detection/scripts/yolov8s_no_augmentation.pt")
+counts = Counter()
+
+for path in sorted(source.glob("*.jpg")):
+    image = cv2.imread(str(path))
+    if image is None:
+        continue
+
+    result = model.predict(image, verbose=False)[0]
+
+    if len(result.boxes) == 0:
+        category = "no_detection"
+    else:
+        best = max(result.boxes, key=lambda box: float(box.conf))
+        category = model.names[int(best.cls)]
+
+    destination = output / category
+    destination.mkdir(parents=True, exist_ok=True)
+    cv2.imwrite(str(destination / path.name), result.plot())
+    counts[category] += 1
+
+print(f"Plots saved to: {output}")
+for category in [
+    "empty_trolley",
+    "laundry_trolley",
+    "trash_trolley",
+    "no_detection",
+]:
+    print(f"{category}: {counts[category]}")
+PY
+
+
+
+
+
+cd ~/Nursing-Home-Robot/src
+python3 - <<'PY'
+from collections import Counter
+from datetime import datetime
+from pathlib import Path
+import cv2
+from ultralytics import YOLO
+source = Path("object_detection/test_images/trolley_rotated")
+output = Path("object_detection/runs") / (
+    "trolley_classified_" + datetime.now().strftime("%Y%m%d_%H%M%S")
+)
+model = YOLO("object_detection/scripts/noaug.pt")
+counts = Counter()
+for path in sorted(source.glob("*.jpg")):
+    image = cv2.imread(str(path))
+    if image is None:
+        continue
+PY  print(f"{category}: {counts[category]}"), result.plot())onf))
+Plots saved to: object_detection/runs/trolley_classified_20260618_162
+312                                                                  empty_trolley: 33
+laundry_trolley: 40
+group4@group4-ThinkPad-T14s-Gen-2i:~/Nursing-Home-Robot/src$ cd ~/Nursing-Home-Robot/src
+
+python3 - <<'PY'
+from collections import Counter
+from datetime import datetime
+from pathlib import Path
+import cv2
+from ultralytics import YOLO
+
+source = Path("object_detection/test_images/trolley_rotated")
+output = Path("object_detection/runs") / (
+    "trolley_classified_" + datetime.now().strftime("%Y%m%d_%H%M%S")
+)
+model = YOLO("object_detection/scripts/brightnessaug.pt")
+counts = Counter()
+
+for path in sorted(source.glob("*.jpg")):
+    image = cv2.imread(str(path))
+    if image is None:
+        continue
+
+PY  print(f"{category}: {counts[category]}"), result.plot())onf))
+Plots saved to: object_detection/runs/trolley_classified_20260618_162613
+empty_trolley: 2
+laundry_trolley: 78
+trash_trolley: 162
+no_detection: 852
+
+cd ~/Nursing-Home-Robot/src
+python3 - <<'PY'
+from collections import Counter
+from datetime import datetime
+from pathlib import Path
+import cv2
+from ultralytics import YOLO
+source = Path("object_detection/test_images/trolley_rotated")
+output = Path("object_detection/runs") / (
+    "trolley_classified_" + datetime.now().strftime("%Y%m%d_%H%M%S")
+)
+model = YOLO("object_detection/scripts/trolleys.pt")
+counts = Counter()
+for path in sorted(source.glob("*.jpg")):
+    image = cv2.imread(str(path))
+    if image is None:
+        continue
+PY  print(f"{category}: {counts[category]}"), result.plot())onf))
+Plots saved to: object_detection/runs/trolley_classified_20260618_163
+047                                                                  empty_trolley: 4
+laundry_trolley: 293
+trash_trolley: 67
+no_detection: 730
+
+
+
+trash_trolley: 50
+no_detection: 971
+

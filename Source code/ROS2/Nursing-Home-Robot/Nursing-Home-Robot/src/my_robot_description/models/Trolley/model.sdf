@@ -1,0 +1,1421 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="Trolley">
+    <static>false</static>
+
+    <link name="link">
+
+      <!-- Dimensioned dummy trolley.
+           Overall: 1005 mm x 610 mm x 1315 mm.
+           Underside clearance: 280 mm.
+           Caster centers: 800 mm front/rear, 506 mm left/right.
+           Caster wheel diameter: 195.31 mm.
+           Dynamic dummy for physical wheel/contact simulation. -->
+      <visual name="platform">
+        <pose>0 0 0.300 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.005 0.610 0.040</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.65 0.65 0.65 1</ambient>
+          <diffuse>0.65 0.65 0.65 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+        </material>
+      </visual>
+      
+      <visual name="platform_front">
+        <pose>0.4 0 0.262 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.205 0.402 0.002</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+        </material>
+      </visual>
+      
+      <visual name="platform_rear">
+        <pose>-0.4 0 0.262 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.205 0.402 0.002</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+        </material>
+      </visual>
+
+      <collision name="platform_collision">
+        <pose>0 0 0.300 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.005 0.610 0.040</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1.0</mu>
+              <mu2>1.0</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+
+      <collision name="platform_front_collision">
+        <pose>0.605 0 0.262 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.205 0.402 0.040</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1.0</mu>
+              <mu2>1.0</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+
+      <collision name="platform_rear_collision">
+        <pose>-0.605 0 0.262 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.205 0.402 0.040</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1.0</mu>
+              <mu2>1.0</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+
+      <visual name="top_rail_front">
+        <pose>0.4775 0 1.300 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.025 0.610 0.030</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.45 0.45 0.45 1</ambient>
+          <diffuse>0.45 0.45 0.45 1</diffuse>
+        </material>
+      </visual>
+
+      <visual name="top_rail_rear">
+        <pose>-0.4775 0 1.300 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.025 0.610 0.030</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.45 0.45 0.45 1</ambient>
+          <diffuse>0.45 0.45 0.45 1</diffuse>
+        </material>
+      </visual>
+
+      <visual name="top_rail_left">
+        <pose>0 0.2925 1.300 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.005 0.025 0.030</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.45 0.45 0.45 1</ambient>
+          <diffuse>0.45 0.45 0.45 1</diffuse>
+        </material>
+      </visual>
+
+      <visual name="top_rail_right">
+        <pose>0 -0.2925 1.300 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.005 0.025 0.030</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.45 0.45 0.45 1</ambient>
+          <diffuse>0.45 0.45 0.45 1</diffuse>
+        </material>
+      </visual>
+
+      <visual name="post_front_left">
+        <pose>0.4775 0.2925 0.8075 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.030 0.030 1.015</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.50 0.50 0.50 1</ambient>
+          <diffuse>0.50 0.50 0.50 1</diffuse>
+        </material>
+      </visual>
+
+      <visual name="post_front_right">
+        <pose>0.4775 -0.2925 0.8075 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.030 0.030 1.015</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.50 0.50 0.50 1</ambient>
+          <diffuse>0.50 0.50 0.50 1</diffuse>
+        </material>
+      </visual>
+
+      <visual name="post_rear_left">
+        <pose>-0.4775 0.2925 0.8075 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.030 0.030 1.015</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.50 0.50 0.50 1</ambient>
+          <diffuse>0.50 0.50 0.50 1</diffuse>
+        </material>
+      </visual>
+
+      <visual name="post_rear_right">
+        <pose>-0.4775 -0.2925 0.8075 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.030 0.030 1.015</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.50 0.50 0.50 1</ambient>
+          <diffuse>0.50 0.50 0.50 1</diffuse>
+        </material>
+      </visual>
+
+      <visual name="pin_socket_front">
+        <pose>0.090175 0 0.285 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.018</radius>
+            <length>0.020</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.1 0.1 0.1 1</ambient>
+          <diffuse>0.1 0.1 0.1 1</diffuse>
+        </material>
+      </visual>
+
+      <collision name="pin_socket_front_collision">
+        <pose>0.090175 0 0.285 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.018</radius>
+            <length>0.020</length>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <visual name="pin_socket_rear">
+        <pose>-0.090175 0 0.285 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.018</radius>
+            <length>0.020</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.1 0.1 0.1 1</ambient>
+          <diffuse>0.1 0.1 0.1 1</diffuse>
+        </material>
+      </visual>
+
+      <collision name="pin_socket_rear_collision">
+        <pose>-0.090175 0 0.285 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.018</radius>
+            <length>0.020</length>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <!--
+        ArUco markers visible from the floor / tilted robot cameras.
+        Main gray platform intentionally has no markers.
+        IDs 0-7 are on the front white platform; IDs 8-15 are on the rear white platform.
+        Marker size: 0.080 m, white backing: 0.090 m.
+        IDs 16-21 are on the +Y long side; IDs 22-27 are on the -Y long side.
+        Side marker size: 0.038 m, white backing: 0.043 m, mounted in the XZ plane.
+      -->
+      <visual name="aruco_backing_0">
+        <pose>0.3525 0.1425 0.2605 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.090 0.090 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_0">
+        <pose>0.3525 0.1425 0.2595 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.080 0.080 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco0</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_1">
+        <pose>0.4475 0.1425 0.2605 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.090 0.090 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_1">
+        <pose>0.4475 0.1425 0.2595 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.080 0.080 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco1</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_2">
+        <pose>0.3525 0.0475 0.2605 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.090 0.090 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_2">
+        <pose>0.3525 0.0475 0.2595 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.080 0.080 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco2</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_3">
+        <pose>0.4475 0.0475 0.2605 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.090 0.090 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_3">
+        <pose>0.4475 0.0475 0.2595 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.080 0.080 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco3</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_4">
+        <pose>0.3525 -0.0475 0.2605 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.090 0.090 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_4">
+        <pose>0.3525 -0.0475 0.2595 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.080 0.080 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco4</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_5">
+        <pose>0.4475 -0.0475 0.2605 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.090 0.090 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_5">
+        <pose>0.4475 -0.0475 0.2595 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.080 0.080 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco5</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_6">
+        <pose>0.3525 -0.1425 0.2605 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.090 0.090 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_6">
+        <pose>0.3525 -0.1425 0.2595 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.080 0.080 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco6</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_7">
+        <pose>0.4475 -0.1425 0.2605 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.090 0.090 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_7">
+        <pose>0.4475 -0.1425 0.2595 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.080 0.080 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco7</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_8">
+        <pose>-0.4475 0.1425 0.2605 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.090 0.090 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_8">
+        <pose>-0.4475 0.1425 0.2595 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.080 0.080 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco8</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_9">
+        <pose>-0.3525 0.1425 0.2605 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.090 0.090 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_9">
+        <pose>-0.3525 0.1425 0.2595 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.080 0.080 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco9</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_10">
+        <pose>-0.4475 0.0475 0.2605 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.090 0.090 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_10">
+        <pose>-0.4475 0.0475 0.2595 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.080 0.080 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco10</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_11">
+        <pose>-0.3525 0.0475 0.2605 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.090 0.090 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_11">
+        <pose>-0.3525 0.0475 0.2595 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.080 0.080 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco11</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_12">
+        <pose>-0.4475 -0.0475 0.2605 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.090 0.090 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_12">
+        <pose>-0.4475 -0.0475 0.2595 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.080 0.080 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco12</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_13">
+        <pose>-0.3525 -0.0475 0.2605 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.090 0.090 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_13">
+        <pose>-0.3525 -0.0475 0.2595 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.080 0.080 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco13</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_14">
+        <pose>-0.4475 -0.1425 0.2605 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.090 0.090 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_14">
+        <pose>-0.4475 -0.1425 0.2595 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.080 0.080 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco14</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_15">
+        <pose>-0.3525 -0.1425 0.2605 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.090 0.090 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_15">
+        <pose>-0.3525 -0.1425 0.2595 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.080 0.080 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco15</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_16">
+        <pose>-0.3750 0.3055 0.3000 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.043 0.001 0.043</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_16">
+        <pose>-0.3750 0.3065 0.3000 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.038 0.001 0.038</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco16</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_17">
+        <pose>-0.2250 0.3055 0.3000 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.043 0.001 0.043</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_17">
+        <pose>-0.2250 0.3065 0.3000 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.038 0.001 0.038</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco17</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_18">
+        <pose>-0.0750 0.3055 0.3000 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.043 0.001 0.043</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_18">
+        <pose>-0.0750 0.3065 0.3000 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.038 0.001 0.038</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco18</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_19">
+        <pose>0.0750 0.3055 0.3000 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.043 0.001 0.043</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_19">
+        <pose>0.0750 0.3065 0.3000 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.038 0.001 0.038</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco19</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_20">
+        <pose>0.2250 0.3055 0.3000 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.043 0.001 0.043</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_20">
+        <pose>0.2250 0.3065 0.3000 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.038 0.001 0.038</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco20</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_21">
+        <pose>0.3750 0.3055 0.3000 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.043 0.001 0.043</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_21">
+        <pose>0.3750 0.3065 0.3000 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.038 0.001 0.038</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco21</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_22">
+        <pose>-0.3750 -0.3055 0.3000 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.043 0.001 0.043</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_22">
+        <pose>-0.3750 -0.3065 0.3000 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.038 0.001 0.038</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco22</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_23">
+        <pose>-0.2250 -0.3055 0.3000 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.043 0.001 0.043</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_23">
+        <pose>-0.2250 -0.3065 0.3000 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.038 0.001 0.038</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco23</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_24">
+        <pose>-0.0750 -0.3055 0.3000 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.043 0.001 0.043</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_24">
+        <pose>-0.0750 -0.3065 0.3000 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.038 0.001 0.038</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco24</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_25">
+        <pose>0.0750 -0.3055 0.3000 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.043 0.001 0.043</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_25">
+        <pose>0.0750 -0.3065 0.3000 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.038 0.001 0.038</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco25</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_26">
+        <pose>0.2250 -0.3055 0.3000 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.043 0.001 0.043</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_26">
+        <pose>0.2250 -0.3065 0.3000 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.038 0.001 0.038</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco26</name>
+          </script>
+        </material>
+      </visual>
+
+      <visual name="aruco_backing_27">
+        <pose>0.3750 -0.3055 0.3000 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.043 0.001 0.043</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <visual name="aruco_27">
+        <pose>0.3750 -0.3065 0.3000 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.038 0.001 0.038</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://Trolley/materials/scripts</uri>
+            <uri>model://Trolley/materials/textures</uri>
+            <name>Trolley/Aruco27</name>
+          </script>
+        </material>
+      </visual>
+
+      <!-- Inertial (required if not static) -->
+      <inertial>
+        <mass>20.0</mass>
+        <inertia>
+          <ixx>1.0</ixx>
+          <iyy>1.0</iyy>
+          <izz>1.0</izz>
+        </inertia>
+      </inertial>
+
+    </link>
+
+    <link name="caster_fl_fork">
+      <pose>0.400 0.253 0.190 0 0 0</pose>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.045 0.045 0.180</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.2 0.2 0.2 1</ambient>
+          <diffuse>0.2 0.2 0.2 1</diffuse>
+        </material>
+      </visual>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.045 0.045 0.180</size>
+          </box>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass>0.3</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <iyy>0.001</iyy>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+    </link>
+
+    <link name="caster_fl_wheel">
+      <pose>0.400 0.253 0.097655 0 0 0</pose>
+      <visual name="visual">
+        <pose>0 0 0 1.5708 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.097655</radius>
+            <length>0.035</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.02 0.02 0.02 1</ambient>
+          <diffuse>0.02 0.02 0.02 1</diffuse>
+        </material>
+      </visual>
+      <collision name="collision">
+        <pose>0 0 0 1.5708 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.097655</radius>
+            <length>0.035</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.8</mu>
+              <mu2>0.05</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <inertial>
+        <mass>0.8</mass>
+        <inertia>
+          <ixx>0.004</ixx>
+          <iyy>0.004</iyy>
+          <izz>0.004</izz>
+        </inertia>
+      </inertial>
+    </link>
+
+    <joint name="caster_fl_swivel_joint" type="revolute">
+      <parent>link</parent>
+      <child>caster_fl_fork</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1000000</lower>
+          <upper>1000000</upper>
+        </limit>
+        <dynamics>
+          <damping>0.001</damping>
+          <friction>0.0</friction>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <joint name="caster_fl_wheel_joint" type="revolute">
+      <parent>caster_fl_fork</parent>
+      <child>caster_fl_wheel</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1000000</lower>
+          <upper>1000000</upper>
+        </limit>
+        <dynamics>
+          <damping>0.001</damping>
+          <friction>0.0</friction>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <link name="caster_fr_fork">
+      <pose>0.400 -0.253 0.190 0 0 0</pose>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.045 0.045 0.180</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.2 0.2 0.2 1</ambient>
+          <diffuse>0.2 0.2 0.2 1</diffuse>
+        </material>
+      </visual>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.045 0.045 0.180</size>
+          </box>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass>0.3</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <iyy>0.001</iyy>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+    </link>
+
+    <link name="caster_fr_wheel">
+      <pose>0.400 -0.253 0.097655 0 0 0</pose>
+      <visual name="visual">
+        <pose>0 0 0 1.5708 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.097655</radius>
+            <length>0.035</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.02 0.02 0.02 1</ambient>
+          <diffuse>0.02 0.02 0.02 1</diffuse>
+        </material>
+      </visual>
+      <collision name="collision">
+        <pose>0 0 0 1.5708 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.097655</radius>
+            <length>0.035</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.8</mu>
+              <mu2>0.05</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <inertial>
+        <mass>0.8</mass>
+        <inertia>
+          <ixx>0.004</ixx>
+          <iyy>0.004</iyy>
+          <izz>0.004</izz>
+        </inertia>
+      </inertial>
+    </link>
+
+    <joint name="caster_fr_swivel_joint" type="revolute">
+      <parent>link</parent>
+      <child>caster_fr_fork</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit><lower>-1000000</lower><upper>1000000</upper></limit>
+        <dynamics><damping>0.001</damping><friction>0.0</friction></dynamics>
+      </axis>
+    </joint>
+
+    <joint name="caster_fr_wheel_joint" type="revolute">
+      <parent>caster_fr_fork</parent>
+      <child>caster_fr_wheel</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit><lower>-1000000</lower><upper>1000000</upper></limit>
+        <dynamics><damping>0.001</damping><friction>0.0</friction></dynamics>
+      </axis>
+    </joint>
+
+    <link name="caster_rl_fork">
+      <pose>-0.400 0.253 0.190 0 0 0</pose>
+      <visual name="visual">
+        <geometry><box><size>0.045 0.045 0.180</size></box></geometry>
+        <material><ambient>0.2 0.2 0.2 1</ambient><diffuse>0.2 0.2 0.2 1</diffuse></material>
+      </visual>
+      <collision name="collision">
+        <geometry><box><size>0.045 0.045 0.180</size></box></geometry>
+      </collision>
+      <inertial>
+        <mass>0.3</mass>
+        <inertia><ixx>0.001</ixx><iyy>0.001</iyy><izz>0.001</izz></inertia>
+      </inertial>
+    </link>
+
+    <link name="caster_rl_wheel">
+      <pose>-0.400 0.253 0.097655 0 0 0</pose>
+      <visual name="visual">
+        <pose>0 0 0 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.097655</radius><length>0.035</length></cylinder></geometry>
+        <material><ambient>0.02 0.02 0.02 1</ambient><diffuse>0.02 0.02 0.02 1</diffuse></material>
+      </visual>
+      <collision name="collision">
+        <pose>0 0 0 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.097655</radius><length>0.035</length></cylinder></geometry>
+        <surface><friction><ode><mu>0.8</mu><mu2>0.05</mu2></ode></friction></surface>
+      </collision>
+      <inertial>
+        <mass>0.8</mass>
+        <inertia><ixx>0.004</ixx><iyy>0.004</iyy><izz>0.004</izz></inertia>
+      </inertial>
+    </link>
+
+    <joint name="caster_rl_swivel_joint" type="revolute">
+      <parent>link</parent>
+      <child>caster_rl_fork</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit><lower>-1000000</lower><upper>1000000</upper></limit>
+        <dynamics><damping>0.001</damping><friction>0.0</friction></dynamics>
+      </axis>
+    </joint>
+
+    <joint name="caster_rl_wheel_joint" type="revolute">
+      <parent>caster_rl_fork</parent>
+      <child>caster_rl_wheel</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit><lower>-1000000</lower><upper>1000000</upper></limit>
+        <dynamics><damping>0.001</damping><friction>0.0</friction></dynamics>
+      </axis>
+    </joint>
+
+    <link name="caster_rr_fork">
+      <pose>-0.400 -0.253 0.190 0 0 0</pose>
+      <visual name="visual">
+        <geometry><box><size>0.045 0.045 0.180</size></box></geometry>
+        <material><ambient>0.2 0.2 0.2 1</ambient><diffuse>0.2 0.2 0.2 1</diffuse></material>
+      </visual>
+      <collision name="collision">
+        <geometry><box><size>0.045 0.045 0.180</size></box></geometry>
+      </collision>
+      <inertial>
+        <mass>0.3</mass>
+        <inertia><ixx>0.001</ixx><iyy>0.001</iyy><izz>0.001</izz></inertia>
+      </inertial>
+    </link>
+
+    <link name="caster_rr_wheel">
+      <pose>-0.400 -0.253 0.097655 0 0 0</pose>
+      <visual name="visual">
+        <pose>0 0 0 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.097655</radius><length>0.035</length></cylinder></geometry>
+        <material><ambient>0.02 0.02 0.02 1</ambient><diffuse>0.02 0.02 0.02 1</diffuse></material>
+      </visual>
+      <collision name="collision">
+        <pose>0 0 0 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.097655</radius><length>0.035</length></cylinder></geometry>
+        <surface><friction><ode><mu>0.8</mu><mu2>0.05</mu2></ode></friction></surface>
+      </collision>
+      <inertial>
+        <mass>0.8</mass>
+        <inertia><ixx>0.004</ixx><iyy>0.004</iyy><izz>0.004</izz></inertia>
+      </inertial>
+    </link>
+
+    <joint name="caster_rr_swivel_joint" type="revolute">
+      <parent>link</parent>
+      <child>caster_rr_fork</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit><lower>-1000000</lower><upper>1000000</upper></limit>
+        <dynamics><damping>0.001</damping><friction>0.0</friction></dynamics>
+      </axis>
+    </joint>
+
+    <joint name="caster_rr_wheel_joint" type="revolute">
+      <parent>caster_rr_fork</parent>
+      <child>caster_rr_wheel</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit><lower>-1000000</lower><upper>1000000</upper></limit>
+        <dynamics><damping>0.001</damping><friction>0.0</friction></dynamics>
+      </axis>
+    </joint>
+  </model>
+</sdf>

@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="OrangeDropZone">
+    <static>true</static>
+
+    <link name="orange_drop_zone_link">
+      <visual name="orange_floor_marking">
+        <pose>0 0 0.001 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.060 0.615 0.002</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1.0 0.35 0.0 0.75</ambient>
+          <diffuse>1.0 0.45 0.0 0.75</diffuse>
+          <specular>0.0 0.0 0.0 1.0</specular>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

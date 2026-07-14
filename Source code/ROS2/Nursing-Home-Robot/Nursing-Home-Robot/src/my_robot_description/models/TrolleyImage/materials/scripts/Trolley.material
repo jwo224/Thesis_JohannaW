@@ -1,0 +1,18 @@
+material Trolley/ImageTexture
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 0
+
+      texture_unit
+      {
+        texture empty_trolley_1024.jpg
+        filtering bilinear
+      }
+    }
+  }
+}

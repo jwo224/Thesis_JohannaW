@@ -1,0 +1,57 @@
+digraph Simulation_Software_Architecture {
+	bgcolor="#f2f2f2" fontname=Arial nodesep=0.8 rankdir=LR ranksep=1.0 splines=ortho
+	node [color="#111111" fillcolor="#e11b0c" fontcolor="#ffffff" fontname=Arial fontsize=14 margin=0.15 penwidth=1.5 shape=rect style="rounded,filled"]
+	edge [arrowsize=0.8 color="#111111" fontname=Arial fontsize=11]
+	title [label="Simulation Software Architecture Overview
+ROS 2 launch structure for mecanum ASR simulation" fontcolor="#111111" fontsize=24 shape=plaintext]
+	xacro [label="mecanum_bot.urdf.xacro"]
+	rsp [label=robot_state_publisher]
+	spawn [label="spawn_entity.py"]
+	subgraph cluster_gazebo {
+		color="#111111" fillcolor="#e11b0c" fontcolor="#ffffff" fontname=Arial fontsize=18 label="Gazebo simulation
+nav_test_room.world" penwidth=1.8 style="rounded,filled"
+		mecanum [label=mecanum_bot fontsize=12]
+		charging [label=ChargingZone fontsize=12]
+		drop [label=DropZone fontsize=12]
+		orange_drop [label=OrangeDropZone fontsize=12]
+		trolley [label=Trolley fontsize=12]
+	}
+	front_aruco [label=front_aruco_node]
+	rear_aruco [label=rear_aruco_node]
+	left_aruco [label=left_aruco_node]
+	right_aruco [label=right_aruco_node]
+	slam [label="SLAM Toolbox"]
+	nav2 [label=Nav2]
+	mission [label="nav2_trolley_
+mission_controller.py"]
+	holonomic [label="holonomic_goal_
+controller.py"]
+	optional [label="Optional, not launched:
+
+- YOLO object detection
+- trolley_ready_docking_controller" color="#e11b0c" fillcolor="#f2f2f2" fontcolor="#111111" fontsize=12 shape=rect style="rounded,dashed"]
+	title -> xacro [style=invis]
+	xacro -> rsp
+	rsp -> spawn [label=robot_description]
+	rsp -> nav2 [label="/tf
+/tf_static"]
+	spawn -> mecanum [label="spawn robot + models"]
+	mecanum -> front_aruco [label="/camera_front/image_raw"]
+	mecanum -> rear_aruco [label="/camera_rear/image_raw"]
+	mecanum -> left_aruco [label="/camera_left/image_raw"]
+	mecanum -> right_aruco [label="/camera_right/image_raw"]
+	front_aruco -> mission [label="/front/aruco_markers"]
+	rear_aruco -> mission [label="/rear/aruco_markers"]
+	left_aruco -> mission [label="/left/aruco_markers"]
+	right_aruco -> mission [label="/right/aruco_markers"]
+	mecanum -> slam [label="/scan"]
+	mecanum -> nav2 [label="/odom"]
+	slam -> nav2 [label="/map"]
+	nav2 -> mission [label="navigation state
+pose, plan, costmap"]
+	mission -> holonomic [label="/holonomic_goal"]
+	mission -> holonomic [label="/holonomic_cancel"]
+	mission -> holonomic [label="/holonomic_lidar_ignore_radius"]
+	holonomic -> mecanum [label="/cmd_vel"]
+	optional -> mission [label="optional perception/control" style=dashed]
+}

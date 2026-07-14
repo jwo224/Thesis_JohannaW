@@ -1,0 +1,531 @@
+material Trolley/Aruco0
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_0.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco1
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_1.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco2
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_2.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco3
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_3.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco4
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_4.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco5
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_5.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco6
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_6.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco7
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_7.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco8
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_8.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco9
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_9.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco10
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_10.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco11
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_11.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco12
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_12.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco13
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_13.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco14
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_14.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco15
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_15.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco16
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_16.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco17
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_17.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco18
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_18.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco19
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_19.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco20
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_20.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco21
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_21.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco22
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_22.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco23
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_23.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco24
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_24.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco25
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_25.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco26
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_26.png
+        filtering none
+      }
+    }
+  }
+}
+
+material Trolley/Aruco27
+{
+  technique
+  {
+    pass
+    {
+      ambient 1 1 1 1
+      diffuse 1 1 1 1
+      specular 0 0 0 1
+
+      texture_unit
+      {
+        texture aruco_4x4_50_id_27.png
+        filtering none
+      }
+    }
+  }
+}

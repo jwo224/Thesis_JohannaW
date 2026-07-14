@@ -1,0 +1,14 @@
+{
+  "model": "yolov8s_brightness_augmentation",
+  "model_path": "C:\\Users\\johan\\Desktop\\Master Thesis\\Source code\\YOLO Datasets\\Models\\yolov8s_brightness_augmentation\\weights\\best.pt",
+  "n_images": 79,
+  "accuracy": 0.9113924050632911,
+  "per_class_accuracy": {
+    "Empty": 0.8571428571428571,
+    "Laundry": 0.9047619047619048,
+    "Trash": 1.0,
+    "None": 0.8888888888888888
+  },
+  "n_correct": 72,
+  "n_wrong": 7
+}

@@ -1,0 +1,84 @@
+dropzone_mission:
+  ros__parameters:
+    command_topic: /trolley_command
+    mission_status_topic: /dropzone_mission_status
+    marker_topic: /delivery_zones
+    goal_pose_topic: /goal_pose_raw
+    marker_publish_period: 1.0
+    frame_id: map
+
+    # trolley_ready flow:
+    # 1. Publish a Nav2 goal at trolley_dropzone plus this map-frame offset.
+    # 2. Stop and wait for your approval command on /trolley_command.
+    # 3. side_align -> publish side_align_command to /physical_docking_command.
+    # 4. drive_under -> publish final_drive_command.
+    # 5. fine_align -> publish fine_align_command.
+    # The staged yaw is computed so trolley_stage_camera looks at trolley_dropzone.
+    trolley_drive_wait_sec: 12.0
+    trolley_stage_distance_m: 1.0
+    trolley_stage_offset_x: 0.0
+    trolley_stage_offset_y: -0.9
+    trolley_stage_camera: left
+    trolley_stage_width: 0.35
+    trolley_stage_height: 0.25
+    trolley_stage_color: [1.0, 0.9, 0.0, 0.45]
+    alignment_command_topic: /physical_docking_command
+    alignment_status_topic: /physical_docking_status
+    side_align_command: side_align_left
+    final_drive_command: drive_straight_under
+    fine_align_command: fine_align_under
+
+    # Optional trolley type check after side_align:
+    # check_trolley_type uses the last non-empty live YOLO detection remembered here.
+    # Keep image-file fallback disabled on the real robot to avoid stale test images.
+    trolley_detection_topic: /Yolov8_Inference
+    trolley_detection_command_topic: /yolov8_detector_command
+    trolley_detection_topic_timeout_sec: 3.0
+    trolley_detection_memory_sec: 90.0
+    trolley_detection_auto_pause_on_first_detection: true
+    allow_image_file_detection_fallback: false
+    detection_model_path: ~/gr4_ws/src/object_detection/scripts/trolleys.pt
+    test_image_path: ~/gr4_ws/src/object_detection/test_images/current_trolley.jpg
+    test_image_directory: ~/gr4_ws/src/object_detection/test_images
+    detection_confidence: 0.25
+
+    # Direct cmd_vel release after reaching the remembered laundry/trash dropzone.
+    dropzone_exit_cmd_vel_topic: /cmd_vel
+    dropzone_exit_extra_cmd_vel_topic: /cmd_vel_joy
+    dropzone_exit_vx: 0.0
+    dropzone_exit_vy: -0.07
+    dropzone_exit_wz: 0.0
+    dropzone_exit_duration_sec: 7.0
+    dropzone_exit_rate_hz: 10.0
+
+    # Tune these coordinates from RViz on the saved real map.
+    # yaw is in radians.
+    zones:
+      charging:
+        x: 0.0
+        y: 0.55
+        yaw: 0.0
+        width: 0.8
+        height: 0.8
+        color: [0.65, 0.65, 0.65, 0.35]
+      trolley_dropzone:
+        x: -1.0
+        y: 0.55
+        yaw: 0.0
+        width: 0.9
+        height: 0.9
+        color: [0.0, 0.8, 0.25, 0.35]
+      laundry_dropoff:
+        x: -3.0
+        y: 0.55
+        yaw: 0.0
+        width: 1.0
+        height: 1.0
+        color: [0.0, 0.35, 1.0, 0.35]
+      trash_dropoff:
+        x: -4.0
+        y: 0.55
+        yaw: 0.0
+        width: 1.0
+        height: 1.0
+        color: [1.0, 0.25, 0.0, 0.35]

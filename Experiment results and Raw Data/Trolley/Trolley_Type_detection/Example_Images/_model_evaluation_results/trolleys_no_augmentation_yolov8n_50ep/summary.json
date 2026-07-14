@@ -1,0 +1,14 @@
+{
+  "model": "trolleys_no_augmentation_yolov8n_50ep",
+  "model_path": "C:\\Users\\johan\\Desktop\\Master Thesis\\Source code\\YOLO Datasets\\Models\\trolleys_no_augmentation_yolov8n_50ep\\weights\\best.pt",
+  "n_images": 79,
+  "accuracy": 0.24050632911392406,
+  "per_class_accuracy": {
+    "Empty": 0.0,
+    "Laundry": 0.047619047619047616,
+    "Trash": 0.0,
+    "None": 1.0
+  },
+  "n_correct": 19,
+  "n_wrong": 60
+}

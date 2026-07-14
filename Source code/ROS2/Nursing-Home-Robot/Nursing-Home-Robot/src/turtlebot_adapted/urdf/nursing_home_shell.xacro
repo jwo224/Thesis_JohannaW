@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!--
+    Visual-only nursing-home robot shell.
+    Keeps TurtleBot driving unchanged.
+  -->
+
+  <material name="shell_green">
+    <color rgba="0.2 1.0 0.2 1.0"/>
+  </material>
+
+  <material name="wheel_blue">
+    <color rgba="0.2 0.2 1.0 1.0"/>
+  </material>
+
+  <!-- Main outer body -->
+  <link name="nursing_home_shell_link">
+    <visual>
+      <origin xyz="0 0 0.20" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.5194 0.4764 0.196"/>
+      </geometry>
+      <material name="shell_green"/>
+    </visual>
+  </link>
+
+  <joint name="nursing_home_shell_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="nursing_home_shell_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Front left visual wheel -->
+  <link name="visual_wheel_fl">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.0635" length="0.051"/>
+      </geometry>
+      <material name="wheel_blue"/>
+    </visual>
+  </link>
+
+  <joint name="visual_wheel_fl_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="visual_wheel_fl"/>
+    <origin xyz="0.1475 0.2019 0.0635" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Front right visual wheel -->
+  <link name="visual_wheel_fr">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.0635" length="0.051"/>
+      </geometry>
+      <material name="wheel_blue"/>
+    </visual>
+  </link>
+
+  <joint name="visual_wheel_fr_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="visual_wheel_fr"/>
+    <origin xyz="0.1475 -0.2019 0.0635" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Rear left visual wheel -->
+  <link name="visual_wheel_rl">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.0635" length="0.051"/>
+      </geometry>
+      <material name="wheel_blue"/>
+    </visual>
+  </link>
+
+  <joint name="visual_wheel_rl_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="visual_wheel_rl"/>
+    <origin xyz="-0.1475 0.2019 0.0635" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Rear right visual wheel -->
+  <link name="visual_wheel_rr">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.0635" length="0.051"/>
+      </geometry>
+      <material name="wheel_blue"/>
+    </visual>
+  </link>
+
+  <joint name="visual_wheel_rr_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="visual_wheel_rr"/>
+    <origin xyz="-0.1475 -0.2019 0.0635" rpy="0 0 0"/>
+  </joint>
+
+</robot>

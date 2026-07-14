@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="default">
+
+    <plugin name="gazebo_ros_init" filename="libgazebo_ros_init.so">
+      <ros>
+        <namespace>/</namespace>
+      </ros>
+    </plugin>
+
+    <plugin name="gazebo_ros_factory" filename="libgazebo_ros_factory.so">
+      <ros>
+        <namespace>/</namespace>
+      </ros>
+    </plugin>
+
+    <plugin name="gazebo_ros_state" filename="libgazebo_ros_state.so">
+      <ros>
+        <namespace>/</namespace>
+      </ros>
+      <update_rate>20.0</update_rate>
+    </plugin>
+
+    <plugin name="trolley_attach_plugin" filename="libtrolley_attach_plugin.so">
+      <ros>
+        <namespace>/</namespace>
+      </ros>
+      <robot_model>mecanum_bot</robot_model>
+      <robot_link>base_link</robot_link>
+      <trolley_model>Trolley</trolley_model>
+      <trolley_link>link</trolley_link>
+    </plugin>
+
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+  </world>
+</sdf>

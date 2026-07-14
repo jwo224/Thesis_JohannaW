@@ -1,0 +1,149 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="aruco_marker_panel">
+    <static>true</static>
+
+    <link name="marker_panel_link">
+      <!-- Keep link origin at marker panel center -->
+      <pose>0 0 0 0 0 0</pose>
+
+      <!--
+        Marker constraints:
+        marker size: 0.038 m = 38 mm
+        top edge height should be 0.283 m
+        therefore model spawn z should be:
+        0.283 - 0.038/2 = 0.264 m
+
+        In this model, marker center is z=0.
+        So spawn the model with -z 0.264.
+      -->
+
+      <!-- Optional thin white backing plate -->
+      <visual name="white_back_plate">
+        <pose>0 0.001 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.260 0.001 0.050</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+      <!-- Marker ID 0 -->
+      <visual name="aruco_marker_0">
+        <pose>-0.105 -0.001 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.038 0.001 0.038</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://aruco_marker_panel/materials/scripts</uri>
+            <uri>model://aruco_marker_panel/materials/textures</uri>
+            <name>Aruco/Marker0</name>
+          </script>
+        </material>
+      </visual>
+
+      <!-- Marker ID 1 -->
+      <visual name="aruco_marker_1">
+        <pose>-0.063 -0.001 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.038 0.001 0.038</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://aruco_marker_panel/materials/scripts</uri>
+            <uri>model://aruco_marker_panel/materials/textures</uri>
+            <name>Aruco/Marker1</name>
+          </script>
+        </material>
+      </visual>
+
+      <!-- Marker ID 2 -->
+      <visual name="aruco_marker_2">
+        <pose>-0.021 -0.001 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.038 0.001 0.038</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://aruco_marker_panel/materials/scripts</uri>
+            <uri>model://aruco_marker_panel/materials/textures</uri>
+            <name>Aruco/Marker2</name>
+          </script>
+        </material>
+      </visual>
+
+      <!-- Marker ID 3 -->
+      <visual name="aruco_marker_3">
+        <pose>0.021 -0.001 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.038 0.001 0.038</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://aruco_marker_panel/materials/scripts</uri>
+            <uri>model://aruco_marker_panel/materials/textures</uri>
+            <name>Aruco/Marker3</name>
+          </script>
+        </material>
+      </visual>
+
+      <!-- Marker ID 4 -->
+      <visual name="aruco_marker_4">
+        <pose>0.063 -0.001 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.038 0.001 0.038</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://aruco_marker_panel/materials/scripts</uri>
+            <uri>model://aruco_marker_panel/materials/textures</uri>
+            <name>Aruco/Marker4</name>
+          </script>
+        </material>
+      </visual>
+
+      <!-- Marker ID 5 -->
+      <visual name="aruco_marker_5">
+        <pose>0.105 -0.001 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.038 0.001 0.038</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://aruco_marker_panel/materials/scripts</uri>
+            <uri>model://aruco_marker_panel/materials/textures</uri>
+            <name>Aruco/Marker5</name>
+          </script>
+        </material>
+      </visual>
+
+      <collision name="marker_panel_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.260 0.003 0.050</size>
+          </box>
+        </geometry>
+      </collision>
+
+    </link>
+  </model>
+</sdf>

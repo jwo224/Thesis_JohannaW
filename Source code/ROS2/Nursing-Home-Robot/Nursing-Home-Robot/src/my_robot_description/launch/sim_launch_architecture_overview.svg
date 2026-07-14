@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="760" viewBox="0 0 1180 760">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#111111"/>
+    </marker>
+    <style>
+      .box { fill: #e11b0c; stroke: #111111; stroke-width: 1; }
+      .optional-box { fill: #f8f8f8; stroke: #6a4aa3; stroke-width: 1; stroke-dasharray: 4 4; }
+      .label { font-family: Arial, Helvetica, sans-serif; font-size: 15px; font-weight: 700; fill: #ffffff; text-anchor: middle; dominant-baseline: middle; }
+      .small-label { font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; fill: #ffffff; text-anchor: middle; dominant-baseline: middle; }
+      .edge-label { font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: 700; fill: #111111; }
+      .blue-label { font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 700; fill: #001eff; }
+      .line { fill: none; stroke: #111111; stroke-width: 1.3; marker-end: url(#arrow); }
+      .line-no-arrow { fill: none; stroke: #111111; stroke-width: 1.3; }
+      .dash-line { fill: none; stroke: #111111; stroke-width: 1.3; stroke-dasharray: 5 4; marker-end: url(#arrow); }
+      .section { font-family: Arial, Helvetica, sans-serif; font-size: 20px; font-weight: 700; fill: #111111; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1180" height="760" fill="#ffffff"/>
+  <text x="590" y="34" class="section">sim.launch.py - Simulation Software Architecture</text>
+
+  <!-- Robot description and Gazebo setup -->
+  <rect x="45" y="85" width="210" height="58" class="box"/>
+  <text x="150" y="114" class="label">mecanum_bot.urdf.xacro</text>
+
+  <rect x="45" y="205" width="210" height="70" class="box"/>
+  <text x="150" y="230" class="label">robot_state_publisher</text>
+  <text x="150" y="252" class="small-label">robot_description + TF</text>
+
+  <rect x="330" y="85" width="230" height="58" class="box"/>
+  <text x="445" y="114" class="label">gazebo.launch.py</text>
+
+  <rect x="330" y="205" width="230" height="70" class="box"/>
+  <text x="445" y="229" class="label">spawn_entity.py</text>
+  <text x="445" y="252" class="small-label">robot + world models</text>
+
+  <rect x="330" y="335" width="230" height="150" class="box"/>
+  <text x="445" y="360" class="label">Gazebo simulation</text>
+  <text x="445" y="383" class="small-label">nav_test_room.world</text>
+  <text x="445" y="410" class="small-label">mecanum_bot</text>
+  <text x="445" y="432" class="small-label">ChargingZone / DropZone</text>
+  <text x="445" y="454" class="small-label">OrangeDropZone / Trolley</text>
+
+  <path d="M150 143 L150 205" class="line"/>
+  <text x="168" y="176" class="edge-label">xacro XML</text>
+  <path d="M255 240 L330 240" class="line"/>
+  <text x="263" y="228" class="edge-label">/robot_description</text>
+  <path d="M445 143 L445 205" class="line"/>
+  <text x="463" y="176" class="edge-label">world file</text>
+  <path d="M445 275 L445 335" class="line"/>
+  <text x="463" y="308" class="edge-label">spawned entities</text>
+
+  <!-- Perception -->
+  <rect x="655" y="85" width="185" height="58" class="box"/>
+  <text x="747.5" y="114" class="label">front_aruco_node</text>
+
+  <rect x="655" y="170" width="185" height="58" class="box"/>
+  <text x="747.5" y="199" class="label">rear_aruco_node</text>
+
+  <rect x="655" y="255" width="185" height="58" class="box"/>
+  <text x="747.5" y="284" class="label">left_aruco_node</text>
+
+  <rect x="655" y="340" width="185" height="58" class="box"/>
+  <text x="747.5" y="369" class="label">right_aruco_node</text>
+
+  <path d="M560 368 L655 114" class="line"/>
+  <text x="574" y="173" class="edge-label">/camera_front/image_raw</text>
+  <path d="M560 383 L655 199" class="line"/>
+  <text x="573" y="235" class="edge-label">/camera_rear/image_raw</text>
+  <path d="M560 410 L655 284" class="line"/>
+  <text x="574" y="316" class="edge-label">/camera_left/image_raw</text>
+  <path d="M560 432 L655 369" class="line"/>
+  <text x="574" y="393" class="edge-label">/camera_right/image_raw</text>
+  <text x="667" y="424" class="edge-label">ArUco launched for mission_step step0-step2</text>
+
+  <!-- SLAM and Nav2 -->
+  <rect x="650" y="520" width="190" height="62" class="box"/>
+  <text x="745" y="541" class="label">SLAM Toolbox</text>
+  <text x="745" y="563" class="small-label">online_async_launch.py</text>
+
+  <rect x="910" y="520" width="190" height="62" class="box"/>
+  <text x="1005" y="541" class="label">Nav2</text>
+  <text x="1005" y="563" class="small-label">navigation_launch.py</text>
+
+  <path d="M560 455 L650 551" class="line"/>
+  <text x="575" y="515" class="edge-label">/left/scan</text>
+  <path d="M840 551 L910 551" class="line"/>
+  <text x="862" y="539" class="edge-label">/map</text>
+  <path d="M560 465 L910 570" class="line"/>
+  <text x="690" y="626" class="edge-label">/odom + /left/scan</text>
+
+  <!-- Mission and local control -->
+  <rect x="910" y="105" width="225" height="78" class="box"/>
+  <text x="1022.5" y="128" class="label">nav2_trolley_</text>
+  <text x="1022.5" y="150" class="label">mission_controller.py</text>
+  <text x="1022.5" y="171" class="small-label">starts after 8 s</text>
+
+  <rect x="910" y="305" width="225" height="78" class="box"/>
+  <text x="1022.5" y="328" class="label">holonomic_goal_</text>
+  <text x="1022.5" y="350" class="label">controller.py</text>
+  <text x="1022.5" y="371" class="small-label">starts after 8 s</text>
+
+  <path d="M840 114 L910 130" class="line"/>
+  <text x="852" y="105" class="edge-label">/front/aruco_markers</text>
+  <path d="M840 199 L910 146" class="line"/>
+  <text x="852" y="185" class="edge-label">/rear/aruco_markers</text>
+  <path d="M840 284 L910 162" class="line"/>
+  <text x="852" y="265" class="edge-label">/left/aruco_markers</text>
+  <path d="M840 369 L910 178" class="line"/>
+  <text x="852" y="353" class="edge-label">/right/aruco_markers</text>
+
+  <path d="M1022 183 L1022 305" class="line"/>
+  <text x="1038" y="224" class="edge-label">/holonomic_goal</text>
+  <text x="1038" y="246" class="edge-label">/holonomic_cancel</text>
+  <text x="1038" y="268" class="edge-label">/holonomic_lidar_ignore_radius</text>
+
+  <path d="M910 535 L840 183 L910 160" class="line"/>
+  <text x="777" y="475" class="edge-label">Nav2 state / costmaps</text>
+  <path d="M910 345 L560 445" class="line"/>
+  <text x="715" y="458" class="edge-label">/cmd_vel</text>
+  <path d="M910 140 L560 395" class="line"/>
+  <text x="773" y="205" class="edge-label">direct /cmd_vel during docking</text>
+  <path d="M910 122 L560 352" class="dash-line"/>
+  <text x="705" y="146" class="edge-label">/attach_trolley, /detach_trolley, /set_entity_state</text>
+  <path d="M560 445 L910 365" class="line"/>
+  <text x="710" y="386" class="edge-label">/odom, /left/scan</text>
+
+  <!-- Optional components -->
+  <rect x="45" y="585" width="455" height="120" class="optional-box"/>
+  <text x="65" y="615" class="blue-label">Optional / defined but not launched</text>
+  <rect x="70" y="640" width="170" height="45" class="box"/>
+  <text x="155" y="663" class="small-label">spawn_yolo</text>
+  <rect x="255" y="640" width="210" height="45" class="box"/>
+  <text x="360" y="663" class="small-label">trolley_ready_docking_controller</text>
+  <rect x="515" y="640" width="180" height="45" class="box"/>
+  <text x="605" y="663" class="small-label">spawn_trolley_image</text>
+
+  <path d="M240 662 L255 662" class="dash-line"/>
+  <path d="M465 662 L515 662" class="dash-line"/>
+
+  <!-- Timing notes -->
+  <text x="655" y="664" class="edge-label">TimerActions: SLAM after 3 s, Nav2 after 5 s, controllers after 8 s</text>
+  <text x="655" y="690" class="edge-label">Launch argument mission_step changes robot spawn pose and enables ArUco nodes for step0-step2</text>
+</svg>

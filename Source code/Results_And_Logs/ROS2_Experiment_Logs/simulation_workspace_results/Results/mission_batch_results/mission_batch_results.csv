@@ -1,0 +1,2 @@
+run,success,failure_reason,failure_detail,duration_sec,startup_duration_sec,command_to_success_sec,mission_started_sec,attach_sec,detach_sec,dropoff_detected_sec,charging_detected_sec,last_trolley_x,last_trolley_y,last_robot_x,last_robot_y,last_log_line
+1,True,,,297.211,9.406,297.209,11.571,126.034,230.322,201.656,296.204,5.2066,-0.0345,0.0,0.0933,[python3-22] [INFO] [1779375637.647540149] [nav2_trolley_mission_controller]: Local target 'return lane above drop zones' reached.
