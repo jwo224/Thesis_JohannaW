@@ -14,8 +14,6 @@ working code without digging through generated build output.
 | `Datasets/` | YOLO trolley training notebooks, datasets, trained model outputs, and labelling tools. |
 | `Assets/` | Floorplans and other non-code support assets. |
 | `Results_And_Logs/` | Experiment logs, detection outputs, mission logs, CSVs, and result bundles moved out of workspaces. |
-| `Methods_Appendix_Code_20260703/` | Curated thesis appendix snapshot created on the Linux development PC. |
-| `Reference_Snapshots/` | Older/reference code snapshots and archives that are useful for traceability but are not the primary workspaces. |
 
 ## Cleanup Notes
 
