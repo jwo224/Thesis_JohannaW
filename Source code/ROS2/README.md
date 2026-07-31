@@ -19,21 +19,3 @@ cd <workspace>
 colcon build
 source install/setup.bash
 ```
-
-## Support Folders Still In ROS2
-
-| Folder | Note |
-| --- | --- |
-| `Arendal UETG/` | ROS-related Arendal support material. Left in place because it may be referenced by the simulation workflow. |
-| `Floordetections/` | Floor-detection support material. Left in place because it may be referenced by floor/elevator workflows. |
-| `notes/` | Original notes kept near the ROS2 material. |
-
-## Removed From Workspaces
-
-- `build/`
-- `install/`
-- `log/`
-- `__pycache__/`
-- `.pytest_cache/`
-
-Experiment logs and result folders are now under `../Results_And_Logs/`.
