@@ -1,7 +1,6 @@
 # ROS 2 Humble Workspaces
 
 This folder contains the ROS 2 Humble workspaces kept as working references.
-Generated build artifacts were removed; rebuild them on Linux with `colcon`.
 
 ## Workspaces
 
